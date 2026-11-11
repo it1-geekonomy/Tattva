@@ -25,36 +25,35 @@ export interface TypographyProps {
 
 const variantStyles = {
   "display-3xl":
-    "text-[30px] sm:text-[35px] md:text-[40px] lg:text-[60px]",  
+    "font-semibold text-[44px] leading-[52px] lg:text-[56px] lg:leading-[64px] xl:text-[64px] xl:leading-[96px]",
 
   "display-2xl":
-    "text-[28px] sm:text-[32px] md:text-[35px] lg:text-[38px]",
+    "font-normal text-[40px] leading-[48px] lg:text-[48px] lg:leading-[56px]",
 
   "display-xl":
-    "text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px]",
+    "font-medium text-[28px] leading-[36px] lg:text-[36px] lg:leading-[44px]",
 
-  h1: "text-[22px] sm:text-[23px] md:text-[24px] lg:text-[25px]",
+  h1: "font-medium text-[24px] leading-[32px] lg:text-[28px] lg:leading-[36px]",
 
-  h2: "text-[20px] sm:text-[21px] md:text-[22px] lg:text-[25px]",
+  h2: "font-medium text-[20px] leading-[28px] lg:text-[24px] lg:leading-[32px]",
 
-  h3: "text-[18px] sm:text-[19px] md:text-[19px] lg:text-[20px]",
+  h3: "font-medium text-[18px] leading-[28px] lg:text-[20px] lg:leading-[32px]",
 
-  h4: "text-[16px] sm:text-[17px] md:text-[18px] lg:text-[20px]",
+  h4: "font-medium text-[16px] leading-[24px] lg:text-[18px] lg:leading-[32px]",
 
   "body-xl":
-    "text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]",
+    "font-normal text-[16px] leading-[28px] lg:text-[18px] lg:leading-[32px]",
 
   "body-lg":
-    "text-[14px] sm:text-[14px] md:text-[15px] lg:text-[15px]",
+    "font-normal text-[14px] leading-[22px] lg:text-[16px] lg:leading-[24px]",
 
   "body-sm":
-    "text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px]",
+    "font-normal text-[13px] leading-[20px] lg:text-[14px] lg:leading-[24px]",
 
-  caption:
-    "text-[11px] sm:text-[11px] md:text-[12px] lg:text-[12px]",
+  caption: "font-normal text-[12px] leading-[16px]",
 
   overline:
-    "text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px]",
+    "font-semibold text-[12px] leading-[16px] tracking-[1.6px] uppercase",
 };
 
 const Typography: React.FC<TypographyProps> = ({
@@ -79,11 +78,7 @@ const Typography: React.FC<TypographyProps> = ({
   };
 
   const elementProps = {
-    className: cn(
-      "text-black",
-      variantStyles[variant],
-      className
-    ),
+    className: cn("text-black", variantStyles[variant], className),
     style: {
       ...style,
       ...(className?.includes("normal-case") && {
