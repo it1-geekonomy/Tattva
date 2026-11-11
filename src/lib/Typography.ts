@@ -25,7 +25,7 @@ export interface TypographyProps {
 
 const variantStyles = {
   "display-3xl":
-    "text-[30px] sm:text-[35px] md:text-[40px] lg:text-[60px]",
+    "text-[30px] sm:text-[35px] md:text-[40px] lg:text-[60px]", 
 
   "display-2xl":
     "text-[28px] sm:text-[32px] md:text-[35px] lg:text-[38px]",
