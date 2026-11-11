@@ -2,7 +2,7 @@ import Typography from "@/lib/Typography";
 
 export default function ClientPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white">
+    <main className="min-h-screen bg-white px-5 py-10 sm:px-8">
       <Typography
         variant="display-3xl"
         as="h1"
