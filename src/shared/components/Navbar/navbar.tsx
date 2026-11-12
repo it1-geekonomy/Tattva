@@ -41,7 +41,7 @@ export default function Navbar() {
  
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-      <nav className="flex h-19 w-full items-center justify-between gap-1 px-3 lg:h-24 lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
+      <nav className="flex h-15 w-full items-center justify-between gap-1 px-3 lg:h-22 lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-2">
           <span className="flex h-12 w-9 shrink-0 items-center justify-center border border-[#494949]">
