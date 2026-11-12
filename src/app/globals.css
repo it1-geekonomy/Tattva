@@ -2,24 +2,184 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0b0b0b;
+  --tattva-hero-bg: #f5f5f5;
+  --tattva-burgundy: #910f33;
+  --tattva-burgundy-deep: #67182e;
+  --tattva-ink: #3a2e31;
+  --tattva-headline: #3f3f3f;
+  /* Primary CTA gradient stops */
+  --tattva-cta-start: #ac2a4e;
+  --tattva-cta-mid: #bd5773;
+  --tattva-cta-end: #461120;
+  --tattva-cta-gradient: linear-gradient(
+    98.92deg,
+    #ac2a4e -4.32%,
+    #bd5773 51.39%,
+    #461120 107.1%
+  );
+  --tattva-nav: #353535;
+  --tattva-grid-line: rgba(0, 0, 0, 0.1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-tattva-hero-bg: var(--tattva-hero-bg);
+  --color-tattva-burgundy: var(--tattva-burgundy);
+  --color-tattva-burgundy-deep: var(--tattva-burgundy-deep);
+  --color-tattva-ink: var(--tattva-ink);
+  --color-tattva-headline: var(--tattva-headline);
+  --color-tattva-nav: var(--tattva-nav);
   --font-sans: var(--font-manrope), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background: var(--tattva-hero-bg);
+  color: var(--foreground);
+  font-family: var(--font-manrope), sans-serif;
+}
+
+/* Desktop hero canvas (1920×1051); scale is applied in JS on .hero-stage */
+.hero-frame {
+  width: 100%;
+  aspect-ratio: 1920 / 1051;
+  overflow: hidden;
+}
+
+.hero-stage {
+  position: relative;
+  width: 1920px;
+  height: 1051px;
+  transform-origin: top left;
+}
+
+/* Keep the slot untransformed so pointer hit-testing stays accurate when the stage is scaled */
+.hero-panel-slot {
+  cursor: pointer;
+  z-index: var(--panel-z, 2);
+}
+
+.hero-panel {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-panel__shade {
+  transition: background-color 0.35s ease;
+}
+
+/* Category label — hidden until the panel is hovered */
+.hero-panel__label {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 32px);
+  max-width: 160px;
+  height: 50px;
+  padding: 0 14px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@media (max-width: 1023px) {
+  .hero-panel__label {
+    bottom: 16px;
+    height: 40px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    width: calc(100% - 24px);
+    max-width: 140px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-manrope), sans-serif;
+@media (max-width: 419px) {
+  .hero-panel__label {
+    bottom: 20px;
+    height: 44px;
+    font-size: 14px;
+    max-width: 160px;
+  }
+}
+
+/* Hover is driven by JS (.is-hovered); CSS :hover alone can stick after tap on touch devices */
+.hero-panel-slot.is-hovered {
+  z-index: 20;
+}
+
+.hero-panel-slot.is-hovered .hero-panel__shade {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.hero-panel-slot.is-hovered .hero-panel__label {
+  opacity: 1;
+  visibility: visible;
+  background-color: #1a1a1a;
+  transform: translate(-50%, -4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+.hero-cta {
+  background-image: var(--tattva-cta-gradient);
+  color: #ffffff;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    filter 0.35s ease;
+  box-shadow: 0 0 0 rgba(172, 42, 78, 0);
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible {
+  transform: translateY(-3px);
+  filter: brightness(1.08) saturate(1.05);
+  box-shadow: 0 12px 28px rgba(70, 17, 32, 0.28);
+}
+
+.hero-cta:active {
+  transform: translateY(-1px);
+  filter: brightness(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-cta:hover,
+  .hero-cta:focus-visible,
+  .hero-cta:active {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .hero-panel__label {
+    transition: none;
+  }
 }
