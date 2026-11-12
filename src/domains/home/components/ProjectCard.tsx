@@ -20,14 +20,14 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
           <Typography
             variant="h2"
             as="p"
-            className="font-manrope text-center font-medium text-[#838383]"
+            className="text-center font-medium text-[#838383]"
           >
             [{pad(index + 1)}/{pad(total)}]
           </Typography>
           <Typography
             variant="project"
             as="h3"
-            className="font-manrope text-center font-medium text-[#0B0B0B]"
+            className="text-center font-medium text-[#0B0B0B]"
           >
             {PROJECTS_SECTION.cardLabel}
           </Typography>
@@ -48,13 +48,13 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
           <Typography
             variant="card"
             as="h3"
-            className="font-manrope text-left font-medium text-[#000000]"
+            className="text-left font-medium text-[#000000]"
           >
             {project.title}
           </Typography>
           <Typography
             variant="body-lg"
-            className="font-manrope text-left font-medium text-[#313131]"
+            className="text-left font-medium text-[#313131]"
           >
             {project.description}
           </Typography>
@@ -65,7 +65,7 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
               <Typography
                 variant="caption"
                 as="span"
-                className="font-manrope text-left font-medium text-[#717171]"
+                className="text-left font-medium text-[#717171]"
               >
                 {tag}
               </Typography>

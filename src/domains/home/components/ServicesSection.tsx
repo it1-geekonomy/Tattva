@@ -12,14 +12,14 @@ export default function ServicesSection() {
           <div className="flex flex-col gap-6 lg:col-span-7 lg:gap-8">
             <Typography
               variant="body-lg"
-              className="font-manrope text-left font-medium text-[#FFFFFF] uppercase"
+              className="text-left font-medium text-[#FFFFFF] uppercase"
             >
               {eyebrow}
             </Typography>
             <Typography
               variant="section"
               as="h2"
-              className="font-manrope text-left font-medium text-[#FFFFFF]"
+              className="text-left font-medium text-[#FFFFFF]"
             >
               {heading}
             </Typography>

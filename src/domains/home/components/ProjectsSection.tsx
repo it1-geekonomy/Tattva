@@ -1,9 +1,18 @@
-import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
 import { PROJECTS, PROJECTS_SECTION } from "@/domains/home/constants/home";
 import ProjectCard from "@/domains/home/components/ProjectCard";
+
+// How far each card's sticky area stretches below its own photo, indexed by
+// the number of photos after it. Supports up to 5 projects.
+const TRACK_BOTTOM = [
+  "md:bottom-0",
+  "md:-bottom-full",
+  "md:-bottom-[200%]",
+  "md:-bottom-[300%]",
+  "md:-bottom-[400%]",
+];
 
 export default function ProjectsSection() {
   const { eyebrow, heading, description, cta } = PROJECTS_SECTION;
@@ -15,21 +24,21 @@ export default function ProjectsSection() {
           <div className="flex flex-col gap-6 lg:col-span-7 lg:gap-9">
             <Typography
               variant="body-lg"
-              className="font-manrope text-left font-medium text-[#AC2A4E] uppercase"
+              className="text-left font-medium text-[#AC2A4E] uppercase"
             >
               {eyebrow}
             </Typography>
             <Typography
               variant="section"
               as="h2"
-              className="font-manrope text-left font-medium text-[#0B0B0B]"
+              className="text-left font-medium text-[#0B0B0B]"
             >
               {heading}
             </Typography>
           </div>
           <Typography
             variant="body-lg"
-            className="font-manrope text-left font-medium text-[#313131] lg:col-span-4 lg:col-start-9"
+            className="text-left font-medium text-[#313131] lg:col-span-4 lg:col-start-9"
           >
             {description}
           </Typography>
@@ -57,8 +66,7 @@ export default function ProjectsSection() {
                     so every card sticks in the same spot and the next card
                     slides up and sits on top of the previous one. */}
                 <div
-                  style={{ "--remaining": remaining } as CSSProperties}
-                  className="relative w-full md:absolute md:inset-x-0 md:top-0 md:bottom-[calc(var(--remaining)*-100%)] md:z-10 md:pt-21 md:pb-40"
+                  className={`relative w-full md:absolute md:inset-x-0 md:top-0 ${TRACK_BOTTOM[remaining]} md:z-10 md:pt-21 md:pb-40`}
                 >
                   <div className="grid w-full grid-cols-1 md:h-full md:grid-cols-24 md:gap-x-4">
                     <div className="w-full md:col-span-14 md:col-start-6 lg:col-span-12 lg:col-start-7 xl:col-span-10 xl:col-start-8">
@@ -80,7 +88,7 @@ export default function ProjectsSection() {
                       <Typography
                         variant="body-sm"
                         as="span"
-                        className="font-manrope text-center font-medium text-[#FFFFFF]"
+                        className="text-center font-medium text-[#FFFFFF]"
                       >
                         {cta.label}
                       </Typography>

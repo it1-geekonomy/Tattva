@@ -69,7 +69,7 @@ export default function ServicesList({ activeId, onActiveChange }: ServicesListP
                 <Typography
                   variant={isActive ? "display-heading" : "h1"}
                   as="h3"
-                  className="font-manrope flex-1 text-left font-medium text-[#FFFFFF] transition-all duration-500 ease-out"
+                  className="flex-1 text-left font-medium text-[#FFFFFF] transition-all duration-500 ease-out"
                 >
                   {service.id}.&nbsp;&nbsp;{service.title}
                 </Typography>
