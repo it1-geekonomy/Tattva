@@ -48,13 +48,11 @@ export const WORK_FLUID = {
   /** Same as hero `FLUID.mobilePadX`, then wider desktop insets */
   sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-[7.5rem]",
   sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-8 sm:pb-10 lg:pb-12",
-  eyebrowGap: "gap-6 sm:gap-8 lg:gap-10 xl:gap-12",
+  eyebrowGap: "gap-5 sm:gap-6 lg:gap-8 xl:gap-10",
   /** Stacked phone + tablet; 3-up only from lg */
-  columnGap: "gap-12 sm:gap-14 lg:gap-[clamp(2.5rem,5.4vw,6.4rem)]",
-  stepGap: "gap-6 sm:gap-7 lg:gap-[clamp(1.5rem,1.75vw,2.15rem)]",
-  copyGap: "gap-3.5 sm:gap-4",
-  /** Rail → step cards (internal pace, not section bottom pad) */
-  stackGap: "gap-10 sm:gap-12 lg:gap-14",
+  columnGap: "gap-10 sm:gap-12 lg:gap-[clamp(2rem,5.4vw,6.4rem)]",
+  stepGap: "gap-5 sm:gap-6 lg:gap-[clamp(1.25rem,1.5vw,1.85rem)]",
+  copyGap: "gap-3 sm:gap-4",
   /**
    * Below lg: compact centered frame (not full-bleed tall, not skinny left gutter).
    * lg+: full column width, Figma portrait ratio.

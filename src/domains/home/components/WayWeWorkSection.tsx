@@ -141,7 +141,7 @@ export default function WayWeWorkSection() {
           {WORK_EYEBROW}
         </Typography>
 
-        <div className={cn("flex flex-col", WORK_FLUID.stackGap)}>
+        <div className="flex flex-col gap-8 lg:gap-10">
           <WorkStepRail />
 
           <div

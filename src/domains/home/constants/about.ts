@@ -46,7 +46,7 @@ export const ABOUT_FLUID = {
   sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-[7.5rem]",
   sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-8 sm:pb-10 lg:pb-12",
   /** Hero `mobileGap` below lg; Figma 30px on desktop */
-  eyebrowGap: "gap-6 sm:gap-7 lg:gap-10",
-  blockGap: "gap-12 sm:gap-14 lg:gap-[clamp(4.5rem,7.5vw,9rem)]",
-  rowsGap: "gap-10 sm:gap-12 lg:gap-[clamp(3.5rem,5.5vw,6.5rem)]",
+  eyebrowGap: "gap-5 sm:gap-6 lg:gap-[30px]",
+  blockGap: "gap-10 sm:gap-12 lg:gap-[clamp(4rem,7.1vw,8.5rem)]",
+  rowsGap: "gap-8 sm:gap-10 lg:gap-[clamp(3rem,4.8vw,5.75rem)]",
 } as const;

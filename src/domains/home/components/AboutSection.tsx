@@ -51,7 +51,7 @@ export default function AboutSection() {
             </div>
 
             {/* Mobile: full-width CTA like hero DiscoverCta; desktop: bottom-right */}
-            <div className="mt-10 flex justify-start sm:mt-12 lg:mt-0 lg:absolute lg:right-0 lg:bottom-0">
+            <div className="mt-8 flex justify-start sm:mt-10 lg:mt-0 lg:absolute lg:-right-3 lg:bottom-4">
               <KnowMoreCta className="h-12 w-full max-w-[280px] min-w-0 sm:h-[59px] sm:w-auto sm:min-w-[181px]" />
             </div>
           </div>
