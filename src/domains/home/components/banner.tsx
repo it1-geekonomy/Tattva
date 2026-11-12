@@ -5,12 +5,22 @@ import Link from "next/link";
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type CSSProperties,
 } from "react";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
+
+/** How much of the viewport the sticky header currently covers (measured, not assumed). */
+function measureHeaderOcclusion(): number {
+  const header = document.querySelector("header");
+  if (!header) return 0;
+  const { top, bottom } = header.getBoundingClientRect();
+  if (bottom <= 0 || top >= window.innerHeight) return 0;
+  return Math.min(bottom, window.innerHeight) - Math.max(top, 0);
+}
 
 type HeroPanel = {
   src: string;
@@ -66,8 +76,6 @@ const WORDMARK_TOP = 376.47;
 const FIRST_PANEL_LEFT = 916.56;
 const STAGE_W = 1920;
 const STAGE_H = 1051;
-/** Matches Navbar `lg:h-24` — hero tucks under the sticky header */
-const HEADER_H_LG = 96;
 /** Panel cluster vertical bounds on the design canvas (min top → max bottom) */
 const ART_TOP = Math.min(...HERO_PANELS.map((p) => p.top));
 const ART_BOTTOM = Math.max(...HERO_PANELS.map((p) => p.top + PANEL_H));
@@ -197,44 +205,60 @@ function PanelCard({
 }
 
 export default function HomeBanner() {
+  const sectionRef = useRef<HTMLElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
   const [offsetY, setOffsetY] = useState(0);
   const [hoveredPanel, setHoveredPanel] = useState<number | null>(null);
 
-  // Scale to width, then shift Y so panel gaps under the header match top/bottom.
-  const updateScale = useCallback(() => {
+  // Width-scale the design canvas, vertically center the art under the real header,
+  // and let the section grow when content is taller than the viewport so overflow
+  // clipping cannot hide the CTA. No breakpoint or header-height constants.
+  const updateLayout = useCallback(() => {
+    const section = sectionRef.current;
     const frame = frameRef.current;
-    const width = frame?.clientWidth || STAGE_W;
-    const nextScale = width / STAGE_W;
-    // Frame fills lg:min-h-dvh; fall back to viewport before first layout.
-    const frameH = frame?.clientHeight || window.innerHeight;
+    if (!section || !frame) return;
 
+    // Mobile uses the stacked layout; desktop frame is `display: none` there.
+    if (getComputedStyle(frame).display === "none") {
+      section.style.minHeight = "";
+      return;
+    }
+
+    const nextScale = frame.clientWidth / STAGE_W;
     const artTopPx = ART_TOP * nextScale;
     const artH = (ART_BOTTOM - ART_TOP) * nextScale;
-    const visibleTop = HEADER_H_LG;
-    const visibleH = Math.max(frameH - visibleTop, artH);
-    const targetArtTop = visibleTop + (visibleH - artH) / 2;
+    const headerH = measureHeaderOcclusion();
+    const contentMinH = Math.ceil(headerH + artH);
+    const viewportH = window.innerHeight;
+
+    // Floor stays with CSS `lg:min-h-dvh`; only raise when content needs more room.
+    section.style.minHeight =
+      contentMinH > viewportH ? `${contentMinH}px` : "";
+
+    const frameH = Math.max(frame.clientHeight, contentMinH);
+    const visibleH = Math.max(frameH - headerH, artH);
+    const targetArtTop = headerH + (visibleH - artH) / 2;
 
     setScale(nextScale);
     setOffsetY(targetArtTop - artTopPx);
   }, []);
 
-  useEffect(() => {
-    updateScale();
-    const node = frameRef.current;
+  useLayoutEffect(() => {
+    updateLayout();
 
-    window.addEventListener("resize", updateScale);
-    let observer: ResizeObserver | null = null;
-    if (node) {
-      observer = new ResizeObserver(() => updateScale());
-      observer.observe(node);
-    }
+    const frame = frameRef.current;
+    const header = document.querySelector("header");
+    const observer = new ResizeObserver(() => updateLayout());
+    if (frame) observer.observe(frame);
+    if (header) observer.observe(header);
+
+    window.addEventListener("resize", updateLayout);
     return () => {
-      window.removeEventListener("resize", updateScale);
-      observer?.disconnect();
+      window.removeEventListener("resize", updateLayout);
+      observer.disconnect();
     };
-  }, [updateScale]);
+  }, [updateLayout]);
 
   // Resolve hover from pointer position; mouseenter is unreliable under transform: scale
   useEffect(() => {
@@ -274,10 +298,10 @@ export default function HomeBanner() {
   }, []);
 
   return (
-    // Negative margin tucks the hero under the sticky header (h-19 / lg:h-24).
-    // Desktop: min-h-dvh fills short viewports (1024/1280); JS offsetY equalizes
-    // the gap above/below the panel cluster in the area under the header.
+    // Negative margin tucks the hero under the sticky header.
+    // Desktop: CSS min-h-dvh as floor; updateLayout raises min-height when needed.
     <section
+      ref={sectionRef}
       aria-labelledby="home-hero-heading"
       className="relative -mt-19 flex w-full flex-col overflow-hidden bg-tattva-hero-bg lg:-mt-24 lg:min-h-dvh"
     >
