@@ -1,5 +1,4 @@
 import { AboutSection, HomeBanner, WayWeWorkSection } from "@/domains/home";
-import { HomeBanner } from "@/domains/home";
 import ProjectsSection from "@/domains/home/components/ProjectsSection";
 import ServicesSection from "@/domains/home/components/ServicesSection";
 
