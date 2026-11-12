@@ -7,7 +7,7 @@ export default function ServicesSection() {
 
   return (
     <section className="w-full bg-[#67182E] pt-16 lg:pt-25">
-      <div className="w-full px-4 pb-16 sm:px-6 lg:px-20 lg:pb-25">
+      <div className="w-full px-3 pb-16 lg:px-[6.25vw] lg:pb-25">
         <div className="grid grid-cols-1 gap-x-8 lg:grid-cols-12">
           <div className="flex flex-col gap-6 lg:col-span-7 lg:gap-8">
             <Typography

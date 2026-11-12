@@ -10,7 +10,7 @@ export default function ProjectsSection() {
 
   return (
     <section className="w-full bg-[#FFFCF8] pt-16 lg:pt-18">
-      <div className="w-full px-4 sm:px-6 lg:px-20">
+      <div className="w-full px-3 lg:px-[6.25vw]">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end lg:gap-x-8">
           <div className="flex flex-col gap-6 lg:col-span-7 lg:gap-9">
             <Typography
