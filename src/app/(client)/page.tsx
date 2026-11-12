@@ -9,9 +9,9 @@ export default function ClientPage() {
     <main className="min-h-screen bg-white">
       <HomeBanner />
       <AboutSection />
-      <WayWeWorkSection />
       <ServicesSection />
       <ProjectsSection />
+      <WayWeWorkSection />
     </main>
   );
 }
