@@ -25,7 +25,7 @@ export type TypographyVariant =
   | "micro"
   | "overline";
 
-export interface TypographyProps {
+export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   variant?: TypographyVariant;
   as?: TypographyElement;
@@ -114,6 +114,7 @@ const Typography: React.FC<TypographyProps> = ({
   as,
   className,
   style,
+  ...props
 }) => {
   const getTag = (): TypographyElement => {
     if (as) return as;
@@ -133,6 +134,7 @@ const Typography: React.FC<TypographyProps> = ({
   return React.createElement(
     getTag(),
     {
+      ...props,
       className: cn("text-black", variantStyles[variant], className),
       style: {
         ...style,

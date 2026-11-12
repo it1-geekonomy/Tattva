@@ -1,9 +1,13 @@
-import ServicesSection from "@/domains/home/components/ServicesSection";
+import { HomeBanner } from "@/domains/home";
 import ProjectsSection from "@/domains/home/components/ProjectsSection";
+import ServicesSection from "@/domains/home/components/ServicesSection";
 
 export default function ClientPage() {
   return (
-    <main className="w-full">
+    // Page chrome below the hero uses white so leftover viewport space
+    // is clearly “rest of page”, not hero padding.
+    <main className="min-h-screen bg-white">
+      <HomeBanner />
       <ServicesSection />
       <ProjectsSection />
     </main>

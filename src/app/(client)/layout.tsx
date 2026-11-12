@@ -1,3 +1,5 @@
+import Navbar from "@/shared/components/Navbar/navbar";
+
 export default function ClientLayout({
   children,
 }: Readonly<{
@@ -5,6 +7,7 @@ export default function ClientLayout({
 }>) {
   return (
     <div className="min-h-screen">
+      <Navbar />
       {children}
     </div>
   );
