@@ -9,6 +9,7 @@ import {
   useState,
   type CSSProperties,
 } from "react";
+import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
 type HeroPanel = {
@@ -70,11 +71,17 @@ function DiscoverCta({ className }: { className?: string }) {
     <Link
       href="#projects"
       className={cn(
-        "hero-cta inline-flex h-[59px] min-w-[238px] items-center justify-center px-[9px] pt-1.5 pb-[9px] text-[18.4657px] font-medium leading-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tattva-ink",
+        "hero-cta inline-flex h-[59px] min-w-[238px] items-center justify-center px-[9px] pt-1.5 pb-[9px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tattva-ink",
         className
       )}
     >
-      Discover Our Projects
+      <Typography
+        variant="body-xl"
+        as="span"
+        className="font-light text-white leading-none tracking-normal"
+      >
+        Discover Our Projects
+      </Typography>
     </Link>
   );
 }
@@ -82,38 +89,48 @@ function DiscoverCta({ className }: { className?: string }) {
 function WordmarkLayers() {
   return (
     <>
-      <div
+      <Typography
+        variant="hero"
+        as="span"
         aria-hidden
-        className="pointer-events-none absolute z-[1] font-bold whitespace-nowrap text-tattva-ink select-none"
+        className="pointer-events-none absolute z-[1] whitespace-nowrap text-tattva-ink select-none tracking-normal"
         style={{
           left: WORDMARK_LEFT,
           top: WORDMARK_TOP,
           fontSize: 215.636,
           lineHeight: "295px",
-          letterSpacing: "-0.02em",
+          letterSpacing: "0",
+          fontWeight: 700,
         }}
       >
         Tattva
-      </div>
+      </Typography>
 
       <div
         aria-hidden
-        className="pointer-events-none absolute z-[10] overflow-hidden font-bold whitespace-nowrap text-white select-none"
+        className="pointer-events-none absolute z-[10] overflow-hidden whitespace-nowrap select-none"
         style={{
           left: FIRST_PANEL_LEFT,
           top: WORDMARK_TOP,
           width: 800,
           fontSize: 215.636,
           lineHeight: "295px",
-          letterSpacing: "-0.02em",
         }}
       >
-        <span
-          className="inline-block"
-          style={{ marginLeft: WORDMARK_LEFT - FIRST_PANEL_LEFT }}
+        <Typography
+          variant="hero"
+          as="span"
+          className="inline-block whitespace-nowrap text-white tracking-normal"
+          style={{
+            marginLeft: WORDMARK_LEFT - FIRST_PANEL_LEFT,
+            fontSize: 215.636,
+            lineHeight: "295px",
+            letterSpacing: "0",
+            fontWeight: 700,
+          }}
         >
           Tattva
-        </span>
+        </Typography>
       </div>
     </>
   );
@@ -178,18 +195,24 @@ export default function HomeBanner() {
   const [hoveredPanel, setHoveredPanel] = useState<number | null>(null);
 
   const updateScale = useCallback(() => {
-    const width = frameRef.current?.clientWidth ?? STAGE_W;
+    const width = frameRef.current?.clientWidth || STAGE_W;
     setScale(width / STAGE_W);
   }, []);
 
   useEffect(() => {
     updateScale();
     const node = frameRef.current;
-    if (!node) return;
 
-    const observer = new ResizeObserver(() => updateScale());
-    observer.observe(node);
-    return () => observer.disconnect();
+    window.addEventListener("resize", updateScale);
+    let observer: ResizeObserver | null = null;
+    if (node) {
+      observer = new ResizeObserver(() => updateScale());
+      observer.observe(node);
+    }
+    return () => {
+      window.removeEventListener("resize", updateScale);
+      observer?.disconnect();
+    };
   }, [updateScale]);
 
   // Resolve hover from pointer position; mouseenter is unreliable under transform: scale
@@ -230,18 +253,25 @@ export default function HomeBanner() {
   }, []);
 
   return (
-    // Negative margin aligns the hero under the sticky header (h-19 / lg:h-24).
+    // Negative margin tucks the hero under the sticky header (h-19 / lg:h-24).
+    // Height comes from .hero-frame aspect-ratio (1920×1051) — do not force 100dvh
+    // or the scaled stage sits high and leaves an empty band under the art.
     <section
       aria-labelledby="home-hero-heading"
       className="relative -mt-19 w-full overflow-hidden bg-tattva-hero-bg lg:-mt-24"
     >
-      <h1 id="home-hero-heading" className="sr-only">
+      <Typography
+        variant="h1"
+        as="h1"
+        id="home-hero-heading"
+        className="sr-only"
+      >
         Crafting Spaces. Defining Lifestyles.
-      </h1>
+      </Typography>
 
       <div
         ref={frameRef}
-        className="hero-frame relative mx-auto hidden w-full max-w-[1920px] lg:block"
+        className="hero-frame relative mx-auto hidden w-full lg:block"
       >
         <div
           className="hero-stage"
@@ -284,28 +314,33 @@ export default function HomeBanner() {
               top: 718,
             }}
           >
-            <p
+            <Typography
+              variant="section"
+              as="p"
               aria-hidden
-              className="pointer-events-none w-[371px] text-[39.0928px] leading-[150%] font-medium text-tattva-headline"
+              className="pointer-events-none w-[371px] text-tattva-headline"
             >
               Crafting Spaces. Defining Lifestyles.
-            </p>
+            </Typography>
             <DiscoverCta />
           </div>
         </div>
       </div>
 
-      {/* Mobile layout: offset for sticky header after hero negative margin */}
-      <div className="mx-auto flex w-full max-w-[720px] flex-col gap-6 px-4 pt-[calc(4.75rem+1.5rem)] pb-10 sm:gap-8 sm:px-6 sm:pt-[calc(4.75rem+2rem)] sm:pb-12 md:max-w-[960px] lg:hidden">
-        {/* Compact wordmark for small screens; desktop uses layered clip */}
-        <div
+      {/* Mobile / tablet: compact cards (desktop uses scaled 1920 canvas above) */}
+      <div className="mx-auto flex w-full max-w-[560px] flex-col gap-5 px-4 pt-[calc(4.75rem+1.25rem)] pb-8 sm:gap-6 sm:px-6 sm:pt-[calc(4.75rem+1.5rem)] sm:pb-10 md:max-w-[600px] lg:hidden">
+        <Typography
+          variant="hero"
+          as="span"
           aria-hidden
-          className="overflow-hidden font-bold leading-[0.9] tracking-[-0.03em] text-tattva-ink text-[clamp(2.75rem,16vw,5.5rem)]"
+          className="overflow-hidden leading-[0.9] tracking-normal text-tattva-ink text-[clamp(2.25rem,11vw,3.25rem)]"
+          style={{ letterSpacing: "0", fontWeight: 700 }}
         >
           Tattva
-        </div>
+        </Typography>
 
-        <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-4">
+        {/* Cap grid width so 2-col panels stay ~200–250px, not half of an 856px viewport */}
+        <div className="mx-auto grid w-full max-w-[240px] grid-cols-1 gap-3 min-[420px]:max-w-[440px] min-[420px]:grid-cols-2 sm:max-w-[480px] sm:gap-3.5 md:max-w-[520px]">
           {HERO_PANELS.map((panel, index) => (
             <PanelCard
               key={panel.src}
@@ -314,23 +349,22 @@ export default function HomeBanner() {
               hovered={hoveredPanel === index}
               onHoverChange={setHoveredPanel}
               priority={index < 2}
-              sizes="(max-width: 419px) 100vw, 50vw"
-              className={cn(
-                "relative aspect-[3/4] w-full sm:aspect-[2/3]",
-                index % 2 === 1 && "min-[420px]:mt-5 sm:mt-6"
-              )}
+              sizes="(max-width: 419px) 240px, 260px"
+              className="relative aspect-[3/4] w-full"
             />
           ))}
         </div>
 
         <div className="flex w-full max-w-md flex-col items-start gap-5 sm:gap-6">
-          <p
+          <Typography
+            variant="section"
+            as="p"
             aria-hidden
-            className="text-[clamp(1.5rem,5vw,2.4375rem)] leading-[150%] font-medium text-tattva-headline"
+            className="text-tattva-headline"
           >
             Crafting Spaces. Defining Lifestyles.
-          </p>
-          <DiscoverCta className="h-12 w-full max-w-[280px] min-w-0 text-base sm:h-[59px] sm:w-auto sm:min-w-[238px] sm:text-[18.4657px]" />
+          </Typography>
+          <DiscoverCta className="h-12 w-full max-w-[280px] min-w-0 text-base sm:h-[59px] sm:w-auto sm:min-w-[238px]" />
         </div>
       </div>
     </section>
