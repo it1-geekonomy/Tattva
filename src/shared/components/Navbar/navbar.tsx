@@ -73,7 +73,7 @@ export default function Navbar() {
                 <Typography
                   variant="body-lg"
                   as="span"
-                  className="whitespace-nowrap font-medium tracking-[0.03em] text-[#353535] transition-colors"
+                  className="whitespace-nowrap text-[#353535] transition-colors"
                 >
                   {label}
                 </Typography>
@@ -99,7 +99,7 @@ export default function Navbar() {
                 <Typography
                   variant="body-lg"
                   as="span"
-                  className={`text-xs font-medium tracking-[0.03em] lg:text-base ${
+                  className={`text-xs lg:text-base ${
                     category === item ? "text-[#FFFFFF]" : "text-[#323232]"
                   }`}
                 >
@@ -143,7 +143,6 @@ export default function Navbar() {
                     <Typography
                       variant="body-lg"
                       as="span"
-                      className="font-medium tracking-[0.03em]"
                     >
                       {label}
                     </Typography>
