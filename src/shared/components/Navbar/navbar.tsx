@@ -41,15 +41,18 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-      <nav className="mx-auto flex h-19 items-center justify-between gap-1 px-3 lg:h-24 lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
+      <nav className="flex h-15 w-full items-center justify-between gap-1 px-3 lg:grid lg:h-22 lg:grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2">
+        <Link
+          href="/"
+          className="flex shrink-0 items-center gap-2 lg:justify-self-start"
+        >
           <span className="flex h-12 w-9 shrink-0 items-center justify-center border border-[#494949]">
             <Image
               src="/Logo.svg"
               alt="Tattva Lifespaces logo"
               width={28}
-              height={39}
+              height={40}
               priority
               className="h-10 w-7 object-contain"
             />
@@ -73,7 +76,7 @@ export default function Navbar() {
         </Link>
 
         {/* Links */}
-        <ul className="hidden items-center gap-4 lg:flex xl:gap-5 2xl:gap-8">
+        <ul className="hidden items-center lg:flex lg:justify-self-center lg:pr-15 lg:gap-4 min-[85rem]:gap-5 2xl:gap-10">
           {NAV_LINKS.map(({ label, href }) => (
             <li key={href} className="whitespace-nowrap">
               <Link href={href} className="whitespace-nowrap transition-colors">
@@ -89,10 +92,10 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="ml-auto flex shrink-0 items-center gap-3 lg:ml-0">
+        <div className="pl-1 pr-1 flex shrink-0 items-center gap-2 lg:translate-x-3 lg:justify-self-end lg:pl-0">
           {/* Premium / Modular toggle */}
-          <div className="flex h-10 w-[clamp(7.5rem,20vw,20rem)] items-center border border-[#3A2E31] p-1 lg:h-14 lg:p-1.5 xl:h-18.5">
-            <div className="relative flex h-full w-full items-center">
+          <div className="flex h-10 w-auto items-center border border-[#3A2E31] p-1 lg:h-14 lg:w-[clamp(7.5rem,20vw,20rem)] lg:p-1.5 xl:h-18.5 xl:w-[19.37rem] ">
+            <div className="relative grid h-full w-full grid-cols-2 items-center">
               <span
                 aria-hidden="true"
                 className={`absolute inset-y-0 left-0 w-1/2 bg-[#3A2E31] transition-transform duration-300 ease-in-out ${
@@ -105,12 +108,12 @@ export default function Navbar() {
                   type="button"
                   onClick={() => setCategory(item)}
                   aria-pressed={category === item}
-                  className="relative z-10 h-full min-w-0 flex-1 cursor-pointer px-1 text-[#323232] transition-colors xl:px-6"
+                  className="relative z-10 h-full cursor-pointer whitespace-nowrap px-2 text-[#323232] transition-colors xl:px-2"
                 >
                   <Typography
                     variant="body-xl"
                     as="span"
-                    className={`text-xs transition-colors duration-300 lg:text-xl font-medium ${
+                    className={`font-medium transition-colors duration-300 ${
                       category === item ? "text-white" : "text-[#323232]"
                     }`}
                   >
@@ -148,7 +151,10 @@ export default function Navbar() {
             : "pointer-events-none -translate-y-3 opacity-0"
         }`}
       >
-        <nav aria-label="Mobile navigation" className="h-4/5 shrink-0 px-6 pt-4">
+        <nav
+          aria-label="Mobile navigation"
+          className="h-4/5 shrink-0 px-6 pt-4"
+        >
           <ul className="flex h-full flex-col items-center justify-evenly">
             {NAV_LINKS.map(({ label, href }, index) => (
               <li
