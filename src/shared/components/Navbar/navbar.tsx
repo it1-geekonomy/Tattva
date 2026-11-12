@@ -33,10 +33,10 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white">
-      <nav className="mx-auto flex h-19 items-center justify-between gap-1 px-3 lg:h-24 lg:gap-4 lg:px-[6.25vw]">
+    <header className="sticky top-0 z-50 w-full overflow-x-clip bg-white">
+      <nav className="mx-auto flex h-19 w-full min-w-0 items-center justify-between gap-1 px-3 lg:h-24 lg:gap-3 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2">
+        <Link href="/" className="flex min-w-0 shrink-0 items-center gap-2">
           <span className="flex h-12 w-9 shrink-0 items-center justify-center border border-[#494949]">
             <Image
               src="/Logo.svg"
@@ -47,7 +47,7 @@ export default function Navbar() {
               className="h-10 w-7 object-contain"
             />
           </span>
-          <span className="flex flex-col">
+          <span className="flex min-w-0 flex-col">
             <Typography
               variant="h2"
               as="span"
@@ -65,15 +65,15 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Links */}
-        <ul className="hidden items-center gap-3 lg:flex xl:gap-8">
+        {/* Links — tighter at lg (1024) so the bar fits without side overflow */}
+        <ul className="hidden min-w-0 items-center gap-2 lg:flex xl:gap-8">
           {NAV_LINKS.map(({ label, href }) => (
             <li key={href} className="whitespace-nowrap">
               <Link href={href} className="whitespace-nowrap transition-colors">
                 <Typography
                   variant="body-lg"
                   as="span"
-                  className="whitespace-nowrap text-[#353535] transition-colors"
+                  className="whitespace-nowrap text-sm text-[#353535] transition-colors xl:text-base"
                 >
                   {label}
                 </Typography>
@@ -82,15 +82,15 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="ml-auto flex shrink-0 items-center gap-3 lg:ml-0">
-          {/* Premium / Modular toggle */}
-          <div className="flex h-10 w-32 items-center border border-[#3A2E31] p-1 lg:h-18.5 lg:w-80 lg:p-1.5">
+        <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-0">
+          {/* Premium / Modular — compact at lg; full Figma width from xl */}
+          <div className="flex h-10 w-32 items-center border border-[#3A2E31] p-1 lg:h-18.5 lg:w-52 lg:p-1.5 xl:w-80">
             {CATEGORIES.map((item) => (
               <button
                 key={item}
                 type="button"
                 onClick={() => setCategory(item)}
-                className={`h-full min-w-0 flex-1 cursor-pointer px-1 transition-colors lg:px-6 ${
+                className={`h-full min-w-0 flex-1 cursor-pointer px-1 transition-colors lg:px-2 xl:px-6 ${
                   category === item
                     ? "bg-[#3A2E31] text-[#FFFFFF]"
                     : "bg-transparent text-[#323232]"
@@ -99,7 +99,7 @@ export default function Navbar() {
                 <Typography
                   variant="body-lg"
                   as="span"
-                  className={`text-xs lg:text-base ${
+                  className={`text-xs lg:text-sm xl:text-base ${
                     category === item ? "text-[#FFFFFF]" : "text-[#323232]"
                   }`}
                 >
