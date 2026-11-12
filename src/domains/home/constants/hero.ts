@@ -18,6 +18,7 @@ export const HERO_STAGE = {
   height: 1051,
 } as const;
 
+/** Original Figma panel positions (independent tops — not paired 1=3 / 2=4) */
 export const HERO_PANELS: HeroPanel[] = [
   {
     src: "/images/home/hero-panel-1.jpg",
@@ -64,13 +65,16 @@ export const PANEL_W = 191.38;
 export const PANEL_H = 483.69;
 export const WORDMARK_LEFT = 744.04;
 export const WORDMARK_TOP = 376.47;
-export const FIRST_PANEL_LEFT = 916.56;
-export const COPY_LEFT = 120;
+export const FIRST_PANEL_LEFT = HERO_PANELS[0].left;
 export const WORDMARK_SIZE = 215.636;
 export const WORDMARK_LH = 295;
 
-/** HOMES panel bottom — copy/CTA baseline */
+/**
+ * Copy / CTA — left from stage gutter ratio; bottom aligns to HOMES panel baseline.
+ */
+export const COPY_LEFT = HERO_STAGE.width / 16;
 export const COPY_BASELINE = HERO_PANELS[0].top + PANEL_H;
+export const COPY_BOTTOM = HERO_STAGE.height - COPY_BASELINE;
 
 /** Art cluster in design space */
 export const CONTENT_TOP = Math.min(...HERO_PANELS.map((p) => p.top));
@@ -80,15 +84,20 @@ export const CONTENT_BOTTOM = Math.max(
 export const CONTENT_HEIGHT = CONTENT_BOTTOM - CONTENT_TOP;
 
 /**
- * Fluid spacing tokens (IHDUA pattern).
+ * Fluid spacing tokens — matched to IHDUA home `#home-top`:
+ * content-sized section (no min-h-dvh), width-based top pad, fixed bottom pad.
  * Full literal strings so Tailwind's scanner can see them.
  *
- * Equal Y pad ≈ 11.610417% of WIDTH (design inset / 1920).
- * Top also clears sticky nav (lg:h-24). Section is content-sized — not viewport-filled.
+ * IHDUA: pt-[clamp(1rem,7.8vw,2rem)] + pb-8 lg:pb-12
+ * Tattva adds 6rem on top only to clear sticky nav under lg:-mt-24.
  */
 export const FLUID = {
-  sectionPadBottom: "lg:pb-[11.610417%]",
-  sectionPadTop: "lg:pt-[calc(6rem+11.610417%)]",
+  /**
+   * Equal breathing room (width-based % — change BOTH % values together).
+   * Top adds 6rem only to clear sticky nav under lg:-mt-24.
+   */
+  sectionPadTop: "lg:pt-[calc(6rem+8%)]",
+  sectionPadBottom: "lg:pb-[8%]",
   mobilePadTop: "pt-[calc(4.75rem+1.25rem)] sm:pt-[calc(4.75rem+1.5rem)]",
   mobilePadBottom: "pb-8 sm:pb-10",
   mobilePadX: "px-4 sm:px-6",

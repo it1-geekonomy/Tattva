@@ -48,10 +48,10 @@ body {
 }
 
 /*
- * Desktop hero — width-responsive like IHDUA fluid sections.
+ * Desktop hero — width-responsive like IHDUA home section.
+ * - Section height = content + pads (NOT min-h-dvh / 100vh)
  * - Frame aspect = art cluster only (content height / stage width)
  * - Stage scales with container query width (cqw)
- * - Equal section padding comes from FLUID % tokens (scales with width)
  */
 .hero-frame {
   position: relative;
@@ -150,23 +150,11 @@ body {
 .hero-cta {
   background-image: var(--tattva-cta-gradient);
   color: #ffffff;
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s ease,
-    filter 0.35s ease;
-  box-shadow: 0 0 0 rgba(172, 42, 78, 0);
 }
 
-.hero-cta:hover,
-.hero-cta:focus-visible {
-  transform: translateY(-3px);
-  filter: brightness(1.08) saturate(1.05);
-  box-shadow: 0 12px 28px rgba(70, 17, 32, 0.28);
-}
-
+/* Click feedback only — no hover lift / shadow / motion */
 .hero-cta:active {
-  transform: translateY(-1px);
-  filter: brightness(0.98);
+  opacity: 0.85;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -177,13 +165,6 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-
-  .hero-cta:hover,
-  .hero-cta:focus-visible,
-  .hero-cta:active {
-    transform: none;
-    box-shadow: none;
   }
 
   .hero-panel__label {

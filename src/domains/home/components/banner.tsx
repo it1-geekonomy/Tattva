@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import {
   CONTENT_HEIGHT,
   CONTENT_TOP,
-  COPY_BASELINE,
+  COPY_BOTTOM,
   COPY_LEFT,
   FLUID,
   GRID_LINE_PERCENTS,
@@ -100,8 +100,8 @@ export default function HomeBanner() {
       </Typography>
 
       {/*
-        Column guides on the full section so they stay visible in the padded
-        gap above the panels (they were clipped when the stage was cropped).
+        Column guides on the full section so they stay visible in the
+        width-scaled padded gaps (not clipped to the art frame).
       */}
       <div
         aria-hidden
@@ -116,7 +116,7 @@ export default function HomeBanner() {
         ))}
       </div>
 
-      {/* Desktop: width-scaled art; equal % padding on the section (not viewport-fill) */}
+      {/* Desktop: width-scaled art only — section height follows content + % pads */}
       <div
         ref={frameRef}
         className="hero-frame relative z-[2] mx-auto hidden w-full lg:block"
@@ -142,17 +142,23 @@ export default function HomeBanner() {
             />
           ))}
 
+          {/* Copy + CTA: left = stage/16; bottom = low-row panel baseline */}
           <div
-            className="absolute z-20 flex w-[358px] -translate-y-full flex-col items-start gap-9"
-            style={{ left: COPY_LEFT, top: COPY_BASELINE }}
+            className="absolute z-20 flex flex-col items-start gap-9"
+            style={{
+              left: COPY_LEFT,
+              bottom: COPY_BOTTOM,
+            }}
           >
             <Typography
               variant="section"
               as="p"
               aria-hidden
-              className="pointer-events-none w-full text-tattva-headline"
+              className="pointer-events-none text-tattva-headline"
             >
-              Crafting Spaces. Defining Lifestyles.
+              Crafting Spaces.
+              <br />
+              Defining Lifestyles.
             </Typography>
             <DiscoverCta />
           </div>
