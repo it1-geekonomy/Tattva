@@ -199,7 +199,13 @@ export default function HomeBanner() {
           ))}
         </div>
 
-        <div className={cn("flex w-full max-w-md flex-col items-start", FLUID.mobileGap)}>
+        {/* Centered on mobile + tablet; desktop uses the absolute stage copy */}
+        <div
+          className={cn(
+            "mx-auto flex w-full max-w-md flex-col items-center text-center",
+            FLUID.mobileGap
+          )}
+        >
           <Typography
             variant="section"
             as="p"

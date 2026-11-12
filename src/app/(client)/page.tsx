@@ -1,4 +1,4 @@
-import { HomeBanner } from "@/domains/home";
+import { AboutSection, HomeBanner, WayWeWorkSection } from "@/domains/home";
 
 export default function ClientPage() {
   return (
@@ -6,6 +6,8 @@ export default function ClientPage() {
     // is clearly “rest of page”, not hero padding.
     <main className="min-h-screen bg-white">
       <HomeBanner />
+      <AboutSection />
+      <WayWeWorkSection />
     </main>
   );
 }
