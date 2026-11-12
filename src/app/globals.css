@@ -41,11 +41,12 @@ body {
   font-family: var(--font-manrope), sans-serif;
 }
 
-/* Desktop hero canvas (1920×1051); JS scales .hero-stage to the frame width */
+/* Desktop hero: frame fills the viewport-tall section; JS scales + offsets .hero-stage */
 .hero-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 1920 / 1051;
+  flex: 1 1 auto;
+  min-height: 100%;
   overflow: hidden;
 }
 
@@ -74,7 +75,7 @@ body {
   transition: background-color 0.35s ease;
 }
 
-/* Category label — Figma Frame 16 + HOMES (Manrope 700 / 24 / 33 / -2%) */
+/* Category label — Figma Frame 16 + HOMES (Manrope 300 / 24 / 33 / -2%) */
 .hero-panel__label {
   position: absolute;
   left: 50%;
@@ -94,7 +95,7 @@ body {
   color: #ffffff;
   font-family: var(--font-manrope), sans-serif;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 450;
   font-style: normal;
   line-height: 33px;
   letter-spacing: -0.02em;
