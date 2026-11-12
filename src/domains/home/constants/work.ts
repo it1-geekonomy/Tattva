@@ -47,7 +47,7 @@ export const WORK_STEPS: WorkStep[] = [
 export const WORK_FLUID = {
   /** Same as hero `FLUID.mobilePadX`, then wider desktop insets */
   sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-[7.5rem]",
-  sectionPadY: "py-10 sm:py-12 lg:py-16 xl:py-20",
+  sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-0",
   eyebrowGap: "gap-5 sm:gap-6 lg:gap-8 xl:gap-10",
   /** Stacked phone + tablet; 3-up only from lg */
   columnGap: "gap-10 sm:gap-12 lg:gap-[clamp(2rem,5.4vw,6.4rem)]",

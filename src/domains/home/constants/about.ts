@@ -44,7 +44,7 @@ export const ABOUT_REVEAL_ACTIVE = "#000000";
 export const ABOUT_FLUID = {
   /** Same as hero `FLUID.mobilePadX`, then wider desktop insets */
   sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-[7.5rem]",
-  sectionPadY: "py-10 sm:py-12 lg:py-16 xl:py-20",
+  sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-0",
   /** Hero `mobileGap` below lg; Figma 30px on desktop */
   eyebrowGap: "gap-5 sm:gap-6 lg:gap-[30px]",
   blockGap: "gap-10 sm:gap-12 lg:gap-[clamp(4rem,7.1vw,8.5rem)]",
