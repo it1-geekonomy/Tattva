@@ -33,24 +33,26 @@ export default function Navbar() {
   useEffect(() => {
     if (!open) return;
  
-    const previousOverflow = document.body.style.overflow;
+    // Lock the viewport so the sticky header keeps its scroll container.
+    const root = document.documentElement;
+    const wasScrollLocked = root.classList.contains("overflow-y-hidden");
     const desktop = window.matchMedia("(min-width: 64rem)");
     const closeOnDesktop = (event: MediaQueryListEvent) => {
       if (event.matches) setOpen(false);
     };
  
-    document.body.style.overflow = "hidden";
+    root.classList.add("overflow-y-hidden");
     desktop.addEventListener("change", closeOnDesktop);
  
     return () => {
-      document.body.style.overflow = previousOverflow;
+      if (!wasScrollLocked) root.classList.remove("overflow-y-hidden");
       desktop.removeEventListener("change", closeOnDesktop);
     };
   }, [open]);
  
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-      <nav className="flex h-15 w-full items-center justify-between gap-1 px-3 lg:grid lg:h-22 lg:grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
+      <nav className="relative z-50 flex h-15 w-full items-center justify-between gap-1 bg-white px-3 lg:grid lg:h-22 lg:grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
         {/* Logo */}
         <Link
           href="/"
@@ -205,5 +207,3 @@ export default function Navbar() {
     </header>
   );
 }
- 
- 
