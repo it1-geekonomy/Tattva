@@ -1,8 +1,10 @@
-import HomeBanner from "@/domains/home/components/banner";
+import { HomeBanner } from "@/domains/home";
 
 export default function ClientPage() {
   return (
-    <main className="min-h-screen bg-tattva-hero-bg">
+    // Page chrome below the hero uses white so leftover viewport space
+    // is clearly “rest of page”, not hero padding.
+    <main className="min-h-screen bg-white">
       <HomeBanner />
     </main>
   );

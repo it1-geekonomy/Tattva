@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #0b0b0b;
+  /* Hero band only — page below uses --background / white */
   --tattva-hero-bg: #f5f5f5;
   --tattva-burgundy: #910f33;
   --tattva-burgundy-deep: #67182e;
@@ -35,29 +36,44 @@
   --font-sans: var(--font-manrope), sans-serif;
 }
 
-body {
-  background: var(--tattva-hero-bg);
-  color: var(--foreground);
-  font-family: var(--font-manrope), sans-serif;
+html {
+  overflow-x: clip;
 }
 
-/* Desktop hero: frame fills the viewport-tall section; JS scales + offsets .hero-stage */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-manrope), sans-serif;
+  overflow-x: clip;
+}
+
+/*
+ * Desktop hero — width-responsive like IHDUA fluid sections.
+ * - Frame aspect = art cluster only (content height / stage width)
+ * - Stage scales with container query width (cqw)
+ * - Equal section padding comes from FLUID % tokens (scales with width)
+ */
 .hero-frame {
   position: relative;
   width: 100%;
-  flex: 1 1 auto;
-  min-height: 100%;
   overflow: hidden;
+  container-type: inline-size;
+  aspect-ratio: var(--hero-stage-w-num, 1920) / var(--hero-content-h, 600);
 }
 
-/* Absolute so the unscaled 1051px box does not inflate the frame height */
 .hero-stage {
   position: absolute;
   top: 0;
   left: 0;
-  width: 1920px;
-  height: 1051px;
+  width: var(--hero-stage-w, 1920px);
+  height: var(--hero-stage-h, 1051px);
   transform-origin: top left;
+  /* Scale to frame width; shift so art cluster top sits at frame top */
+  transform: translateY(
+      calc(var(--hero-content-top, 228px) * -100cqw / var(--hero-stage-w, 1920px))
+    )
+    scale(calc(100cqw / var(--hero-stage-w, 1920px)));
+  will-change: transform;
 }
 
 /* Keep the slot untransformed so pointer hit-testing stays accurate when the stage is scaled */
