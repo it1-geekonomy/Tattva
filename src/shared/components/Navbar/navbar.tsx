@@ -16,6 +16,15 @@ const NAV_LINKS = [
 
 const CATEGORIES = ["Premium", "Modular"] as const;
 
+const MOBILE_LINK_DELAYS = [
+  ["delay-80", "delay-100"],
+  ["delay-125", "delay-80"],
+  ["delay-170", "delay-60"],
+  ["delay-215", "delay-40"],
+  ["delay-260", "delay-20"],
+  ["delay-305", "delay-0"],
+] as const;
+
 export default function Navbar() {
   const [category, setCategory] =
     useState<(typeof CATEGORIES)[number]>("Premium");
@@ -92,7 +101,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="pl-1 pr-1 flex shrink-0 items-center gap-2 lg:translate-x-3 lg:justify-self-end lg:pl-0">
+        <div className="pl-1 pr-2 flex shrink-0 items-center gap-3 sm:gap-5 lg:translate-x-3 lg:justify-self-end lg:pl-0">
           {/* Premium / Modular toggle */}
           <div className="flex h-10 w-auto items-center border border-[#3A2E31] p-1 lg:h-14 lg:w-[clamp(7.5rem,20vw,20rem)] lg:p-1.5 xl:h-18.5 xl:w-[19.37rem] ">
             <div className="relative grid h-full w-full grid-cols-2 items-center">
@@ -127,15 +136,27 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             type="button"
-            className="lg:hidden"
+            className="relative size-7 shrink-0 cursor-pointer lg:hidden"
             aria-label="Toggle menu"
             aria-expanded={open}
             aria-controls="mobile-navigation"
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="block h-0.5 w-5 bg-[#3A2E31]" />
-            <span className="mt-1 block h-0.5 w-5 bg-[#3A2E31]" />
-            <span className="mt-1 block h-0.5 w-5 bg-[#3A2E31]" />
+            <span
+              className={`absolute left-1/2 top-1/2 h-0.5 w-5 -translate-x-1/2 rounded bg-[#3A2E31] transition-transform duration-300 ease-in-out motion-reduce:transition-none ${
+                open ? "translate-y-0 rotate-45" : "-translate-y-1.5"
+              }`}
+            />
+            <span
+              className={`absolute left-1/2 top-1/2 h-0.5 w-5 -translate-x-1/2 rounded bg-[#3A2E31] transition-opacity duration-200 ease-in-out motion-reduce:transition-none ${
+                open ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute left-1/2 top-1/2 h-0.5 w-5 -translate-x-1/2 rounded bg-[#3A2E31] transition-transform duration-300 ease-in-out motion-reduce:transition-none ${
+                open ? "translate-y-0 -rotate-45" : "translate-y-1.5"
+              }`}
+            />
           </button>
         </div>
       </nav>
@@ -143,12 +164,13 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         id="mobile-navigation"
+        data-open={open}
         aria-hidden={!open}
         inert={!open}
-        className={`fixed inset-x-0 top-19 z-40 flex h-[calc(100dvh-4.75rem)] flex-col justify-start overflow-y-auto overscroll-contain bg-white text-center transition-[opacity,transform] duration-400 ease-in-out lg:hidden ${
+        className={`fixed inset-x-0 top-15 z-40 flex h-[calc(100dvh-3.75rem)] flex-col justify-start overflow-y-auto overscroll-contain bg-white text-center transition-[clip-path] motion-reduce:transition-none lg:hidden ${
           open
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-3 opacity-0"
+            ? "pointer-events-auto duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] [clip-path:inset(0)]"
+            : "pointer-events-none duration-360 ease-[cubic-bezier(0.4,0,0.2,1)] [clip-path:inset(0_0_100%_0)]"
         }`}
       >
         <nav
@@ -157,19 +179,21 @@ export default function Navbar() {
         >
           <ul className="flex h-full flex-col items-center justify-evenly">
             {NAV_LINKS.map(({ label, href }, index) => (
-              <li
-                key={href}
-                className={`transition-[opacity,transform] duration-500 ease-out ${
-                  open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
-                }`}
-                style={{ transitionDelay: open ? `${index * 50}ms` : "0ms" }}
-              >
+              <li key={href}>
                 <Link
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="text-foreground"
+                  className="block overflow-hidden text-foreground"
                 >
-                  <Typography variant="h3" as="span">
+                  <Typography
+                    variant="h3"
+                    as="span"
+                    className={`block transition-[translate,opacity] motion-reduce:transition-none ${
+                      open
+                        ? "translate-y-0 opacity-100 duration-[460ms,280ms] ease-[cubic-bezier(0.22,1,0.36,1),ease-out]"
+                        : "translate-y-[110%] opacity-0 duration-[200ms,160ms] ease-[cubic-bezier(0.4,0,1,1),ease-in]"
+                    } ${MOBILE_LINK_DELAYS[index][open ? 0 : 1]}`}
+                  >
                     {label}
                   </Typography>
                 </Link>
