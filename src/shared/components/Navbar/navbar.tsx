@@ -25,16 +25,23 @@ export default function Navbar() {
     if (!open) return;
 
     const previousOverflow = document.body.style.overflow;
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setOpen(false);
+    };
+
     document.body.style.overflow = "hidden";
+    desktop.addEventListener("change", closeOnDesktop);
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      desktop.removeEventListener("change", closeOnDesktop);
     };
   }, [open]);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-      <nav className="mx-auto flex h-19 items-center justify-between gap-1 px-3 lg:h-24 lg:gap-4 lg:px-[6.25vw]">
+      <nav className="mx-auto flex h-19 items-center justify-between gap-1 px-3 lg:h-24 lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-2">
           <span className="flex h-12 w-9 shrink-0 items-center justify-center border border-[#494949]">
@@ -66,14 +73,14 @@ export default function Navbar() {
         </Link>
 
         {/* Links */}
-        <ul className="hidden items-center gap-3 lg:flex xl:gap-8">
+        <ul className="hidden items-center gap-4 lg:flex xl:gap-5 2xl:gap-8">
           {NAV_LINKS.map(({ label, href }) => (
             <li key={href} className="whitespace-nowrap">
               <Link href={href} className="whitespace-nowrap transition-colors">
                 <Typography
                   variant="body-lg"
                   as="span"
-                  className="whitespace-nowrap text-[#353535] transition-colors"
+                  className="whitespace-nowrap text-[#353535] transition-colors font-medium"
                 >
                   {label}
                 </Typography>
@@ -84,29 +91,34 @@ export default function Navbar() {
 
         <div className="ml-auto flex shrink-0 items-center gap-3 lg:ml-0">
           {/* Premium / Modular toggle */}
-          <div className="flex h-10 w-32 items-center border border-[#3A2E31] p-1 lg:h-18.5 lg:w-80 lg:p-1.5">
-            {CATEGORIES.map((item) => (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setCategory(item)}
-                className={`h-full min-w-0 flex-1 cursor-pointer px-1 transition-colors lg:px-6 ${
-                  category === item
-                    ? "bg-[#3A2E31] text-[#FFFFFF]"
-                    : "bg-transparent text-[#323232]"
+          <div className="flex h-10 w-[clamp(7.5rem,20vw,20rem)] items-center border border-[#3A2E31] p-1 lg:h-14 lg:p-1.5 xl:h-18.5">
+            <div className="relative flex h-full w-full items-center">
+              <span
+                aria-hidden="true"
+                className={`absolute inset-y-0 left-0 w-1/2 bg-[#3A2E31] transition-transform duration-300 ease-in-out ${
+                  category === "Modular" ? "translate-x-full" : ""
                 }`}
-              >
-                <Typography
-                  variant="body-lg"
-                  as="span"
-                  className={`text-xs lg:text-base ${
-                    category === item ? "text-[#FFFFFF]" : "text-[#323232]"
-                  }`}
+              />
+              {CATEGORIES.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => setCategory(item)}
+                  aria-pressed={category === item}
+                  className="relative z-10 h-full min-w-0 flex-1 cursor-pointer px-1 text-[#323232] transition-colors xl:px-6"
                 >
-                  {item}
-                </Typography>
-              </button>
-            ))}
+                  <Typography
+                    variant="body-xl"
+                    as="span"
+                    className={`text-xs transition-colors duration-300 lg:text-xl font-medium ${
+                      category === item ? "text-white" : "text-[#323232]"
+                    }`}
+                  >
+                    {item}
+                  </Typography>
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Mobile toggle */}
@@ -118,41 +130,48 @@ export default function Navbar() {
             aria-controls="mobile-navigation"
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="block h-0.5 w-6 bg-[#3A2E31]" />
-            <span className="mt-1.5 block h-0.5 w-6 bg-[#3A2E31]" />
-            <span className="mt-1.5 block h-0.5 w-6 bg-[#3A2E31]" />
+            <span className="block h-0.5 w-5 bg-[#3A2E31]" />
+            <span className="mt-1 block h-0.5 w-5 bg-[#3A2E31]" />
+            <span className="mt-1 block h-0.5 w-5 bg-[#3A2E31]" />
           </button>
         </div>
       </nav>
 
       {/* Mobile menu */}
-      {open && (
-        <div
-          id="mobile-navigation"
-          className="fixed inset-x-0 bottom-0 top-19 z-40 flex min-h-0 flex-col items-center justify-start gap-6 overflow-y-auto overscroll-contain bg-white px-6 pb-6 pt-8 text-center lg:hidden"
-        >
-          <nav aria-label="Mobile navigation">
-            <ul className="flex flex-col items-center gap-6">
-              {NAV_LINKS.map(({ label, href }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    onClick={() => setOpen(false)}
-                    className="text-foreground"
-                  >
-                    <Typography
-                      variant="body-lg"
-                      as="span"
-                    >
-                      {label}
-                    </Typography>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      )}
+      <div
+        id="mobile-navigation"
+        aria-hidden={!open}
+        inert={!open}
+        className={`fixed inset-x-0 top-19 z-40 flex h-[calc(100dvh-4.75rem)] flex-col justify-start overflow-y-auto overscroll-contain bg-white text-center transition-[opacity,transform] duration-400 ease-in-out lg:hidden ${
+          open
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-3 opacity-0"
+        }`}
+      >
+        <nav aria-label="Mobile navigation" className="h-4/5 shrink-0 px-6 pt-4">
+          <ul className="flex h-full flex-col items-center justify-evenly">
+            {NAV_LINKS.map(({ label, href }, index) => (
+              <li
+                key={href}
+                className={`transition-[opacity,transform] duration-500 ease-out ${
+                  open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+                }`}
+                style={{ transitionDelay: open ? `${index * 50}ms` : "0ms" }}
+              >
+                <Link
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="text-foreground"
+                >
+                  <Typography variant="h3" as="span">
+                    {label}
+                  </Typography>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
