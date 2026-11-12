@@ -1,4 +1,7 @@
 import { AboutSection, HomeBanner, WayWeWorkSection } from "@/domains/home";
+import { HomeBanner } from "@/domains/home";
+import ProjectsSection from "@/domains/home/components/ProjectsSection";
+import ServicesSection from "@/domains/home/components/ServicesSection";
 
 export default function ClientPage() {
   return (
@@ -8,6 +11,8 @@ export default function ClientPage() {
       <HomeBanner />
       <AboutSection />
       <WayWeWorkSection />
+      <ServicesSection />
+      <ProjectsSection />
     </main>
   );
 }
