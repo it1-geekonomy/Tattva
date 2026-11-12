@@ -65,6 +65,15 @@ const WORDMARK_LEFT = 744.04;
 const WORDMARK_TOP = 376.47;
 const FIRST_PANEL_LEFT = 916.56;
 const STAGE_W = 1920;
+const STAGE_H = 1051;
+/** Matches Navbar `lg:h-24` — hero tucks under the sticky header */
+const HEADER_H_LG = 96;
+/** Panel cluster vertical bounds on the design canvas (min top → max bottom) */
+const ART_TOP = Math.min(...HERO_PANELS.map((p) => p.top));
+const ART_BOTTOM = Math.max(...HERO_PANELS.map((p) => p.top + PANEL_H));
+/** HOMES panel bottom — copy/CTA baseline (button bottom aligns here) */
+const COPY_BASELINE = HERO_PANELS[0].top + PANEL_H;
+const COPY_LEFT = 120;
 
 function DiscoverCta({ className }: { className?: string }) {
   return (
@@ -75,18 +84,23 @@ function DiscoverCta({ className }: { className?: string }) {
         className
       )}
     >
-      <Typography
-        variant="body-xl"
-        as="span"
-        className="font-light text-white leading-none tracking-normal"
-      >
+      <Typography variant="body-xl" as="span" className="text-white">
         Discover Our Projects
       </Typography>
     </Link>
   );
 }
 
+/** Design-canvas wordmark size (not in Typography — hero tops out at 72px) */
+const WORDMARK_SIZE = 215.636;
+const WORDMARK_LH = 295;
+
 function WordmarkLayers() {
+  const wordmarkStyle = {
+    fontSize: WORDMARK_SIZE,
+    lineHeight: `${WORDMARK_LH}px`,
+  } as const;
+
   return (
     <>
       <Typography
@@ -97,10 +111,7 @@ function WordmarkLayers() {
         style={{
           left: WORDMARK_LEFT,
           top: WORDMARK_TOP,
-          fontSize: 215.636,
-          lineHeight: "295px",
-          letterSpacing: "0",
-          fontWeight: 700,
+          ...wordmarkStyle,
         }}
       >
         Tattva
@@ -113,8 +124,7 @@ function WordmarkLayers() {
           left: FIRST_PANEL_LEFT,
           top: WORDMARK_TOP,
           width: 800,
-          fontSize: 215.636,
-          lineHeight: "295px",
+          ...wordmarkStyle,
         }}
       >
         <Typography
@@ -123,10 +133,7 @@ function WordmarkLayers() {
           className="inline-block whitespace-nowrap text-white tracking-normal"
           style={{
             marginLeft: WORDMARK_LEFT - FIRST_PANEL_LEFT,
-            fontSize: 215.636,
-            lineHeight: "295px",
-            letterSpacing: "0",
-            fontWeight: 700,
+            ...wordmarkStyle,
           }}
         >
           Tattva
@@ -192,11 +199,25 @@ function PanelCard({
 export default function HomeBanner() {
   const frameRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
+  const [offsetY, setOffsetY] = useState(0);
   const [hoveredPanel, setHoveredPanel] = useState<number | null>(null);
 
+  // Scale to width, then shift Y so panel gaps under the header match top/bottom.
   const updateScale = useCallback(() => {
-    const width = frameRef.current?.clientWidth || STAGE_W;
-    setScale(width / STAGE_W);
+    const frame = frameRef.current;
+    const width = frame?.clientWidth || STAGE_W;
+    const nextScale = width / STAGE_W;
+    // Frame fills lg:min-h-dvh; fall back to viewport before first layout.
+    const frameH = frame?.clientHeight || window.innerHeight;
+
+    const artTopPx = ART_TOP * nextScale;
+    const artH = (ART_BOTTOM - ART_TOP) * nextScale;
+    const visibleTop = HEADER_H_LG;
+    const visibleH = Math.max(frameH - visibleTop, artH);
+    const targetArtTop = visibleTop + (visibleH - artH) / 2;
+
+    setScale(nextScale);
+    setOffsetY(targetArtTop - artTopPx);
   }, []);
 
   useEffect(() => {
@@ -254,11 +275,11 @@ export default function HomeBanner() {
 
   return (
     // Negative margin tucks the hero under the sticky header (h-19 / lg:h-24).
-    // Height comes from .hero-frame aspect-ratio (1920×1051) — do not force 100dvh
-    // or the scaled stage sits high and leaves an empty band under the art.
+    // Desktop: min-h-dvh fills short viewports (1024/1280); JS offsetY equalizes
+    // the gap above/below the panel cluster in the area under the header.
     <section
       aria-labelledby="home-hero-heading"
-      className="relative -mt-19 w-full overflow-hidden bg-tattva-hero-bg lg:-mt-24"
+      className="relative -mt-19 flex w-full flex-col overflow-hidden bg-tattva-hero-bg lg:-mt-24 lg:min-h-dvh"
     >
       <Typography
         variant="h1"
@@ -275,7 +296,9 @@ export default function HomeBanner() {
       >
         <div
           className="hero-stage"
-          style={{ transform: `scale(${scale})` }}
+          style={{
+            transform: `translateY(${offsetY}px) scale(${scale})`,
+          }}
         >
           {GRID_LINE_LEFTS.map((left) => (
             <span
@@ -306,19 +329,19 @@ export default function HomeBanner() {
             />
           ))}
 
-          {/* Headline + CTA block (design: left 120, top 718, gap 36) */}
+          {/* Headline + CTA: bottom-aligned to HOMES panel (gap 36) */}
           <div
             className="absolute z-20 flex w-[358px] flex-col items-start gap-9"
             style={{
-              left: 120,
-              top: 718,
+              left: COPY_LEFT,
+              bottom: STAGE_H - COPY_BASELINE,
             }}
           >
             <Typography
               variant="section"
               as="p"
               aria-hidden
-              className="pointer-events-none w-[371px] text-tattva-headline"
+              className="pointer-events-none w-full text-tattva-headline"
             >
               Crafting Spaces. Defining Lifestyles.
             </Typography>
@@ -333,8 +356,7 @@ export default function HomeBanner() {
           variant="hero"
           as="span"
           aria-hidden
-          className="overflow-hidden leading-[0.9] tracking-normal text-tattva-ink text-[clamp(2.25rem,11vw,3.25rem)]"
-          style={{ letterSpacing: "0", fontWeight: 700 }}
+          className="overflow-hidden text-tattva-ink"
         >
           Tattva
         </Typography>
