@@ -1,10 +1,10 @@
 "use client";
-
+ 
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Typography from "@/lib/Typography";
-
+ 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about-us" },
@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: "Featured Projects", href: "/featured-projects" },
   { label: "Contact Us", href: "/contact-us" },
 ];
-
+ 
 const CATEGORIES = ["Premium", "Modular"] as const;
 
 const MOBILE_LINK_DELAYS = [
@@ -29,25 +29,25 @@ export default function Navbar() {
   const [category, setCategory] =
     useState<(typeof CATEGORIES)[number]>("Premium");
   const [open, setOpen] = useState(false);
-
+ 
   useEffect(() => {
     if (!open) return;
-
+ 
     const previousOverflow = document.body.style.overflow;
     const desktop = window.matchMedia("(min-width: 64rem)");
     const closeOnDesktop = (event: MediaQueryListEvent) => {
       if (event.matches) setOpen(false);
     };
-
+ 
     document.body.style.overflow = "hidden";
     desktop.addEventListener("change", closeOnDesktop);
-
+ 
     return () => {
       document.body.style.overflow = previousOverflow;
       desktop.removeEventListener("change", closeOnDesktop);
     };
   }, [open]);
-
+ 
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
       <nav className="flex h-15 w-full items-center justify-between gap-1 px-3 lg:grid lg:h-22 lg:grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
@@ -83,7 +83,7 @@ export default function Navbar() {
             </Typography>
           </span>
         </Link>
-
+ 
         {/* Links */}
         <ul className="hidden items-center lg:flex lg:justify-self-center lg:pr-15 lg:gap-4 min-[85rem]:gap-5 2xl:gap-10">
           {NAV_LINKS.map(({ label, href }) => (
@@ -132,7 +132,7 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-
+ 
           {/* Mobile toggle */}
           <button
             type="button"
@@ -160,7 +160,7 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
-
+ 
       {/* Mobile menu */}
       <div
         id="mobile-navigation"
@@ -205,3 +205,5 @@ export default function Navbar() {
     </header>
   );
 }
+ 
+ 

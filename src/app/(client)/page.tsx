@@ -1,15 +1,15 @@
-import Typography from "@/lib/Typography";
+import { HomeBanner } from "@/domains/home";
+import ProjectsSection from "@/domains/home/components/ProjectsSection";
+import ServicesSection from "@/domains/home/components/ServicesSection";
 
 export default function ClientPage() {
   return (
-    <main className="min-h-screen bg-white px-5 py-10 sm:px-8">
-      <Typography
-        variant="display-3xl"
-        as="h1"
-        className="font-bold text-orange-500"
-      >
-        Welcome to Tattva
-      </Typography>
+    // Page chrome below the hero uses white so leftover viewport space
+    // is clearly “rest of page”, not hero padding.
+    <main className="min-h-screen bg-white">
+      <HomeBanner />
+      <ServicesSection />
+      <ProjectsSection />
     </main>
   );
 }
