@@ -6,8 +6,12 @@ import { ArrowUpRight } from "lucide-react";
 import Typography from "@/lib/Typography";
 import { SERVICES } from "@/domains/home/constants/home";
 
-export default function ServicesList() {
-  const [activeId, setActiveId] = useState<number | null>(null);
+interface ServicesListProps {
+  activeId: number | null;
+  onActiveChange: (id: number | null) => void;
+}
+
+export default function ServicesList({ activeId, onActiveChange }: ServicesListProps) {
   const [restHeight, setRestHeight] = useState<number>();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
@@ -18,7 +22,7 @@ export default function ServicesList() {
   // The enlarge-on-hover effect is desktop only; on smaller screens the
   // bigger text would wrap in the narrow column.
   const activate = (id: number) => {
-    if (window.matchMedia("(min-width: 1024px)").matches) setActiveId(id);
+    if (window.matchMedia("(min-width: 1024px)").matches) onActiveChange(id);
   };
 
   // Lock the wrapper to the list's resting height so an enlarged row
@@ -48,7 +52,7 @@ export default function ServicesList() {
       <ul
         ref={listRef}
         className="w-full border-t border-white/40"
-        onMouseLeave={() => setActiveId(null)}
+        onMouseLeave={() => onActiveChange(null)}
       >
         {SERVICES.map((service) => {
           const isActive = activeId === service.id;
@@ -59,7 +63,7 @@ export default function ServicesList() {
                 href={service.href}
                 onMouseEnter={() => activate(service.id)}
                 onFocus={() => activate(service.id)}
-                onBlur={() => setActiveId(null)}
+                onBlur={() => onActiveChange(null)}
                 className="flex w-full items-center justify-between gap-4 py-8 lg:py-13"
               >
                 <Typography

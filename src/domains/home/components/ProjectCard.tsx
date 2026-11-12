@@ -14,8 +14,8 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
   const tags = [project.area, project.year, project.location];
 
   return (
-    <article className="flex w-full flex-col gap-10 bg-white px-6 py-8 lg:sticky lg:top-32 lg:max-h-[calc(100svh-10rem)] lg:gap-8 lg:px-10 lg:py-10">
-      <div className="flex w-full flex-col items-center gap-7 lg:min-h-0 lg:gap-6">
+    <article className="flex w-full flex-col gap-10 bg-white px-6 py-8 md:sticky md:top-28 md:max-h-[calc(100svh-9rem)] lg:top-32 lg:max-h-[calc(100svh-10rem)] md:gap-8 md:px-10 md:py-10">
+      <div className="flex w-full flex-col items-center gap-7 md:min-h-0 md:gap-6">
         <div className="flex shrink-0 flex-col items-center gap-1">
           <Typography
             variant="h2"
@@ -32,7 +32,7 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
             {PROJECTS_SECTION.cardLabel}
           </Typography>
         </div>
-        <div className="relative aspect-[522/293] w-full lg:min-h-28 lg:shrink">
+        <div className="relative aspect-[522/293] w-full md:min-h-28 md:shrink">
           <Image
             src={project.thumbnail.src}
             alt={project.thumbnail.alt}
@@ -43,7 +43,7 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
         </div>
       </div>
 
-      <div className="flex w-full shrink-0 flex-col gap-10 lg:gap-8">
+      <div className="flex w-full shrink-0 flex-col gap-10 md:gap-8">
         <div className="flex w-full flex-col gap-4">
           <Typography
             variant="card"

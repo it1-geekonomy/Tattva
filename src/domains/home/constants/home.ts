@@ -2,23 +2,56 @@ export interface ServiceItem {
   id: number;
   title: string;
   href: string;
+  image: { src: string; alt: string };
 }
 
 export const SERVICES_SECTION = {
   eyebrow: "Our Services",
   heading:
     "Transforming Concepts into Iconic Architectural Masterpieces Through Innovation and Expertise",
-  image: {
-    src: "/images/home/services.png",
-    alt: "Architect drafting a floor plan with a pencil and ruler",
-  },
 } as const;
 
+// TODO: every service uses the same placeholder image for now; swap in each
+// service's own image when the designs are ready. Hovering a row shows its image.
+const SERVICES_PLACEHOLDER_IMAGE = "/images/home/services.png";
+
 export const SERVICES: ServiceItem[] = [
-  { id: 1, title: "Architectural Design", href: "/services/architectural-design" },
-  { id: 2, title: "Interior Design", href: "/services/interior-design" },
-  { id: 3, title: "Space Renovation", href: "/services/space-renovation" },
-  { id: 4, title: "Building Construction", href: "/services/building-construction" },
+  {
+    id: 1,
+    title: "Architectural Design",
+    href: "/services/architectural-design",
+    image: {
+      src: SERVICES_PLACEHOLDER_IMAGE,
+      alt: "Architect drafting a floor plan with a pencil and ruler",
+    },
+  },
+  {
+    id: 2,
+    title: "Interior Design",
+    href: "/services/interior-design",
+    image: {
+      src: SERVICES_PLACEHOLDER_IMAGE,
+      alt: "Architect drafting a floor plan with a pencil and ruler",
+    },
+  },
+  {
+    id: 3,
+    title: "Space Renovation",
+    href: "/services/space-renovation",
+    image: {
+      src: SERVICES_PLACEHOLDER_IMAGE,
+      alt: "Architect drafting a floor plan with a pencil and ruler",
+    },
+  },
+  {
+    id: 4,
+    title: "Building Construction",
+    href: "/services/building-construction",
+    image: {
+      src: SERVICES_PLACEHOLDER_IMAGE,
+      alt: "Architect drafting a floor plan with a pencil and ruler",
+    },
+  },
 ];
 
 export interface ProjectItem {
