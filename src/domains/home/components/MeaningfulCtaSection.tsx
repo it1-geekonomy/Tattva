@@ -91,9 +91,24 @@ export default function MeaningfulCtaSection() {
         CTA_FLUID.sectionPadY
       )}
     >
+      {/* Self-contained responsive rules: 2 lines below 1700px, 1 line at 1700px+ */}
+      <style>{`
+        @media (min-width: 1700px) {
+          .cta-heading-responsive {
+            white-space: nowrap !important;
+          }
+          .cta-heading-responsive br {
+            display: none !important;
+          }
+          .cta-content-responsive {
+            max-width: 1036px !important;
+          }
+        }
+      `}</style>
+
       <div
         className={cn(
-          "relative mx-auto w-full max-w-[1680px]",
+          "relative mx-auto flex w-full max-w-[1920px] flex-col items-center justify-center",
           CTA_FLUID.stageMinH
         )}
       >
@@ -113,7 +128,7 @@ export default function MeaningfulCtaSection() {
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(min-width: 1024px) 18vw, 0px"
+                sizes="(min-width: 1536px) 134px, (min-width: 1280px) 104px, 88px"
                 className="object-cover"
                 loading="lazy"
               />
@@ -123,33 +138,37 @@ export default function MeaningfulCtaSection() {
 
         <div
           className={cn(
-            "relative z-10 mx-auto flex h-full w-full flex-col items-center justify-center text-center",
+            "cta-content-responsive relative z-10 mx-auto flex w-full flex-col items-center justify-center text-center",
             CTA_FLUID.contentMaxW,
-            CTA_FLUID.contentGap,
-            "px-4 py-10 sm:px-6 sm:py-12 lg:py-16"
+            "gap-8 sm:gap-10 lg:gap-12 2xl:gap-[48px]",
+            "px-4 pb-8 pt-8 sm:px-6 sm:pt-10 lg:pt-12 2xl:pt-14"
           )}
         >
-          <Typography
-            variant="display-heading"
-            as="h2"
-            id="lets-create-heading"
-            className="w-full text-center font-medium leading-[1.15] tracking-[-0.02em] text-[#0B0B0B]"
-          >
-            {CTA_HEADING}
-          </Typography>
+          {/* Heading + description with exact 32px gap */}
+          <div className="flex w-full flex-col items-center gap-5 sm:gap-6 lg:gap-[32px]">
+            <Typography
+              variant="display-heading"
+              as="h2"
+              id="lets-create-heading"
+              className="cta-heading-responsive mx-auto w-full text-center font-medium tracking-normal text-[#0B0B0B] text-[30px] sm:text-[36px] lg:text-[44px] xl:text-[52px] 2xl:text-[64px] leading-[1.2] sm:leading-[1.25] 2xl:leading-[1.3]"
+            >
+              Let’s create something <br className="hidden sm:inline" />
+              meaningful
+            </Typography>
 
-          <Typography
-            variant="body-xl"
-            as="p"
-            className={cn(
-              "w-full text-center font-medium leading-[1.6] text-[#313131]",
-              CTA_FLUID.bodyMaxW
-            )}
-          >
-            {CTA_DESCRIPTION}
-          </Typography>
+            <Typography
+              variant="body-xl"
+              as="p"
+              className={cn(
+                "w-full text-center font-medium tracking-normal text-[#313131] text-[16px] leading-[1.6] sm:text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[25.56px]",
+                CTA_FLUID.bodyMaxW
+              )}
+            >
+              {CTA_DESCRIPTION}
+            </Typography>
+          </div>
 
-          <GetInTouchCta className="mt-1 w-full max-w-[280px] sm:w-auto" />
+          <GetInTouchCta className="w-full max-w-[280px] sm:w-auto" />
         </div>
       </div>
     </section>
