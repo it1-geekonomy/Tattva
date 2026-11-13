@@ -48,18 +48,16 @@ export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
     src: "/images/home/cta/cta-float-03.jpg",
     alt: "",
     position: "bottom-left",
-    // Same left/width as before; only raised a little (was bottom-[9%])
     frameClassName:
-      "bottom-[14%] left-[4%] size-[74px] xl:bottom-[16%] xl:left-[6%]",
+      "bottom-[26%] left-[4%] size-[74px] xl:bottom-[28%] xl:left-[6%]",
   },
   {
     id: "bottom-right",
     src: "/images/home/cta/cta-float-04.jpg",
     alt: "",
     position: "bottom-right",
-    // Same right/width as before; only raised a little (was bottom-[5%])
     frameClassName:
-      "bottom-[12%] right-[4%] size-[74px] xl:bottom-[14%] xl:right-[5%]",
+      "bottom-[24%] right-[4%] size-[74px] xl:bottom-[26%] xl:right-[5%]",
   },
 ];
 
