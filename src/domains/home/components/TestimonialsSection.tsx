@@ -6,7 +6,7 @@ export default function TestimonialsSection() {
   const { eyebrow, heading } = TESTIMONIALS_SECTION;
 
   return (
-    <section className="w-full bg-[#FFFFFF] pt-16 lg:pt-40">
+    <section className="w-full bg-[#FFFFFF] pt-16 lg:pt-24">
       {/* TODO: remove pb-10 lg:pb-16 once the FAQ section is added below;
           its own top padding will create this gap instead. */}
       <div className="w-full px-3 pb-10 lg:px-[6.25vw] lg:pb-16">
@@ -26,7 +26,7 @@ export default function TestimonialsSection() {
           </Typography>
         </div>
 
-        <div className="mt-10 lg:mt-21">
+        <div className="mt-10 lg:mt-14">
           <TestimonialSlider />
         </div>
       </div>

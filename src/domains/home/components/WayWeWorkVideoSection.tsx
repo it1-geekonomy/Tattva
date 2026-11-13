@@ -4,7 +4,7 @@ import WayWeWorkVideo from "@/domains/home/components/WayWeWorkVideo";
 
 export default function WayWeWorkVideoSection() {
   return (
-    <section className="w-full bg-[#FFFFFF] pt-8 lg:pt-28">
+    <section className="w-full bg-[#FFFFFF] pt-8 lg:pt-12">
       <div className="w-full px-3 lg:px-[6.25vw]">
         <div className="flex w-full items-center gap-4">
           <Typography
