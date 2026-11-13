@@ -7,7 +7,9 @@ export default function TestimonialsSection() {
 
   return (
     <section className="w-full bg-[#FFFFFF] pt-16 lg:pt-40">
-      <div className="w-full px-3 lg:px-[6.25vw]">
+      {/* TODO: remove pb-10 lg:pb-16 once the FAQ section is added below;
+          its own top padding will create this gap instead. */}
+      <div className="w-full px-3 pb-10 lg:px-[6.25vw] lg:pb-16">
         <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <Typography
             variant="body-lg"

@@ -130,13 +130,14 @@ export const PROJECTS: ProjectItem[] = [
 
 export const WAY_WE_WORK_VIDEO = {
   eyebrow: "The Way We Work",
-  // TODO: add the video file (e.g. "/videos/home/way-we-work.mp4") when it's ready.
-  videoSrc: "",
+  // TODO: placeholder video for testing only (a third-party architecture film).
+  // Replace with Tattva's own YouTube link before launch.
+  youtubeUrl: "https://www.youtube.com/watch?v=RJqHcCjs5l0",
+  videoTitle: "The way Tattva Lifespaces works",
+  pauseLabel: "Pause video",
   playLabel: "Play video",
-  poster: {
-    src: "/images/home/way-we-work.png",
-    alt: "Two professionals reviewing a blueprint in a workshop",
-  },
+  fullscreenLabel: "View video full screen",
+  exitFullscreenLabel: "Exit full screen",
 } as const;
 
 export interface TestimonialItem {
