@@ -50,7 +50,7 @@ export default function ProjectsSection() {
             const remaining = PROJECTS.length - 1 - index;
 
             return (
-              <div key={project.id} className="relative w-full md:aspect-[4/5] lg:aspect-[10/9]">
+              <div key={project.id} className="relative w-full md:aspect-[4/5] lg:aspect-square xl:aspect-[10/9]">
                 <div className="relative aspect-[4/3] w-full md:absolute md:inset-0 md:aspect-auto">
                   <Image
                     src={project.image.src}
@@ -69,7 +69,7 @@ export default function ProjectsSection() {
                   className={`relative w-full md:absolute md:inset-x-0 md:top-0 ${TRACK_BOTTOM[remaining]} md:z-10 md:pt-21 md:pb-40`}
                 >
                   <div className="grid w-full grid-cols-1 md:h-full md:grid-cols-24 md:gap-x-4">
-                    <div className="w-full md:col-span-14 md:col-start-6 lg:col-span-12 lg:col-start-7 xl:col-span-10 xl:col-start-8">
+                    <div className="w-full md:col-span-14 md:col-start-6 xl:col-span-10 xl:col-start-8">
                       <ProjectCard
                         project={project}
                         index={index}

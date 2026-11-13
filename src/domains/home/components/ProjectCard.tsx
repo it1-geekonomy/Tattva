@@ -32,7 +32,7 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
             {PROJECTS_SECTION.cardLabel}
           </Typography>
         </div>
-        <div className="relative aspect-[522/293] w-full md:min-h-28 md:shrink">
+        <div className="relative aspect-[522/293] w-full md:min-h-16 md:shrink">
           <Image
             src={project.thumbnail.src}
             alt={project.thumbnail.alt}
