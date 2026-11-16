@@ -1,3 +1,4 @@
+import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -6,10 +7,7 @@ type WorkStepBadgeProps = {
   className?: string;
 };
 
-/**
- * Equal dark square badge.
- * Compact ≤29.6875rem; scales up from there; 3.75rem from lg.
- */
+/** Equal dark square badge — compact on narrow phones, larger from sm / lg. */
 export default function WorkStepBadge({
   number,
   className,
@@ -17,14 +15,18 @@ export default function WorkStepBadge({
   return (
     <span
       className={cn(
-        "inline-flex size-12 shrink-0 items-center justify-center bg-foreground text-white max-[29.6875rem]:size-10 sm:size-14 lg:size-[3.75rem]",
+        "inline-flex size-12 shrink-0 items-center justify-center bg-foreground text-background sm:size-14 lg:size-[3.75rem]",
+        HOME_CLASS.workFullBleedBadge,
         className
       )}
     >
       <Typography
         variant="h1"
         as="span"
-        className="font-medium leading-[1.6] text-white max-[29.6875rem]:text-xl max-[29.6875rem]:leading-none"
+        className={cn(
+          "font-medium leading-relaxed text-background",
+          HOME_CLASS.workFullBleedBadgeText
+        )}
       >
         {number}
       </Typography>

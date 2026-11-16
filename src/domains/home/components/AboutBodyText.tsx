@@ -1,4 +1,8 @@
 import type { ReactNode } from "react";
+import {
+  ABOUT_BODY_MAX_W,
+  HOME_CLASS,
+} from "@/domains/home/constants/breakpoints";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +21,9 @@ export default function AboutBodyText({
       variant="caption"
       as="p"
       className={cn(
-        "w-full max-w-[46.75rem] font-medium leading-relaxed text-[#313131] lg:text-xl lg:leading-relaxed",
+        "w-full font-medium leading-relaxed lg:text-xl lg:leading-relaxed",
+        HOME_CLASS.muted,
+        ABOUT_BODY_MAX_W,
         className
       )}
     >

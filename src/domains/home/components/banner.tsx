@@ -7,9 +7,13 @@ import {
   type CSSProperties,
   type RefObject,
 } from "react";
-import { fontMontblanc } from "@/lib/fonts";
-import Typography from "@/lib/Typography";
-import { cn } from "@/lib/utils";
+import DiscoverCta from "@/domains/home/components/DiscoverCta";
+import HeroPanelCard from "@/domains/home/components/HeroPanelCard";
+import HeroWordmark from "@/domains/home/components/HeroWordmark";
+import {
+  HOME_CLASS,
+  IMAGE_SIZES,
+} from "@/domains/home/constants/breakpoints";
 import {
   CONTENT_HEIGHT,
   CONTENT_TOP,
@@ -24,9 +28,9 @@ import {
   PANEL_H,
   PANEL_W,
 } from "@/domains/home/constants/hero";
-import DiscoverCta from "@/domains/home/components/DiscoverCta";
-import HeroPanelCard from "@/domains/home/components/HeroPanelCard";
-import HeroWordmark from "@/domains/home/components/HeroWordmark";
+import { fontMontblanc } from "@/lib/fonts";
+import Typography from "@/lib/Typography";
+import { cn } from "@/lib/utils";
 
 /** Hit-test desktop panels — CSS :hover is unreliable under scaled transforms. */
 function useDesktopPanelHover(frameRef: RefObject<HTMLDivElement | null>) {
@@ -134,7 +138,7 @@ export default function HomeBanner() {
               index={index}
               hovered={hoveredPanel === index}
               priority
-              sizes="16.25rem"
+              sizes={IMAGE_SIZES.heroDesktop}
               className="absolute"
               style={{
                 left: panel.left,
@@ -181,16 +185,25 @@ export default function HomeBanner() {
       >
         <div
           className={cn(
-            "mx-auto flex w-full max-w-xl flex-col min-[31.25rem]:max-w-none min-[31.25rem]:items-center",
+            "mx-auto flex w-full max-w-xl flex-col",
+            HOME_CLASS.heroCenterShell,
             FLUID.mobilePadX
           )}
         >
-          <div className="flex w-full flex-col items-start gap-5 sm:gap-6 min-[31.25rem]:items-center min-[31.25rem]:text-center">
+          <div
+            className={cn(
+              "flex w-full flex-col items-start gap-5 sm:gap-6",
+              HOME_CLASS.heroCenterRow
+            )}
+          >
             <Typography
               variant="section"
               as="p"
               aria-hidden
-              className="text-left text-tattva-headline min-[31.25rem]:text-center"
+              className={cn(
+                "text-left text-tattva-headline",
+                HOME_CLASS.heroCenterText
+              )}
             >
               Crafting Spaces.
               <br />
@@ -202,7 +215,8 @@ export default function HomeBanner() {
           {/* Solid "Tat" (3) + outlined "tva" (3) — never solid "Tatt" */}
           <p
             className={cn(
-              "hero-mobile-wordmark min-[31.25rem]:text-center",
+              "hero-mobile-wordmark",
+              HOME_CLASS.heroCenterText,
               fontMontblanc
             )}
             aria-hidden
@@ -233,7 +247,7 @@ export default function HomeBanner() {
               onHoverChange={setHoveredPanel}
               labelVisible
               priority
-              sizes="(max-width: 47.9375rem) 45vw, (max-width: 63.9375rem) 48vw, 16.25rem"
+              sizes={IMAGE_SIZES.heroMasonry}
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.tall)}
             />
             <HeroPanelCard
@@ -242,7 +256,7 @@ export default function HomeBanner() {
               hovered={hoveredPanel === 2}
               onHoverChange={setHoveredPanel}
               labelVisible
-              sizes="(max-width: 47.9375rem) 45vw, (max-width: 63.9375rem) 48vw, 16.25rem"
+              sizes={IMAGE_SIZES.heroMasonry}
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.short)}
             />
           </div>
@@ -254,7 +268,7 @@ export default function HomeBanner() {
               onHoverChange={setHoveredPanel}
               labelVisible
               priority
-              sizes="(max-width: 47.9375rem) 45vw, (max-width: 63.9375rem) 48vw, 16.25rem"
+              sizes={IMAGE_SIZES.heroMasonry}
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.short)}
             />
             <HeroPanelCard
@@ -263,7 +277,7 @@ export default function HomeBanner() {
               hovered={hoveredPanel === 3}
               onHoverChange={setHoveredPanel}
               labelVisible
-              sizes="(max-width: 47.9375rem) 45vw, (max-width: 63.9375rem) 48vw, 16.25rem"
+              sizes={IMAGE_SIZES.heroMasonry}
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.tall)}
             />
           </div>

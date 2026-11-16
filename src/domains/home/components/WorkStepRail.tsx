@@ -22,7 +22,7 @@ export default function WorkStepRail({ className }: { className?: string }) {
           <WorkStepBadge number={step.number} />
           <span
             data-work-line="desktop"
-            className="h-px min-w-0 flex-1 origin-left bg-black"
+            className="h-px min-w-0 flex-1 origin-left bg-foreground"
           />
         </div>
       ))}

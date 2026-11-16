@@ -1,3 +1,4 @@
+import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -23,14 +24,20 @@ export default function AboutStatItem({
       <Typography
         variant="body-lg"
         as="span"
-        className="font-medium leading-[1.4] text-black sm:leading-[1.6]"
+        className={cn(
+          "font-medium leading-snug sm:leading-relaxed",
+          HOME_CLASS.ink
+        )}
       >
         {label}
       </Typography>
       <Typography
         variant="stat"
         as="span"
-        className="-mt-0.5 font-medium leading-[1.2] text-black sm:-mt-1 sm:leading-[1.6]"
+        className={cn(
+          "-mt-0.5 font-medium leading-tight sm:-mt-1 sm:leading-relaxed",
+          HOME_CLASS.ink
+        )}
       >
         {value}
       </Typography>

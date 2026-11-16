@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -7,7 +8,8 @@ export default function DiscoverCta({ className }: { className?: string }) {
     <Link
       href="#projects"
       className={cn(
-        "hero-cta inline-flex h-14 min-w-60 items-center justify-center px-2 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tattva-ink",
+        "hero-cta min-w-60 focus-visible:outline-tattva-ink",
+        HOME_CLASS.ctaBase,
         className
       )}
     >

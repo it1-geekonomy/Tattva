@@ -20,6 +20,10 @@
     #461120 107.1%
   );
   --tattva-nav: #353535;
+  /* Home section copy tones */
+  --tattva-body: #313131;
+  --tattva-faq-question: #5a5a5a;
+  --tattva-faq-answer: #8a8a8a;
   /* Soft column guides — keep faint vs reference (was 0.1, too heavy) */
   --tattva-grid-line: rgba(0, 0, 0, 0.04);
 }
@@ -33,6 +37,10 @@
   --color-tattva-ink: var(--tattva-ink);
   --color-tattva-headline: var(--tattva-headline);
   --color-tattva-nav: var(--tattva-nav);
+  --color-tattva-cta-start: var(--tattva-cta-start);
+  --color-tattva-body: var(--tattva-body);
+  --color-tattva-faq-question: var(--tattva-faq-question);
+  --color-tattva-faq-answer: var(--tattva-faq-answer);
   --font-sans: var(--font-manrope), sans-serif;
   /* Faces from `src/lib/fonts.ts` on <html>; utilities: font-montblanc / font-montserrat */
   --font-montblanc: var(--font-montblanc-face), sans-serif;

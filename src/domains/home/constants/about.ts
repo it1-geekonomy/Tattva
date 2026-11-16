@@ -1,3 +1,5 @@
+import { SECTION_PAD_X } from "@/domains/home/constants/breakpoints";
+
 /**
  * Home About Us — copy + spacing tokens.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`, `gap-5 sm:gap-6`).
@@ -34,16 +36,18 @@ export const ABOUT_CTA = {
   href: "/about-us",
 } as const;
 
-/** Scroll-scrub text reveal: muted sits first, black covers as you scroll */
+/**
+ * Scroll-scrub text reveal colors (hex for GSAP — not CSS classes).
+ * Active matches `--foreground` / `text-foreground`.
+ */
 export const ABOUT_REVEAL_MUTED = "#c8c8c8";
-export const ABOUT_REVEAL_ACTIVE = "#000000";
+export const ABOUT_REVEAL_ACTIVE = "#0b0b0b";
 
 /**
  * Fluid spacing — hero mobile tokens on small screens; larger insets from lg up.
  */
 export const ABOUT_FLUID = {
-  /** Same as hero `FLUID.mobilePadX`, then wider desktop insets. */
-  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24",
+  sectionPadX: SECTION_PAD_X,
   sectionPadY: "py-12 sm:py-14 lg:py-16 xl:py-20",
   eyebrowGap: "gap-4 sm:gap-5 lg:gap-8",
   blockGap: "gap-12 sm:gap-14 lg:gap-16 xl:gap-24",

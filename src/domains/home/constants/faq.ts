@@ -1,3 +1,5 @@
+import { SECTION_PAD_X } from "@/domains/home/constants/breakpoints";
+
 /**
  * Home FAQ — copy + spacing tokens.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`).
@@ -44,7 +46,7 @@ export const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const FAQ_FLUID = {
-  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24",
+  sectionPadX: SECTION_PAD_X,
   sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-0",
   eyebrowGap: "gap-5 sm:gap-6 lg:gap-8",
   columnGap: "gap-10 sm:gap-12 lg:gap-16 xl:gap-20",

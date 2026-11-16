@@ -4,12 +4,16 @@ import { useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import Typography from "@/lib/Typography";
-import { cn } from "@/lib/utils";
 import {
   ABOUT_REVEAL_ACTIVE,
   ABOUT_REVEAL_MUTED,
 } from "@/domains/home/constants/about";
+import {
+  ABOUT_REVEAL_MAX_W,
+  MQ,
+} from "@/domains/home/constants/breakpoints";
+import Typography from "@/lib/Typography";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -41,9 +45,7 @@ export default function AboutRevealParagraph({
       const wordNodes = root.querySelectorAll<HTMLElement>("[data-about-word]");
       if (wordNodes.length === 0) return;
 
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
+      const reduceMotion = window.matchMedia(MQ.reduceMotion).matches;
 
       if (reduceMotion) {
         gsap.set(wordNodes, { color: ABOUT_REVEAL_ACTIVE });
@@ -68,11 +70,11 @@ export default function AboutRevealParagraph({
   );
 
   return (
-    <div ref={rootRef} className={cn("w-full max-w-[85.4375rem]", className)}>
+    <div ref={rootRef} className={cn("w-full", ABOUT_REVEAL_MAX_W, className)}>
       <Typography
         variant="display-xl"
         as="p"
-        className="text-pretty font-medium leading-[1.5] tracking-[-0.01em] text-black sm:leading-[1.55] lg:leading-[1.6]"
+        className="text-pretty font-medium leading-snug tracking-tight text-foreground sm:leading-normal lg:leading-relaxed"
         aria-label={text}
       >
         {words.map((word, index) => (

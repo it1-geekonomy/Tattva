@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
+import { CTA_BUTTON } from "@/domains/home/constants/cta";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
-import { CTA_BUTTON } from "@/domains/home/constants/cta";
 
 type GetInTouchCtaProps = {
   className?: string;
@@ -20,17 +21,22 @@ export default function GetInTouchCta({
     <Link
       href={href}
       className={cn(
-        "inline-flex h-14 min-w-60 items-center justify-center gap-2 bg-black px-2 py-2 text-white transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-85",
+        "min-w-60 gap-2 bg-foreground text-background focus-visible:outline-foreground",
+        HOME_CLASS.ctaBase,
         className
       )}
     >
-      <Typography variant="body-xl" as="span" className="font-medium text-white">
+      <Typography
+        variant="body-xl"
+        as="span"
+        className="font-medium text-background"
+      >
         {label}
       </Typography>
       <ArrowUpRight
         aria-hidden="true"
         strokeWidth={1.5}
-        className="size-5 shrink-0 text-white"
+        className="size-5 shrink-0 text-background"
       />
     </Link>
   );

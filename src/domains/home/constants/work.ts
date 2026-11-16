@@ -1,3 +1,8 @@
+import {
+  HOME_CLASS,
+  SECTION_PAD_X,
+} from "@/domains/home/constants/breakpoints";
+
 /**
  * Home “The Way We Work” — 3-step process.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`, `gap-5 sm:gap-6`).
@@ -41,16 +46,19 @@ export const WORK_STEPS: WorkStep[] = [
 ];
 
 /**
- * ≤29.6875rem: full-width image in content inset.
- * Above that–lg: centered capped frames. lg+: portrait columns.
+ * Narrow phones: full-width image in content inset.
+ * sm–md: centered capped frames. lg+: portrait columns.
  */
 export const WORK_FLUID = {
-  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24",
+  sectionPadX: SECTION_PAD_X,
   sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-0",
   eyebrowGap: "gap-5 sm:gap-6 lg:gap-8 xl:gap-10",
   columnGap: "gap-10 sm:gap-12 lg:gap-16 xl:gap-20",
   stepGap: "gap-5 sm:gap-6 lg:gap-6",
   copyGap: "gap-3 sm:gap-4",
-  imageFrame:
-    "relative mx-auto w-full max-w-xs overflow-hidden aspect-[4/3] max-[29.6875rem]:mx-0 max-[29.6875rem]:max-w-none sm:max-w-sm md:max-w-md lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
+  imageFrame: [
+    "relative mx-auto w-full max-w-xs overflow-hidden aspect-[4/3]",
+    HOME_CLASS.workFullBleedFrame,
+    "sm:max-w-sm md:max-w-md lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
+  ].join(" "),
 } as const;

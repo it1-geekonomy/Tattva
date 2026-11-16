@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { ABOUT_CTA } from "@/domains/home/constants/about";
+import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
-import { ABOUT_CTA } from "@/domains/home/constants/about";
 
 type KnowMoreCtaProps = {
   className?: string;
@@ -19,11 +20,16 @@ export default function KnowMoreCta({
     <Link
       href={href}
       className={cn(
-        "inline-flex h-14 min-w-48 items-center justify-center border border-black px-2 py-2 text-black transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-85",
+        "min-w-48 border border-foreground text-foreground focus-visible:outline-foreground",
+        HOME_CLASS.ctaBase,
         className
       )}
     >
-      <Typography variant="body-xl" as="span" className="font-medium text-black">
+      <Typography
+        variant="body-xl"
+        as="span"
+        className="font-medium text-foreground"
+      >
         {label}
       </Typography>
     </Link>

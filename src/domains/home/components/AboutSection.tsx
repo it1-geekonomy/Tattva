@@ -7,6 +7,10 @@ import {
   ABOUT_STATEMENT,
   ABOUT_STATS,
 } from "@/domains/home/constants/about";
+import {
+  HOME_CLASS,
+  SECTION_MAX_W,
+} from "@/domains/home/constants/breakpoints";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +31,8 @@ export default function AboutSection() {
     >
       <div
         className={cn(
-          "mx-auto flex w-full max-w-[105rem] flex-col",
+          "mx-auto flex w-full flex-col",
+          SECTION_MAX_W,
           ABOUT_FLUID.eyebrowGap
         )}
       >
@@ -35,7 +40,7 @@ export default function AboutSection() {
           variant="body-lg"
           as="p"
           id="about-us-heading"
-          className="font-medium uppercase leading-[1.6] tracking-normal text-[#AC2A4E]"
+          className={HOME_CLASS.eyebrow}
         >
           {ABOUT_EYEBROW}
         </Typography>
