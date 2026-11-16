@@ -1,4 +1,10 @@
-import { AboutSection, HomeBanner, WayWeWorkSection } from "@/domains/home";
+import {
+  AboutSection,
+  FaqSection,
+  HomeBanner,
+  MeaningfulCtaSection,
+  WayWeWorkSection,
+} from "@/domains/home";
 import ProjectsSection from "@/domains/home/components/ProjectsSection";
 import ServicesSection from "@/domains/home/components/ServicesSection";
 import WayWeWorkVideoSection from "@/domains/home/components/WayWeWorkVideoSection";
@@ -14,6 +20,8 @@ export default function ClientPage() {
       <ServicesSection />
       <ProjectsSection />
       <WayWeWorkSection />
+      <FaqSection />
+      <MeaningfulCtaSection />
       <WayWeWorkVideoSection />
       <TestimonialsSection />
     </main>
