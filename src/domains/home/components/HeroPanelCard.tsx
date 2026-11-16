@@ -1,5 +1,4 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 import type { HeroPanel } from "@/domains/home/constants/hero";
 
@@ -12,7 +11,6 @@ type HeroPanelCardProps = {
   priority?: boolean;
   sizes: string;
   className?: string;
-  style?: CSSProperties;
   onHoverChange?: (index: number | null) => void;
 };
 
@@ -24,7 +22,6 @@ export default function HeroPanelCard({
   priority,
   sizes,
   className,
-  style,
   onHoverChange,
 }: HeroPanelCardProps) {
   const showLabel = hovered || labelVisible;
@@ -32,11 +29,11 @@ export default function HeroPanelCard({
   return (
     <div
       data-hero-panel={index}
-      className={cn("cursor-pointer", className)}
-      style={{
-        ...style,
-        zIndex: hovered ? 20 : panel.zIndex,
-      }}
+      className={cn(
+        "cursor-pointer",
+        hovered && "z-20",
+        className
+      )}
       onMouseEnter={() => onHoverChange?.(index)}
       onMouseLeave={() => onHoverChange?.(null)}
     >

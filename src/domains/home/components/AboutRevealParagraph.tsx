@@ -94,8 +94,7 @@ export default function AboutRevealParagraph({
           <span key={`${word}-${index}`}>
             <span
               data-about-word
-              className="inline will-change-[color]"
-              style={{ color: ABOUT_REVEAL_MUTED }}
+              className="inline text-[#c8c8c8] will-change-[color]"
             >
               {word}
             </span>

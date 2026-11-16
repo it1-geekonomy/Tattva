@@ -13,18 +13,17 @@ import HeroWordmark from "@/domains/home/components/HeroWordmark";
 import {
   CONTENT_HEIGHT,
   CONTENT_TOP,
-  COPY_BOTTOM,
-  COPY_LEFT,
   FLUID,
-  GRID_LINE_PERCENTS,
+  GRID_LINE_CLASSES,
   HERO_CENTER,
+  HERO_COPY_CLASS,
+  HERO_FRAME_CLASS,
   HERO_IMAGE_SIZES,
   HERO_PANELS,
   HERO_STAGE,
+  HERO_STAGE_CLASS,
   MOBILE_PANEL_ASPECT,
-  MOBILE_WORDMARK,
-  PANEL_H,
-  PANEL_W,
+  MOBILE_WORDMARK_CLASS,
 } from "@/domains/home/constants/hero";
 import { fontMontblanc } from "@/lib/fonts";
 import Typography from "@/lib/Typography";
@@ -77,6 +76,7 @@ export default function HomeBanner() {
   const frameRef = useRef<HTMLDivElement>(null);
   const [hoveredPanel, setHoveredPanel] = useDesktopPanelHover(frameRef);
 
+  // Required: stage scale math reads these CSS variables
   const stageVars = {
     ["--hero-stage-w" as string]: `${HERO_STAGE.width / 16}rem`,
     ["--hero-stage-h" as string]: `${HERO_STAGE.height / 16}rem`,
@@ -112,37 +112,14 @@ export default function HomeBanner() {
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
       >
-        {GRID_LINE_PERCENTS.map((leftPercent) => (
-          <span
-            key={leftPercent}
-            className="absolute top-0 bottom-0 w-px bg-[var(--tattva-grid-line)]"
-            style={{ left: `${leftPercent}%` }}
-          />
+        {GRID_LINE_CLASSES.map((lineClass) => (
+          <span key={lineClass} className={lineClass} />
         ))}
       </div>
 
       {/* Desktop: width-scaled art only — section height follows content + % pads */}
-      <div
-        ref={frameRef}
-        className="relative z-[2] mx-auto hidden w-full overflow-hidden lg:block"
-        style={
-          {
-            containerType: "inline-size",
-            aspectRatio: `var(--hero-stage-w-num, 1920) / var(--hero-content-h, 600)`,
-          } as CSSProperties
-        }
-      >
-        <div
-          className="absolute top-0 left-0 origin-top-left will-change-transform"
-          style={
-            {
-              width: "var(--hero-stage-w, 120rem)",
-              height: "var(--hero-stage-h, 65.6875rem)",
-              transform:
-                "translateY(calc(var(--hero-content-top, 14.25rem) * -100cqw / var(--hero-stage-w, 120rem))) scale(calc(100cqw / var(--hero-stage-w, 120rem)))",
-            } as CSSProperties
-          }
-        >
+      <div ref={frameRef} className={HERO_FRAME_CLASS}>
+        <div className={HERO_STAGE_CLASS}>
           <HeroWordmark />
 
           {HERO_PANELS.map((panel, index) => (
@@ -153,24 +130,11 @@ export default function HomeBanner() {
               hovered={hoveredPanel === index}
               priority
               sizes={HERO_IMAGE_SIZES.desktop}
-              className="absolute"
-              style={{
-                left: `${panel.left / 16}rem`,
-                top: `${panel.top / 16}rem`,
-                width: `${PANEL_W / 16}rem`,
-                height: `${PANEL_H / 16}rem`,
-              }}
+              className={panel.slotClass}
             />
           ))}
 
-          {/* Copy + CTA: left = stage/16; bottom = low-row panel baseline */}
-          <div
-            className="absolute z-20 flex flex-col items-start gap-9"
-            style={{
-              left: `${COPY_LEFT / 16}rem`,
-              bottom: `${COPY_BOTTOM / 16}rem`,
-            }}
-          >
+          <div className={HERO_COPY_CLASS}>
             <Typography
               variant="section"
               as="p"
@@ -229,15 +193,11 @@ export default function HomeBanner() {
           {/* Solid "Tat" (3) + outlined "tva" (3) — never solid "Tatt" */}
           <p
             className={cn(
-              "block w-full whitespace-nowrap font-semibold leading-none tracking-normal select-none [font-variant-ligatures:none] text-[clamp(4rem,29.6vw,7.221875rem)]",
+              MOBILE_WORDMARK_CLASS,
               HERO_CENTER.text,
               fontMontblanc
             )}
             aria-hidden
-            style={{
-              marginTop: `${MOBILE_WORDMARK.gapY / 16}rem`,
-              marginBottom: `${MOBILE_WORDMARK.gapY / 16}rem`,
-            }}
           >
             <span className="text-black">Tat</span>
             <span className="relative inline-block [font-variant-ligatures:none]">

@@ -7,8 +7,8 @@ export type HeroPanel = {
   src: string;
   alt: string;
   label: string;
-  left: number;
-  top: number;
+  /** Desktop stage slot — full Tailwind literals for the scanner. */
+  slotClass: string;
   zIndex: number;
 };
 
@@ -24,64 +24,67 @@ export const HERO_PANELS: HeroPanel[] = [
     src: "/images/home/hero-panel-1.jpg",
     alt: "Contemporary villa with teak cladding, glass walls, and a landscaped pool terrace",
     label: "HOMES",
-    left: 916.56,
-    top: 328.2,
+    slotClass:
+      "absolute top-[20.5125rem] left-[57.285rem] z-[2] h-[30.230625rem] w-[11.96125rem]",
     zIndex: 2,
   },
   {
     src: "/images/home/hero-panel-2.jpg",
     alt: "Luxury villa with turquoise infinity pool and terracotta facade overlooking the ocean",
     label: "RESORTS",
-    left: 1107.94,
-    top: 228,
+    slotClass:
+      "absolute top-[14.25rem] left-[69.24625rem] z-[3] h-[30.230625rem] w-[11.96125rem]",
     zIndex: 3,
   },
   {
     src: "/images/home/hero-panel-3.jpg",
     alt: "Sculptural modern villa with stone textures, timber fins, and landscaped foreground",
     label: "SPACES",
-    left: 1296.75,
-    top: 344.39,
+    slotClass:
+      "absolute top-[21.524375rem] left-[81.046875rem] z-[2] h-[30.230625rem] w-[11.96125rem]",
     zIndex: 2,
   },
   {
     src: "/images/home/hero-panel-4.jpg",
     alt: "Premium contemporary entrance with concrete, glass, and warm wooden detailing",
     label: "WORKSPACES",
-    left: 1488.13,
-    top: 280.31,
+    slotClass:
+      "absolute top-[17.519375rem] left-[93.008125rem] z-[2] h-[30.230625rem] w-[11.96125rem]",
     zIndex: 2,
   },
 ];
 
-export const GRID_LINE_LEFTS = [916.53, 1108.03, 1296.54, 1488.04, 1679.54] as const;
+/** Column guides — full class literals (left % of stage width). */
+export const GRID_LINE_CLASSES = [
+  "absolute top-0 bottom-0 left-[47.7359375%] w-px bg-[var(--tattva-grid-line)]",
+  "absolute top-0 bottom-0 left-[57.709895833%] w-px bg-[var(--tattva-grid-line)]",
+  "absolute top-0 bottom-0 left-[67.528125%] w-px bg-[var(--tattva-grid-line)]",
+  "absolute top-0 bottom-0 left-[77.502083333%] w-px bg-[var(--tattva-grid-line)]",
+  "absolute top-0 bottom-0 left-[87.475520833%] w-px bg-[var(--tattva-grid-line)]",
+] as const;
 
-/** Column guides as % of stage width — paint on the full section, not only the cropped frame */
-export const GRID_LINE_PERCENTS = GRID_LINE_LEFTS.map(
-  (left) => (left / HERO_STAGE.width) * 100
-);
+/** Art cluster in design space (used for stage CSS vars only). */
+export const CONTENT_TOP = 228;
+export const CONTENT_HEIGHT = 583.89;
 
-export const PANEL_W = 191.38;
-export const PANEL_H = 483.69;
-export const WORDMARK_LEFT = 744.04;
-export const WORDMARK_TOP = 376.47;
-export const FIRST_PANEL_LEFT = HERO_PANELS[0].left;
-export const WORDMARK_SIZE = 215.636;
-export const WORDMARK_LH = 295;
+/** Copy + CTA on the desktop stage. */
+export const HERO_COPY_CLASS =
+  "absolute bottom-[14.944375rem] left-[7.5rem] z-20 flex flex-col items-start gap-9";
 
-/**
- * Copy / CTA — left from stage gutter ratio; bottom aligns to HOMES panel baseline.
- */
-export const COPY_LEFT = HERO_STAGE.width / 16;
-export const COPY_BASELINE = HERO_PANELS[0].top + PANEL_H;
-export const COPY_BOTTOM = HERO_STAGE.height - COPY_BASELINE;
+/** Desktop wordmark layers. */
+export const HERO_WORDMARK = {
+  base: "pointer-events-none absolute z-[1] top-[23.529375rem] left-[46.5025rem] whitespace-nowrap text-[13.47725rem] leading-[18.4375rem] text-tattva-ink select-none tracking-normal",
+  clip: "pointer-events-none absolute z-[10] top-[23.529375rem] left-[57.285rem] h-[18.4375rem] w-[50rem] overflow-hidden whitespace-nowrap select-none",
+  clipText:
+    "inline-block -ml-[10.7825rem] whitespace-nowrap text-[13.47725rem] leading-[18.4375rem] tracking-normal text-white",
+} as const;
 
-/** Art cluster in design space */
-export const CONTENT_TOP = Math.min(...HERO_PANELS.map((p) => p.top));
-export const CONTENT_BOTTOM = Math.max(
-  ...HERO_PANELS.map((p) => p.top + PANEL_H)
-);
-export const CONTENT_HEIGHT = CONTENT_BOTTOM - CONTENT_TOP;
+/** Desktop stage shell — CSS vars come from the section `style` (required). */
+export const HERO_FRAME_CLASS =
+  "relative z-[2] mx-auto hidden w-full overflow-hidden lg:block [container-type:inline-size] [aspect-ratio:var(--hero-stage-w-num,1920)/var(--hero-content-h,600)]";
+
+export const HERO_STAGE_CLASS =
+  "absolute top-0 left-0 origin-top-left will-change-transform w-[var(--hero-stage-w,120rem)] h-[var(--hero-stage-h,65.6875rem)] [transform:translateY(calc(var(--hero-content-top,14.25rem)*-100cqw/var(--hero-stage-w,120rem)))_scale(calc(100cqw/var(--hero-stage-w,120rem)))]";
 
 /**
  * Fluid spacing tokens — content-sized section (no min-h-dvh),
@@ -132,11 +135,6 @@ export const MOBILE_PANEL_ASPECT = {
  * Mobile wordmark — SemiBold 600 / ~115.55 / lh 100% / tracking 0.
  * Equal air above/below ≈ 3rem (CTA → wordmark → masonry).
  */
-export const MOBILE_WORDMARK = {
-  fontSize: 115.55,
-  fontWeight: 600,
-  lineHeight: 1,
-  letterSpacing: "0em",
-  strokePx: 4,
-  gapY: 48,
-} as const;
+/** Mobile wordmark — equal 3rem air above/below. */
+export const MOBILE_WORDMARK_CLASS =
+  "my-12 block w-full whitespace-nowrap font-semibold leading-none tracking-normal select-none [font-variant-ligatures:none] text-[clamp(4rem,29.6vw,7.221875rem)]";
