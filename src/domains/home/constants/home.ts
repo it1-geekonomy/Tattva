@@ -172,36 +172,36 @@ export const TESTIMONIALS: TestimonialItem[] = [
       alt: "Rahul Sharma",
     },
   },
-  // TODO: testimonials 2 and 3 are placeholders so the slider can be tested.
+  // TODO: testimonials 2 and 3 use placeholder names and quotes for testing.
   // Replace them with real client testimonials before launch.
   {
     id: 2,
     quote:
       "From the first concept to the final handover, the team kept us informed and involved. Every detail was handled with care, and the finished home feels exactly like us.",
-    name: "Client Name",
-    project: "Project Name-City",
+    name: "Arjun Mehta",
+    project: "The Verdant Residence-Bengaluru",
     image: {
       src: "/images/home/projects/project-1.png",
       alt: "Living room with a terracotta sofa and tall green walls",
     },
     avatar: {
-      src: "/images/home/testimonials/avatar-1.png",
-      alt: "Client photo placeholder",
+      src: "/images/home/testimonials/avatar-2.png",
+      alt: "Arjun Mehta",
     },
   },
   {
     id: 3,
     quote:
       "Tattva Lifespaces delivered our office on time and beyond expectations. The space is efficient, elegant and has made a real difference to how our team works every day.",
-    name: "Client Name",
-    project: "Project Name-City",
+    name: "Vikram Rao",
+    project: "Meridian Business Centre-Hyderabad",
     image: {
       src: "/images/home/projects/project-3.png",
       alt: "Open office lounge with hexagonal ceiling lights",
     },
     avatar: {
-      src: "/images/home/testimonials/avatar-1.png",
-      alt: "Client photo placeholder",
+      src: "/images/home/testimonials/avatar-3.png",
+      alt: "Vikram Rao",
     },
   },
 ];
