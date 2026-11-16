@@ -20,10 +20,10 @@ export default function ClientPage() {
       <ServicesSection />
       <ProjectsSection />
       <WayWeWorkSection />
-      <FaqSection />
-      <MeaningfulCtaSection />
       <WayWeWorkVideoSection />
       <TestimonialsSection />
+      <FaqSection />
+      <MeaningfulCtaSection />
     </main>
   );
 }
