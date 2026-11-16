@@ -24,7 +24,14 @@
   --tattva-body: #313131;
   --tattva-faq-question: #5a5a5a;
   --tattva-faq-answer: #8a8a8a;
-  /* Soft column guides — keep faint vs reference (was 0.1, too heavy) */
+  --tattva-muted-soft: #575757;
+  --tattva-muted-mid: #717171;
+  --tattva-muted-light: #838383;
+  --tattva-surface-warm: #fffcf8;
+  --tattva-surface-tag: #f3f1ef;
+  --tattva-surface-line: #d9d9d9;
+  --tattva-disabled: #cacaca;
+  /* Soft column guides — keep faint */
   --tattva-grid-line: rgba(0, 0, 0, 0.04);
 }
 
@@ -41,6 +48,13 @@
   --color-tattva-body: var(--tattva-body);
   --color-tattva-faq-question: var(--tattva-faq-question);
   --color-tattva-faq-answer: var(--tattva-faq-answer);
+  --color-tattva-muted-soft: var(--tattva-muted-soft);
+  --color-tattva-muted-mid: var(--tattva-muted-mid);
+  --color-tattva-muted-light: var(--tattva-muted-light);
+  --color-tattva-surface-warm: var(--tattva-surface-warm);
+  --color-tattva-surface-tag: var(--tattva-surface-tag);
+  --color-tattva-surface-line: var(--tattva-surface-line);
+  --color-tattva-disabled: var(--tattva-disabled);
   --font-sans: var(--font-manrope), sans-serif;
   /* Faces from `src/lib/fonts.ts` on <html>; utilities: font-montblanc / font-montserrat */
   --font-montblanc: var(--font-montblanc-face), sans-serif;
@@ -59,10 +73,9 @@ body {
 }
 
 /*
- * Desktop hero — width-responsive like IHDUA home section.
- * - Section height = content + pads (NOT min-h-dvh / 100vh)
- * - Frame aspect = art cluster only (content height / stage width)
- * - Stage scales with container query width (cqw)
+ * Desktop hero — width-responsive stage.
+ * Section height = content + pads (not min-h-dvh).
+ * Frame aspect = art cluster only; stage scales with cqw.
  */
 .hero-frame {
   position: relative;
@@ -77,13 +90,16 @@ body {
   top: 0;
   left: 0;
   width: var(--hero-stage-w, 120rem);
-  height: var(--hero-stage-h, 1051px);
+  height: var(--hero-stage-h, 65.6875rem);
   transform-origin: top left;
   /* Scale to frame width; shift so art cluster top sits at frame top */
   transform: translateY(
-      calc(var(--hero-content-top, 228px) * -100cqw / var(--hero-stage-w, 1920px))
+      calc(
+        var(--hero-content-top, 14.25rem) * -100cqw /
+          var(--hero-stage-w, 120rem)
+      )
     )
-    scale(calc(100cqw / var(--hero-stage-w, 1920px)));
+    scale(calc(100cqw / var(--hero-stage-w, 120rem)));
   will-change: transform;
 }
 
@@ -102,7 +118,7 @@ body {
   transition: background-color 0.35s ease;
 }
 
-/* Category label — Figma Frame 16 + HOMES (Manrope 300 / 24 / 33 / -2%) */
+/* Category label — desktop hover size. Compact mobile sizing lives on the card. */
 .hero-panel__label {
   position: absolute;
   left: 50%;
@@ -131,8 +147,8 @@ body {
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, 6px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transform: translate(-50%, 0.375rem);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.35);
   transition:
     opacity 0.25s ease,
     visibility 0.25s ease,
@@ -141,7 +157,7 @@ body {
     box-shadow 0.25s ease;
 }
 
-/* Hover is driven by JS (.is-hovered); CSS :hover alone can stick after tap on touch devices */
+/* Hover is driven by JS (.is-hovered); CSS :hover alone can stick after tap */
 .hero-panel-slot.is-hovered {
   z-index: 20;
 }
@@ -156,13 +172,12 @@ body {
   visibility: visible;
   background-color: #000000;
   transform: translate(-50%, 0);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0.375rem 1.125rem rgba(0, 0, 0, 0.45);
 }
 
 /*
- * Mobile wordmark — Figma: Mont Blanc-Trial SemiBold 600 / 115.55 / lh 100% / tracking 0.
+ * Mobile wordmark — SemiBold 600 / clamp size / lh 100%.
  * Split is exactly 3+3: fill "Tat", outline "tva" (never "Tatt").
- * Vertical gap token: --hero-mobile-wordmark-gap (CTA ↔ wordmark ↔ grid).
  */
 .hero-mobile-wordmark {
   display: block;
@@ -183,10 +198,7 @@ body {
   color: #000000;
 }
 
-/*
- * Hollow "tva" — black under-glyph + same-size white front.
- * Stroke peeks as the outline ring; a bit heavier than Figma 1.03px for mobile.
- */
+/* Hollow "tva" — black under-glyph + white front; stroke peeks as the ring */
 .hero-wordmark-outline {
   position: relative;
   display: inline-block;
@@ -195,7 +207,7 @@ body {
 
 .hero-wordmark-outline__back {
   color: #000000;
-  -webkit-text-stroke: 2px #000000;
+  -webkit-text-stroke: 0.125rem #000000;
 }
 
 .hero-wordmark-outline__front {

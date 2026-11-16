@@ -54,9 +54,9 @@ export const montserrat = Montserrat({
 });
 
 /**
- * Navbar “Tattva” + hero wordmark — Mont Blanc-Trial when files exist.
- * Drop TTFs into `src/app/Fonts/` (e.g. MontBlanc-Trial-SemiBold.ttf) and
- * point `src` there. Until then, SemiBold Manrope keeps the face variable live.
+ * Brand display face for navbar “Tattva” + hero wordmark.
+ * Stand-in: Manrope SemiBold/Bold until Mont Blanc Trial TTFs are added
+ * under `src/app/Fonts/` and wired here.
  */
 export const montblanc = localFont({
   src: [

@@ -59,21 +59,13 @@ export default function HeroPanelCard({
           aria-hidden
         />
         <span
-          className="hero-panel__label"
+          className={cn(
+            "hero-panel__label",
+            // Compact tile badge — kept on the card, not in globals
+            labelVisible &&
+              "!w-auto !max-w-[calc(100%-1rem)] !px-2.5 !py-1.5 !text-[0.6875rem] !leading-[1.2] !tracking-[-0.02em]"
+          )}
           aria-hidden
-          style={
-            labelVisible
-              ? ({
-                  width: "auto",
-                  maxWidth: "calc(100% - 1rem)",
-                  height: "auto",
-                  padding: "0.375rem 0.625rem",
-                  fontSize: "0.6875rem",
-                  lineHeight: 1.2,
-                  letterSpacing: "-0.02em",
-                } as CSSProperties)
-              : undefined
-          }
         >
           {panel.label}
         </span>

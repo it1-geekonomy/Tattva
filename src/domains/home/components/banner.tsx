@@ -80,9 +80,9 @@ export default function HomeBanner() {
   const [hoveredPanel, setHoveredPanel] = useDesktopPanelHover(frameRef);
 
   const stageVars = {
-    ["--hero-stage-w" as string]: `${HERO_STAGE.width}px`,
-    ["--hero-stage-h" as string]: `${HERO_STAGE.height}px`,
-    ["--hero-content-top" as string]: `${CONTENT_TOP}px`,
+    ["--hero-stage-w" as string]: `${HERO_STAGE.width / 16}rem`,
+    ["--hero-stage-h" as string]: `${HERO_STAGE.height / 16}rem`,
+    ["--hero-content-top" as string]: `${CONTENT_TOP / 16}rem`,
     ["--hero-content-h" as string]: `${CONTENT_HEIGHT}`,
     ["--hero-stage-w-num" as string]: `${HERO_STAGE.width}`,
   } as CSSProperties;
