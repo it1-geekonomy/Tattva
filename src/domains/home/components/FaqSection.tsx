@@ -31,7 +31,7 @@ export default function FaqSection() {
     >
       <div
         className={cn(
-          "mx-auto grid w-full max-w-[1680px] grid-cols-1 lg:grid-cols-12",
+          "mx-auto grid w-full max-w-[105rem] grid-cols-1 lg:grid-cols-12",
           FAQ_FLUID.columnGap
         )}
       >

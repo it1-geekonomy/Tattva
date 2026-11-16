@@ -19,7 +19,7 @@ export default function KnowMoreCta({
     <Link
       href={href}
       className={cn(
-        "inline-flex h-[59px] min-w-[181px] items-center justify-center border border-black px-[9px] pt-1.5 pb-[9px] text-black transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-85",
+        "inline-flex h-[3.6875rem] min-w-[11.3125rem] items-center justify-center border border-black px-[0.5625rem] pt-1.5 pb-[0.5625rem] text-black transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-85",
         className
       )}
     >

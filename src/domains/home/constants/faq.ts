@@ -44,7 +44,7 @@ export const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const FAQ_FLUID = {
-  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-[7.5rem]",
+  sectionPadX: "px-[4%] sm:px-[5%] lg:px-[3.5%] xl:px-[5%] 2xl:px-[7.5%]",
   sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-0",
   eyebrowGap: "gap-5 sm:gap-6 lg:gap-8",
   columnGap: "gap-10 sm:gap-12 lg:gap-16 xl:gap-20",

@@ -41,13 +41,13 @@ export const WORK_STEPS: WorkStep[] = [
 ];
 
 /**
- * ≤475px: full-width image in content inset (mobile reference).
- * 476px–lg: centered capped frames (keeps mid/tablet from blowing up).
+ * ≤29.6875rem (~475px): full-width image in content inset (mobile reference).
+ * Above that–lg: centered capped frames (keeps mid/tablet from blowing up).
  * lg+: Figma portrait columns.
  */
 export const WORK_FLUID = {
-  /** Same as hero `FLUID.mobilePadX`, then wider desktop insets */
-  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-[7.5rem]",
+  /** Width insets as % of viewport */
+  sectionPadX: "px-[4%] sm:px-[5%] lg:px-[3.5%] xl:px-[5%] 2xl:px-[7.5%]",
   sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-0",
   eyebrowGap: "gap-5 sm:gap-6 lg:gap-8 xl:gap-10",
   /** Stacked phone + tablet; 3-up only from lg */
@@ -55,5 +55,5 @@ export const WORK_FLUID = {
   stepGap: "gap-5 sm:gap-6 lg:gap-[clamp(1.25rem,1.5vw,1.85rem)]",
   copyGap: "gap-3 sm:gap-4",
   imageFrame:
-    "relative mx-auto w-full max-w-[280px] overflow-hidden aspect-[4/3] max-[475px]:mx-0 max-[475px]:max-w-none sm:max-w-[320px] md:max-w-[360px] lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
+    "relative mx-auto w-full max-w-[17.5rem] overflow-hidden aspect-[4/3] max-[29.6875rem]:mx-0 max-[29.6875rem]:max-w-none sm:max-w-[20rem] md:max-w-[22.5rem] lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
 } as const;

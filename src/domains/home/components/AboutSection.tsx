@@ -27,7 +27,7 @@ export default function AboutSection() {
     >
       <div
         className={cn(
-          "mx-auto flex w-full max-w-[1680px] flex-col",
+          "mx-auto flex w-full max-w-[105rem] flex-col",
           ABOUT_FLUID.eyebrowGap
         )}
       >
@@ -51,7 +51,7 @@ export default function AboutSection() {
             </div>
 
             {/* Centered below stats on mobile/tablet; right of stats from lg up */}
-            <KnowMoreCta className="mx-auto h-12 w-full max-w-[280px] min-w-0 shrink-0 self-center sm:h-[59px] sm:w-auto sm:min-w-[181px] lg:mx-0 lg:self-auto" />
+            <KnowMoreCta className="mx-auto h-12 w-full max-w-[17.5rem] min-w-0 shrink-0 self-center sm:h-[3.6875rem] sm:w-auto sm:min-w-[11.3125rem] lg:mx-0 lg:self-auto" />
           </div>
         </div>
       </div>

@@ -116,7 +116,7 @@ export default function MeaningfulCtaSection() {
     >
       {/* Self-contained responsive rules: 2 lines below 1700px, 1 line at 1700px+ */}
       <style>{`
-        @media (min-width: 1700px) {
+        @media (min-width: 106.25rem) {
           .cta-heading-responsive {
             white-space: nowrap !important;
           }
@@ -124,14 +124,14 @@ export default function MeaningfulCtaSection() {
             display: none !important;
           }
           .cta-content-responsive {
-            max-width: 1036px !important;
+            max-width: 64.75rem !important;
           }
         }
       `}</style>
 
       <div
         className={cn(
-          "relative mx-auto flex w-full max-w-[1920px] flex-col items-center justify-center",
+          "relative mx-auto flex w-full max-w-[120rem] flex-col items-center justify-center",
           CTA_FLUID.stageMinH
         )}
       >
@@ -150,7 +150,7 @@ export default function MeaningfulCtaSection() {
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(min-width: 1536px) 134px, (min-width: 1280px) 104px, (min-width: 1024px) 88px, 94px"
+                sizes="(min-width: 96rem) 8.375rem, (min-width: 80rem) 6.5rem, (min-width: 64rem) 5.5rem, 5.875rem"
                 className="object-cover"
                 loading="lazy"
               />
@@ -163,16 +163,16 @@ export default function MeaningfulCtaSection() {
             "cta-content-responsive relative z-10 mx-auto flex w-full flex-col items-center justify-center text-center",
             CTA_FLUID.contentMaxW,
             CTA_FLUID.contentPad,
-            "gap-8 sm:gap-10 lg:gap-12 2xl:gap-[48px]"
+            "gap-8 sm:gap-10 lg:gap-12 2xl:gap-[3rem]"
           )}
         >
-          {/* Heading + description with exact 32px gap */}
-          <div className="flex w-full flex-col items-center gap-5 sm:gap-6 lg:gap-[32px]">
+          {/* Heading + description */}
+          <div className="flex w-full flex-col items-center gap-5 sm:gap-6 lg:gap-[2rem]">
             <Typography
               variant="display-heading"
               as="h2"
               id="lets-create-heading"
-              className="cta-heading-responsive mx-auto w-full text-center font-medium tracking-normal text-[#0B0B0B] text-[30px] sm:text-[36px] lg:text-[44px] xl:text-[52px] 2xl:text-[64px] leading-[1.2] sm:leading-[1.25] 2xl:leading-[1.3]"
+              className="cta-heading-responsive mx-auto w-full text-center font-medium tracking-normal text-[#0B0B0B] text-[1.875rem] leading-[1.2] sm:text-[2.25rem] sm:leading-[1.25] lg:text-[2.75rem] xl:text-[3.25rem] 2xl:text-[4rem] 2xl:leading-[1.3]"
             >
               Let’s create something <br className="hidden sm:inline" />
               meaningful
@@ -182,7 +182,7 @@ export default function MeaningfulCtaSection() {
               variant="body-xl"
               as="p"
               className={cn(
-                "w-full text-center font-medium tracking-normal text-[#313131] text-[16px] leading-[1.6] sm:text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[25.56px]",
+                "w-full text-center font-medium tracking-normal text-[#313131] text-[1rem] leading-[1.6] sm:text-[1.125rem] lg:text-[1.25rem] xl:text-[1.375rem] 2xl:text-[1.5975rem]",
                 CTA_FLUID.bodyMaxW
               )}
             >
@@ -190,7 +190,7 @@ export default function MeaningfulCtaSection() {
             </Typography>
           </div>
 
-          <GetInTouchCta className="w-full max-w-[280px] sm:w-auto" />
+          <GetInTouchCta className="w-full max-w-[17.5rem] sm:w-auto" />
         </div>
       </div>
     </section>

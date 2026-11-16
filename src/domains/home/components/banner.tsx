@@ -180,31 +180,31 @@ export default function HomeBanner() {
       >
         <div
           className={cn(
-            "mx-auto flex w-full max-w-[560px] flex-col min-[500px]:max-w-none min-[500px]:items-center",
+            "mx-auto flex w-full max-w-[35rem] flex-col min-[31.25rem]:max-w-none min-[31.25rem]:items-center",
             FLUID.mobilePadX
           )}
         >
-          <div className="flex w-full flex-col items-start gap-5 sm:gap-6 min-[500px]:items-center min-[500px]:text-center">
+          <div className="flex w-full flex-col items-start gap-5 sm:gap-6 min-[31.25rem]:items-center min-[31.25rem]:text-center">
             <Typography
               variant="section"
               as="p"
               aria-hidden
-              className="text-left text-tattva-headline min-[500px]:text-center"
+              className="text-left text-tattva-headline min-[31.25rem]:text-center"
             >
               Crafting Spaces.
               <br />
               Defining Lifestyles.
             </Typography>
-            <DiscoverCta className="h-11 min-w-0 px-5 text-[15px] sm:h-[59px] sm:min-w-[238px] sm:px-[9px] sm:text-base" />
+            <DiscoverCta className="h-11 min-w-0 px-5 text-[0.9375rem] sm:h-[3.6875rem] sm:min-w-[14.875rem] sm:px-[0.5625rem] sm:text-base" />
           </div>
 
           {/* Solid "Tat" (3) + outlined "tva" (3) — never solid "Tatt" */}
           <p
-            className="hero-mobile-wordmark font-montblanc min-[500px]:text-center"
+            className="hero-mobile-wordmark font-montblanc min-[31.25rem]:text-center"
             aria-hidden
             style={
               {
-                ["--hero-mobile-wordmark-gap" as string]: `${MOBILE_WORDMARK.gapY}px`,
+                ["--hero-mobile-wordmark-gap" as string]: `${MOBILE_WORDMARK.gapY / 16}rem`,
               } as CSSProperties
             }
           >
@@ -219,7 +219,7 @@ export default function HomeBanner() {
         {/*
           Masonry — phone: side pad; tablet: ~12px inset + gutters around all 4 tiles.
         */}
-        <div className="hero-mobile-masonry grid grid-cols-2 items-start gap-2.5 px-4 sm:gap-3 sm:px-6 md:gap-3 md:px-3">
+        <div className="hero-mobile-masonry grid grid-cols-2 items-start gap-2.5 px-[4%] sm:gap-3 sm:px-[5%] md:gap-3 md:px-[0.75%]">
           <div className="flex flex-col gap-2.5 sm:gap-3 md:gap-3">
             <HeroPanelCard
               panel={HERO_PANELS[0]}

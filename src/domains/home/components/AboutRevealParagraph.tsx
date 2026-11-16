@@ -68,7 +68,7 @@ export default function AboutRevealParagraph({
   );
 
   return (
-    <div ref={rootRef} className={cn("w-full max-w-[1367px]", className)}>
+    <div ref={rootRef} className={cn("w-full max-w-[85.4375rem]", className)}>
       <Typography
         variant="display-xl"
         as="p"

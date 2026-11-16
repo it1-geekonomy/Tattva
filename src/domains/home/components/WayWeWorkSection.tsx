@@ -128,7 +128,7 @@ export default function WayWeWorkSection() {
     >
       <div
         className={cn(
-          "mx-auto flex w-full max-w-[1680px] flex-col",
+          "mx-auto flex w-full max-w-[105rem] flex-col",
           WORK_FLUID.eyebrowGap
         )}
       >

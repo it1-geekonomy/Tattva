@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { manrope } from "@/lib/fonts";
+import { manrope, montblanc, montserrat } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,9 +11,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} h-full antialiased`}
+      className={`${manrope.variable} ${montblanc.variable} ${montserrat.variable} h-full antialiased`}
     >
-      <body className={`${manrope.className} min-h-full flex flex-col font-sans`}>
+      <body className={`${manrope.className} flex min-h-full flex-col font-sans`}>
         {children}
       </body>
     </html>
