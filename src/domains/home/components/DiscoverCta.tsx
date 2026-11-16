@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
+import { HERO_CTA_BASE } from "@/domains/home/constants/hero";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -8,8 +8,8 @@ export default function DiscoverCta({ className }: { className?: string }) {
     <Link
       href="#projects"
       className={cn(
-        "hero-cta min-w-60 focus-visible:outline-tattva-ink",
-        HOME_CLASS.ctaBase,
+        "min-w-60 bg-[image:var(--tattva-cta-gradient)] text-white focus-visible:outline-tattva-ink active:opacity-85",
+        HERO_CTA_BASE,
         className
       )}
     >

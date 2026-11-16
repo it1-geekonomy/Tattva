@@ -8,16 +8,11 @@ import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 import GetInTouchCta from "@/domains/home/components/GetInTouchCta";
 import {
-  CTA_STAGE_MAX_W,
-  HOME_CLASS,
-  IMAGE_SIZES,
-  MQ,
-} from "@/domains/home/constants/breakpoints";
-import {
   CTA_DESCRIPTION,
   CTA_FLOAT_IMAGES,
   CTA_FLOAT_MOTION,
   CTA_FLUID,
+  CTA_MQ,
 } from "@/domains/home/constants/cta";
 
 gsap.registerPlugin(useGSAP);
@@ -38,7 +33,7 @@ export default function MeaningfulCtaSection() {
       const floats = section.querySelectorAll<HTMLElement>("[data-cta-float]");
       if (floats.length === 0) return;
 
-      const reduceMotion = window.matchMedia(MQ.reduceMotion).matches;
+      const reduceMotion = window.matchMedia(CTA_MQ.reduceMotion).matches;
 
       if (reduceMotion) {
         gsap.set(floats, {
@@ -120,7 +115,7 @@ export default function MeaningfulCtaSection() {
       <div
         className={cn(
           "relative mx-auto flex w-full flex-col items-center justify-center",
-          CTA_STAGE_MAX_W,
+          CTA_FLUID.stageMaxW,
           CTA_FLUID.stageMinH
         )}
       >
@@ -139,7 +134,7 @@ export default function MeaningfulCtaSection() {
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes={IMAGE_SIZES.ctaFloat}
+                sizes={CTA_FLUID.imageSizes}
                 className="object-cover"
                 loading="lazy"
               />
@@ -153,7 +148,7 @@ export default function MeaningfulCtaSection() {
             CTA_FLUID.contentMaxW,
             CTA_FLUID.contentPad,
             CTA_FLUID.contentGap,
-            HOME_CLASS.ctaOneLineMax
+            CTA_FLUID.oneLineMax
           )}
         >
           <div
@@ -168,13 +163,13 @@ export default function MeaningfulCtaSection() {
               id="lets-create-heading"
               className={cn(
                 "mx-auto w-full text-center text-3xl font-medium leading-tight tracking-normal sm:text-4xl lg:text-5xl 2xl:text-6xl",
-                HOME_CLASS.ink,
-                HOME_CLASS.ctaOneLineText
+                CTA_FLUID.ink,
+                CTA_FLUID.oneLineText
               )}
             >
               Let’s create something{" "}
               <br
-                className={cn("hidden sm:inline", HOME_CLASS.ctaOneLineHideBr)}
+                className={cn("hidden sm:inline", CTA_FLUID.oneLineHideBr)}
               />
               meaningful
             </Typography>
@@ -184,7 +179,7 @@ export default function MeaningfulCtaSection() {
               as="p"
               className={cn(
                 "w-full text-center text-base font-medium leading-relaxed tracking-normal sm:text-lg lg:text-xl",
-                HOME_CLASS.muted,
+                CTA_FLUID.muted,
                 CTA_FLUID.bodyMaxW
               )}
             >

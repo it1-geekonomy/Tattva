@@ -15,14 +15,12 @@ export { default as FaqAccordionItem } from "./components/FaqAccordionItem";
 export { default as MeaningfulCtaSection } from "./components/MeaningfulCtaSection";
 export { default as GetInTouchCta } from "./components/GetInTouchCta";
 export {
-  CTA_STAGE_MAX_W,
-  HOME_CLASS,
-  IMAGE_SIZES,
-  MQ,
-  SECTION_MAX_W,
-  SECTION_PAD_X,
-} from "./constants/breakpoints";
-export { FLUID, HERO_PANELS, HERO_STAGE } from "./constants/hero";
+  FLUID,
+  HERO_CENTER,
+  HERO_IMAGE_SIZES,
+  HERO_PANELS,
+  HERO_STAGE,
+} from "./constants/hero";
 export {
   ABOUT_CTA,
   ABOUT_EYEBROW,

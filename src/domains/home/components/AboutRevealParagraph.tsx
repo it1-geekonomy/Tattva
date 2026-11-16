@@ -5,13 +5,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import {
+  ABOUT_FLUID,
+  ABOUT_MQ,
   ABOUT_REVEAL_ACTIVE,
   ABOUT_REVEAL_MUTED,
 } from "@/domains/home/constants/about";
-import {
-  ABOUT_REVEAL_MAX_W,
-  MQ,
-} from "@/domains/home/constants/breakpoints";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -45,7 +43,7 @@ export default function AboutRevealParagraph({
       const wordNodes = root.querySelectorAll<HTMLElement>("[data-about-word]");
       if (wordNodes.length === 0) return;
 
-      const reduceMotion = window.matchMedia(MQ.reduceMotion).matches;
+      const reduceMotion = window.matchMedia(ABOUT_MQ.reduceMotion).matches;
 
       if (reduceMotion) {
         gsap.set(wordNodes, { color: ABOUT_REVEAL_ACTIVE });
@@ -70,7 +68,10 @@ export default function AboutRevealParagraph({
   );
 
   return (
-    <div ref={rootRef} className={cn("w-full", ABOUT_REVEAL_MAX_W, className)}>
+    <div
+      ref={rootRef}
+      className={cn("w-full", ABOUT_FLUID.revealMaxW, className)}
+    >
       <Typography
         variant="display-xl"
         as="p"

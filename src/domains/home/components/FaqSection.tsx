@@ -5,10 +5,6 @@ import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 import FaqAccordionItem from "@/domains/home/components/FaqAccordionItem";
 import {
-  HOME_CLASS,
-  SECTION_MAX_W,
-} from "@/domains/home/constants/breakpoints";
-import {
   FAQ_DESCRIPTION,
   FAQ_EYEBROW,
   FAQ_FLUID,
@@ -36,7 +32,7 @@ export default function FaqSection() {
       <div
         className={cn(
           "mx-auto grid w-full grid-cols-1 lg:grid-cols-12",
-          SECTION_MAX_W,
+          FAQ_FLUID.sectionMaxW,
           FAQ_FLUID.columnGap
         )}
       >
@@ -49,7 +45,7 @@ export default function FaqSection() {
           <Typography
             variant="body-lg"
             as="p"
-            className={HOME_CLASS.eyebrow}
+            className={FAQ_FLUID.eyebrow}
           >
             {FAQ_EYEBROW}
           </Typography>
@@ -58,7 +54,7 @@ export default function FaqSection() {
             variant="section"
             as="h2"
             id="faq-heading"
-            className={cn("font-medium", HOME_CLASS.ink)}
+            className={cn("font-medium", FAQ_FLUID.ink)}
           >
             {FAQ_HEADING}
           </Typography>
@@ -68,7 +64,7 @@ export default function FaqSection() {
             as="p"
             className={cn(
               "max-w-md font-normal leading-relaxed",
-              HOME_CLASS.muted
+              FAQ_FLUID.muted
             )}
           >
             {FAQ_DESCRIPTION}

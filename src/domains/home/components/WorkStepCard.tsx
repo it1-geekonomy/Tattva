@@ -1,13 +1,8 @@
 import Image from "next/image";
 import WorkStepBadge from "@/domains/home/components/WorkStepBadge";
-import {
-  HOME_CLASS,
-  IMAGE_SIZES,
-} from "@/domains/home/constants/breakpoints";
 import { WORK_FLUID, type WorkStep } from "@/domains/home/constants/work";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
-
 
 type WorkStepCardProps = {
   step: WorkStep;
@@ -30,7 +25,7 @@ export default function WorkStepCard({ step, className }: WorkStepCardProps) {
       <div
         className={cn(
           "flex w-full items-center gap-3 sm:gap-4 lg:hidden",
-          HOME_CLASS.workFullBleedGap
+          WORK_FLUID.fullBleedGap
         )}
       >
         <WorkStepBadge number={step.number} />
@@ -45,14 +40,14 @@ export default function WorkStepCard({ step, className }: WorkStepCardProps) {
         <Typography
           variant="subtitle"
           as="h3"
-          className={cn("font-medium leading-snug", HOME_CLASS.ink)}
+          className={cn("font-medium leading-snug", WORK_FLUID.ink)}
         >
           {step.title}
         </Typography>
         <Typography
           variant="body-xl"
           as="p"
-          className={cn("font-medium leading-relaxed", HOME_CLASS.muted)}
+          className={cn("font-medium leading-relaxed", WORK_FLUID.muted)}
         >
           {step.description}
         </Typography>
@@ -63,7 +58,7 @@ export default function WorkStepCard({ step, className }: WorkStepCardProps) {
           src={step.src}
           alt={step.alt}
           fill
-          sizes={IMAGE_SIZES.workStep}
+          sizes={WORK_FLUID.imageSizes}
           className="object-cover"
         />
       </div>

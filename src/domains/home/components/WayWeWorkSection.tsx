@@ -8,13 +8,9 @@ import { cn } from "@/lib/utils";
 import WorkStepCard from "@/domains/home/components/WorkStepCard";
 import WorkStepRail from "@/domains/home/components/WorkStepRail";
 import {
-  HOME_CLASS,
-  MQ,
-  SECTION_MAX_W,
-} from "@/domains/home/constants/breakpoints";
-import {
   WORK_EYEBROW,
   WORK_FLUID,
+  WORK_MQ,
   WORK_STEPS,
 } from "@/domains/home/constants/work";
 
@@ -43,7 +39,7 @@ export default function WayWeWorkSection() {
       const images = section.querySelectorAll<HTMLElement>("[data-work-image]");
       if (images.length === 0) return;
 
-      const reduceMotion = window.matchMedia(MQ.reduceMotion).matches;
+      const reduceMotion = window.matchMedia(WORK_MQ.reduceMotion).matches;
 
       if (reduceMotion) {
         gsap.set([desktopLines, mobileLines], { scaleX: 1 });
@@ -94,7 +90,7 @@ export default function WayWeWorkSection() {
       const play = () => {
         if (played) return;
         played = true;
-        const isDesktop = window.matchMedia(MQ.lg).matches;
+        const isDesktop = window.matchMedia(WORK_MQ.lg).matches;
         if (isDesktop) playDesktop();
         else playMobile();
       };
@@ -132,7 +128,7 @@ export default function WayWeWorkSection() {
       <div
         className={cn(
           "mx-auto flex w-full flex-col",
-          SECTION_MAX_W,
+          WORK_FLUID.sectionMaxW,
           WORK_FLUID.eyebrowGap
         )}
       >
@@ -140,7 +136,7 @@ export default function WayWeWorkSection() {
           variant="micro"
           as="p"
           id="way-we-work-heading"
-          className={HOME_CLASS.eyebrow}
+          className={WORK_FLUID.eyebrow}
         >
           {WORK_EYEBROW}
         </Typography>

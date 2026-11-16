@@ -7,10 +7,6 @@ import {
   ABOUT_STATEMENT,
   ABOUT_STATS,
 } from "@/domains/home/constants/about";
-import {
-  HOME_CLASS,
-  SECTION_MAX_W,
-} from "@/domains/home/constants/breakpoints";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +28,7 @@ export default function AboutSection() {
       <div
         className={cn(
           "mx-auto flex w-full flex-col",
-          SECTION_MAX_W,
+          ABOUT_FLUID.sectionMaxW,
           ABOUT_FLUID.eyebrowGap
         )}
       >
@@ -40,7 +36,7 @@ export default function AboutSection() {
           variant="body-lg"
           as="p"
           id="about-us-heading"
-          className={HOME_CLASS.eyebrow}
+          className={ABOUT_FLUID.eyebrow}
         >
           {ABOUT_EYEBROW}
         </Typography>
@@ -49,7 +45,12 @@ export default function AboutSection() {
           <AboutRevealParagraph text={ABOUT_STATEMENT} />
 
           <div className="flex flex-col gap-10 sm:gap-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10 xl:gap-16">
-            <div className={cn("flex min-w-0 flex-1 flex-col", ABOUT_FLUID.rowsGap)}>
+            <div
+              className={cn(
+                "flex min-w-0 flex-1 flex-col",
+                ABOUT_FLUID.rowsGap
+              )}
+            >
               {ABOUT_STATS.map((stat) => (
                 <AboutStatRow key={stat.label} stat={stat} />
               ))}

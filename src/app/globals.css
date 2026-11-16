@@ -5,8 +5,12 @@
   --foreground: #0b0b0b;
   /* Hero band only — page below uses --background / white */
   --tattva-hero-bg: #f5f5f5;
-  --tattva-burgundy: #910f33;
-  --tattva-burgundy-deep: #67182e;
+
+
+
+
+
+
   --tattva-ink: #3a2e31;
   --tattva-headline: #3f3f3f;
   /* Primary CTA gradient stops */
@@ -19,18 +23,10 @@
     #bd5773 51.39%,
     #461120 107.1%
   );
-  --tattva-nav: #353535;
-  /* Home section copy tones */
+  /* Home section copy tones (About / Way We Work / FAQ / CTA) */
   --tattva-body: #313131;
   --tattva-faq-question: #5a5a5a;
   --tattva-faq-answer: #8a8a8a;
-  --tattva-muted-soft: #575757;
-  --tattva-muted-mid: #717171;
-  --tattva-muted-light: #838383;
-  --tattva-surface-warm: #fffcf8;
-  --tattva-surface-tag: #f3f1ef;
-  --tattva-surface-line: #d9d9d9;
-  --tattva-disabled: #cacaca;
   /* Soft column guides — keep faint */
   --tattva-grid-line: rgba(0, 0, 0, 0.04);
 }
@@ -39,22 +35,12 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-tattva-hero-bg: var(--tattva-hero-bg);
-  --color-tattva-burgundy: var(--tattva-burgundy);
-  --color-tattva-burgundy-deep: var(--tattva-burgundy-deep);
   --color-tattva-ink: var(--tattva-ink);
   --color-tattva-headline: var(--tattva-headline);
-  --color-tattva-nav: var(--tattva-nav);
   --color-tattva-cta-start: var(--tattva-cta-start);
   --color-tattva-body: var(--tattva-body);
   --color-tattva-faq-question: var(--tattva-faq-question);
   --color-tattva-faq-answer: var(--tattva-faq-answer);
-  --color-tattva-muted-soft: var(--tattva-muted-soft);
-  --color-tattva-muted-mid: var(--tattva-muted-mid);
-  --color-tattva-muted-light: var(--tattva-muted-light);
-  --color-tattva-surface-warm: var(--tattva-surface-warm);
-  --color-tattva-surface-tag: var(--tattva-surface-tag);
-  --color-tattva-surface-line: var(--tattva-surface-line);
-  --color-tattva-disabled: var(--tattva-disabled);
   --font-sans: var(--font-manrope), sans-serif;
   /* Faces from `src/lib/fonts.ts` on <html>; utilities: font-montblanc / font-montserrat */
   --font-montblanc: var(--font-montblanc-face), sans-serif;
@@ -72,162 +58,6 @@ body {
   overflow-x: clip;
 }
 
-/*
- * Desktop hero — width-responsive stage.
- * Section height = content + pads (not min-h-dvh).
- * Frame aspect = art cluster only; stage scales with cqw.
- */
-.hero-frame {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  container-type: inline-size;
-  aspect-ratio: var(--hero-stage-w-num, 1920) / var(--hero-content-h, 600);
-}
-
-.hero-stage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: var(--hero-stage-w, 120rem);
-  height: var(--hero-stage-h, 65.6875rem);
-  transform-origin: top left;
-  /* Scale to frame width; shift so art cluster top sits at frame top */
-  transform: translateY(
-      calc(
-        var(--hero-content-top, 14.25rem) * -100cqw /
-          var(--hero-stage-w, 120rem)
-      )
-    )
-    scale(calc(100cqw / var(--hero-stage-w, 120rem)));
-  will-change: transform;
-}
-
-/* Keep the slot untransformed so pointer hit-testing stays accurate when the stage is scaled */
-.hero-panel-slot {
-  cursor: pointer;
-  z-index: var(--panel-z, 2);
-}
-
-.hero-panel {
-  width: 100%;
-  height: 100%;
-}
-
-.hero-panel__shade {
-  transition: background-color 0.35s ease;
-}
-
-/* Category label — desktop hover size. Compact mobile sizing lives on the card. */
-.hero-panel__label {
-  position: absolute;
-  left: 50%;
-  bottom: 4.17%;
-  z-index: 3;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: 11.25rem;
-  max-width: calc(100% - 1.5rem);
-  height: auto;
-  padding: 0.625rem;
-  gap: 0.625rem;
-  background: #000000;
-  color: #ffffff;
-  font-family: var(--font-manrope), sans-serif;
-  font-size: 1.5rem;
-  font-weight: 450;
-  font-style: normal;
-  line-height: 2.0625rem;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, 0.375rem);
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.35);
-  transition:
-    opacity 0.25s ease,
-    visibility 0.25s ease,
-    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-/* Hover is driven by JS (.is-hovered); CSS :hover alone can stick after tap */
-.hero-panel-slot.is-hovered {
-  z-index: 20;
-}
-
-.hero-panel-slot.is-hovered .hero-panel__shade {
-  background-color: rgba(0, 0, 0, 0.12);
-}
-
-.hero-panel-slot.is-hovered .hero-panel__label,
-.hero-panel-slot.is-label-visible .hero-panel__label {
-  opacity: 1;
-  visibility: visible;
-  background-color: #000000;
-  transform: translate(-50%, 0);
-  box-shadow: 0 0.375rem 1.125rem rgba(0, 0, 0, 0.45);
-}
-
-/*
- * Mobile wordmark — SemiBold 600 / clamp size / lh 100%.
- * Split is exactly 3+3: fill "Tat", outline "tva" (never "Tatt").
- */
-.hero-mobile-wordmark {
-  display: block;
-  width: 100%;
-  margin-top: var(--hero-mobile-wordmark-gap, 3rem);
-  margin-bottom: var(--hero-mobile-wordmark-gap, 3rem);
-  font-family: var(--font-montblanc), sans-serif;
-  font-size: clamp(4rem, 29.6vw, 7.221875rem);
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: 0;
-  white-space: nowrap;
-  user-select: none;
-  font-variant-ligatures: none;
-}
-
-.hero-wordmark-fill {
-  color: #000000;
-}
-
-/* Hollow "tva" — black under-glyph + white front; stroke peeks as the ring */
-.hero-wordmark-outline {
-  position: relative;
-  display: inline-block;
-  font-variant-ligatures: none;
-}
-
-.hero-wordmark-outline__back {
-  color: #000000;
-  -webkit-text-stroke: 0.125rem #000000;
-}
-
-.hero-wordmark-outline__front {
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #ffffff;
-  -webkit-text-stroke: 0;
-}
-
-.hero-cta {
-  background-image: var(--tattva-cta-gradient);
-  color: #ffffff;
-}
-
-/* Click feedback only — no hover lift / shadow / motion */
-.hero-cta:active {
-  opacity: 0.85;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -236,9 +66,5 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-
-  .hero-panel__label {
-    transition: none;
   }
 }

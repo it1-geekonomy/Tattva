@@ -1,4 +1,4 @@
-import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
+import { ABOUT_FLUID } from "@/domains/home/constants/about";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +26,7 @@ export default function AboutStatItem({
         as="span"
         className={cn(
           "font-medium leading-snug sm:leading-relaxed",
-          HOME_CLASS.ink
+          ABOUT_FLUID.ink
         )}
       >
         {label}
@@ -36,7 +36,7 @@ export default function AboutStatItem({
         as="span"
         className={cn(
           "-mt-0.5 font-medium leading-tight sm:-mt-1 sm:leading-relaxed",
-          HOME_CLASS.ink
+          ABOUT_FLUID.ink
         )}
       >
         {value}

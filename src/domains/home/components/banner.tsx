@@ -11,16 +11,14 @@ import DiscoverCta from "@/domains/home/components/DiscoverCta";
 import HeroPanelCard from "@/domains/home/components/HeroPanelCard";
 import HeroWordmark from "@/domains/home/components/HeroWordmark";
 import {
-  HOME_CLASS,
-  IMAGE_SIZES,
-} from "@/domains/home/constants/breakpoints";
-import {
   CONTENT_HEIGHT,
   CONTENT_TOP,
   COPY_BOTTOM,
   COPY_LEFT,
   FLUID,
   GRID_LINE_PERCENTS,
+  HERO_CENTER,
+  HERO_IMAGE_SIZES,
   HERO_PANELS,
   HERO_STAGE,
   MOBILE_PANEL_ASPECT,
@@ -126,9 +124,25 @@ export default function HomeBanner() {
       {/* Desktop: width-scaled art only — section height follows content + % pads */}
       <div
         ref={frameRef}
-        className="hero-frame relative z-[2] mx-auto hidden w-full lg:block"
+        className="relative z-[2] mx-auto hidden w-full overflow-hidden lg:block"
+        style={
+          {
+            containerType: "inline-size",
+            aspectRatio: `var(--hero-stage-w-num, 1920) / var(--hero-content-h, 600)`,
+          } as CSSProperties
+        }
       >
-        <div className="hero-stage">
+        <div
+          className="absolute top-0 left-0 origin-top-left will-change-transform"
+          style={
+            {
+              width: "var(--hero-stage-w, 120rem)",
+              height: "var(--hero-stage-h, 65.6875rem)",
+              transform:
+                "translateY(calc(var(--hero-content-top, 14.25rem) * -100cqw / var(--hero-stage-w, 120rem))) scale(calc(100cqw / var(--hero-stage-w, 120rem)))",
+            } as CSSProperties
+          }
+        >
           <HeroWordmark />
 
           {HERO_PANELS.map((panel, index) => (
@@ -138,7 +152,7 @@ export default function HomeBanner() {
               index={index}
               hovered={hoveredPanel === index}
               priority
-              sizes={IMAGE_SIZES.heroDesktop}
+              sizes={HERO_IMAGE_SIZES.desktop}
               className="absolute"
               style={{
                 left: panel.left,
@@ -186,14 +200,14 @@ export default function HomeBanner() {
         <div
           className={cn(
             "mx-auto flex w-full max-w-xl flex-col",
-            HOME_CLASS.heroCenterShell,
+            HERO_CENTER.shell,
             FLUID.mobilePadX
           )}
         >
           <div
             className={cn(
               "flex w-full flex-col items-start gap-5 sm:gap-6",
-              HOME_CLASS.heroCenterRow
+              HERO_CENTER.row
             )}
           >
             <Typography
@@ -202,7 +216,7 @@ export default function HomeBanner() {
               aria-hidden
               className={cn(
                 "text-left text-tattva-headline",
-                HOME_CLASS.heroCenterText
+                HERO_CENTER.text
               )}
             >
               Crafting Spaces.
@@ -215,21 +229,24 @@ export default function HomeBanner() {
           {/* Solid "Tat" (3) + outlined "tva" (3) — never solid "Tatt" */}
           <p
             className={cn(
-              "hero-mobile-wordmark",
-              HOME_CLASS.heroCenterText,
+              "block w-full whitespace-nowrap font-semibold leading-none tracking-normal select-none [font-variant-ligatures:none] text-[clamp(4rem,29.6vw,7.221875rem)]",
+              HERO_CENTER.text,
               fontMontblanc
             )}
             aria-hidden
-            style={
-              {
-                ["--hero-mobile-wordmark-gap" as string]: `${MOBILE_WORDMARK.gapY / 16}rem`,
-              } as CSSProperties
-            }
+            style={{
+              marginTop: `${MOBILE_WORDMARK.gapY / 16}rem`,
+              marginBottom: `${MOBILE_WORDMARK.gapY / 16}rem`,
+            }}
           >
-            <span className="hero-wordmark-fill">Tat</span>
-            <span className="hero-wordmark-outline">
-              <span className="hero-wordmark-outline__back">tva</span>
-              <span className="hero-wordmark-outline__front">tva</span>
+            <span className="text-black">Tat</span>
+            <span className="relative inline-block [font-variant-ligatures:none]">
+              <span className="text-black [-webkit-text-stroke:0.125rem_#000]">
+                tva
+              </span>
+              <span className="absolute top-0 left-0 text-white [-webkit-text-stroke:0]">
+                tva
+              </span>
             </span>
           </p>
         </div>
@@ -247,7 +264,7 @@ export default function HomeBanner() {
               onHoverChange={setHoveredPanel}
               labelVisible
               priority
-              sizes={IMAGE_SIZES.heroMasonry}
+              sizes={HERO_IMAGE_SIZES.masonry}
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.tall)}
             />
             <HeroPanelCard
@@ -256,7 +273,7 @@ export default function HomeBanner() {
               hovered={hoveredPanel === 2}
               onHoverChange={setHoveredPanel}
               labelVisible
-              sizes={IMAGE_SIZES.heroMasonry}
+              sizes={HERO_IMAGE_SIZES.masonry}
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.short)}
             />
           </div>
@@ -268,7 +285,7 @@ export default function HomeBanner() {
               onHoverChange={setHoveredPanel}
               labelVisible
               priority
-              sizes={IMAGE_SIZES.heroMasonry}
+              sizes={HERO_IMAGE_SIZES.masonry}
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.short)}
             />
             <HeroPanelCard
@@ -277,7 +294,7 @@ export default function HomeBanner() {
               hovered={hoveredPanel === 3}
               onHoverChange={setHoveredPanel}
               labelVisible
-              sizes={IMAGE_SIZES.heroMasonry}
+              sizes={HERO_IMAGE_SIZES.masonry}
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.tall)}
             />
           </div>

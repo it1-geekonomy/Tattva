@@ -1,5 +1,3 @@
-import { SECTION_PAD_X } from "@/domains/home/constants/breakpoints";
-
 /**
  * Home About Us — copy + spacing tokens.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`, `gap-5 sm:gap-6`).
@@ -43,13 +41,27 @@ export const ABOUT_CTA = {
 export const ABOUT_REVEAL_MUTED = "#c8c8c8";
 export const ABOUT_REVEAL_ACTIVE = "#0b0b0b";
 
+/** matchMedia — aligned with prefers-reduced-motion. */
+export const ABOUT_MQ = {
+  reduceMotion: "(prefers-reduced-motion: reduce)",
+} as const;
+
 /**
  * Fluid spacing — hero mobile tokens on small screens; larger insets from lg up.
  */
 export const ABOUT_FLUID = {
-  sectionPadX: SECTION_PAD_X,
+  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24",
   sectionPadY: "py-12 sm:py-14 lg:py-16 xl:py-20",
+  sectionMaxW: "max-w-[105rem]",
+  revealMaxW: "max-w-[85.4375rem]",
+  bodyMaxW: "max-w-[46.75rem]",
   eyebrowGap: "gap-4 sm:gap-5 lg:gap-8",
   blockGap: "gap-12 sm:gap-14 lg:gap-16 xl:gap-24",
   rowsGap: "gap-10 sm:gap-12 lg:gap-16 xl:gap-20",
+  eyebrow:
+    "font-medium uppercase leading-relaxed tracking-normal text-tattva-cta-start",
+  ink: "text-foreground",
+  muted: "text-tattva-body",
+  ctaBase:
+    "inline-flex h-14 items-center justify-center px-2 py-2 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-85",
 } as const;

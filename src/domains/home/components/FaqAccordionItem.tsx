@@ -1,8 +1,7 @@
 "use client";
 
 import { Minus, Plus } from "lucide-react";
-import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
-import type { FaqItem } from "@/domains/home/constants/faq";
+import { FAQ_FLUID, type FaqItem } from "@/domains/home/constants/faq";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -43,7 +42,7 @@ export default function FaqAccordionItem({
             as="span"
             className={cn(
               "flex-1 font-normal leading-snug",
-              HOME_CLASS.faqQuestion
+              FAQ_FLUID.question
             )}
           >
             {item.question}
@@ -52,7 +51,7 @@ export default function FaqAccordionItem({
             aria-hidden="true"
             className={cn(
               "mt-1 flex size-6 shrink-0 items-center justify-center",
-              HOME_CLASS.faqQuestion
+              FAQ_FLUID.question
             )}
           >
             {isOpen ? (
@@ -81,7 +80,7 @@ export default function FaqAccordionItem({
             as="p"
             className={cn(
               "pb-5 font-normal leading-relaxed sm:pb-6 lg:pb-7",
-              HOME_CLASS.faqAnswer
+              FAQ_FLUID.answer
             )}
           >
             {item.answer}

@@ -97,10 +97,27 @@ export const FLUID = {
   sectionPadBottom: "lg:pb-[8%]",
   mobilePadTop: "pt-[calc(4.75rem+2.75rem)] sm:pt-[calc(4.75rem+3rem)]",
   mobilePadBottom: "pb-8 sm:pb-10",
-  /** Matches the mobile/sm part of `SECTION_PAD_X`. */
   mobilePadX: "px-4 sm:px-6",
   mobileGap: "gap-5 sm:gap-6",
 } as const;
+
+/** next/image `sizes` for hero panels. */
+export const HERO_IMAGE_SIZES = {
+  desktop: "16.25rem",
+  masonry:
+    "(max-width: 48rem) 45vw, (max-width: 64rem) 48vw, 16.25rem",
+} as const;
+
+/** Center copy/CTA once the mobile column is wide enough. */
+export const HERO_CENTER = {
+  shell: "min-[31.25rem]:max-w-none min-[31.25rem]:items-center",
+  row: "min-[31.25rem]:items-center min-[31.25rem]:text-center",
+  text: "min-[31.25rem]:text-center",
+} as const;
+
+/** Discover CTA shell — gradient applied on the link in DiscoverCta. */
+export const HERO_CTA_BASE =
+  "inline-flex h-14 items-center justify-center px-2 py-2 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-85";
 
 /**
  * Mobile masonry — same aspect within each diagonal pair:

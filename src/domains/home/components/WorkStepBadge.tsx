@@ -1,4 +1,4 @@
-import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
+import { WORK_FLUID } from "@/domains/home/constants/work";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +16,7 @@ export default function WorkStepBadge({
     <span
       className={cn(
         "inline-flex size-12 shrink-0 items-center justify-center bg-foreground text-background sm:size-14 lg:size-[3.75rem]",
-        HOME_CLASS.workFullBleedBadge,
+        WORK_FLUID.fullBleedBadge,
         className
       )}
     >
@@ -25,7 +25,7 @@ export default function WorkStepBadge({
         as="span"
         className={cn(
           "font-medium leading-relaxed text-background",
-          HOME_CLASS.workFullBleedBadgeText
+          WORK_FLUID.fullBleedBadgeText
         )}
       >
         {number}

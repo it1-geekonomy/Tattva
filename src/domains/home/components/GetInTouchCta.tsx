@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
-import { CTA_BUTTON } from "@/domains/home/constants/cta";
+import { CTA_BUTTON, CTA_FLUID } from "@/domains/home/constants/cta";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +21,7 @@ export default function GetInTouchCta({
       href={href}
       className={cn(
         "min-w-60 gap-2 bg-foreground text-background focus-visible:outline-foreground",
-        HOME_CLASS.ctaBase,
+        CTA_FLUID.ctaBase,
         className
       )}
     >

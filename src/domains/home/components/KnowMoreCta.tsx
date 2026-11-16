@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { ABOUT_CTA } from "@/domains/home/constants/about";
-import { HOME_CLASS } from "@/domains/home/constants/breakpoints";
+import { ABOUT_CTA, ABOUT_FLUID } from "@/domains/home/constants/about";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +20,7 @@ export default function KnowMoreCta({
       href={href}
       className={cn(
         "min-w-48 border border-foreground text-foreground focus-visible:outline-foreground",
-        HOME_CLASS.ctaBase,
+        ABOUT_FLUID.ctaBase,
         className
       )}
     >
