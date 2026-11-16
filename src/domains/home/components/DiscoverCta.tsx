@@ -8,7 +8,7 @@ export default function DiscoverCta({ className }: { className?: string }) {
     <Link
       href="#projects"
       className={cn(
-        "min-w-60 bg-[image:var(--tattva-cta-gradient)] text-white focus-visible:outline-tattva-ink active:opacity-85",
+        "min-w-60 bg-[image:var(--tattva-cta-gradient)] text-white focus-visible:outline-tattva-ink",
         HERO_CTA_BASE,
         className
       )}

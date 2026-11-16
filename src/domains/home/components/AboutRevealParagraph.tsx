@@ -2,7 +2,6 @@
 
 import { useMemo, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import {
   ABOUT_FLUID,
@@ -13,7 +12,7 @@ import {
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 type AboutRevealParagraphProps = {
   text: string;
@@ -25,8 +24,8 @@ function splitWords(text: string) {
 }
 
 /**
- * Muted copy sits first. Black fills word-by-word as the paragraph
- * scrolls through the viewport.
+ * Gray text sits fully visible. When the block enters view, black fills
+ * word-by-word in one smooth wave (plays once — not scroll-scrubbed).
  */
 export default function AboutRevealParagraph({
   text,
@@ -52,17 +51,30 @@ export default function AboutRevealParagraph({
 
       gsap.set(wordNodes, { color: ABOUT_REVEAL_MUTED });
 
-      gsap.to(wordNodes, {
-        color: ABOUT_REVEAL_ACTIVE,
-        ease: "none",
-        stagger: 0.12,
-        scrollTrigger: {
-          trigger: root,
-          start: "top 78%",
-          end: "bottom 42%",
-          scrub: 0.45,
+      let played = false;
+      const play = () => {
+        if (played) return;
+        played = true;
+        gsap.to(wordNodes, {
+          color: ABOUT_REVEAL_ACTIVE,
+          duration: 1.15,
+          stagger: 0.05,
+          ease: "power2.out",
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            play();
+            observer.disconnect();
+          }
         },
-      });
+        { threshold: 0.35, rootMargin: "0px 0px -8% 0px" }
+      );
+
+      observer.observe(root);
+      return () => observer.disconnect();
     },
     { dependencies: [text], revertOnUpdate: true }
   );
@@ -75,7 +87,7 @@ export default function AboutRevealParagraph({
       <Typography
         variant="display-xl"
         as="p"
-        className="text-pretty font-medium leading-snug tracking-tight text-foreground sm:leading-normal lg:leading-relaxed"
+        className="text-pretty font-medium leading-[1.45] text-black sm:leading-[1.55] lg:leading-[1.6]"
         aria-label={text}
       >
         {words.map((word, index) => (

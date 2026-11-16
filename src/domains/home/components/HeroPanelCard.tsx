@@ -32,7 +32,7 @@ export default function HeroPanelCard({
   return (
     <div
       data-hero-panel={index}
-      className={cn("cursor-pointer", hovered && "z-20", className)}
+      className={cn("cursor-pointer", className)}
       style={{
         ...style,
         zIndex: hovered ? 20 : panel.zIndex,

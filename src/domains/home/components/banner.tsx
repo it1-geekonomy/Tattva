@@ -155,10 +155,10 @@ export default function HomeBanner() {
               sizes={HERO_IMAGE_SIZES.desktop}
               className="absolute"
               style={{
-                left: panel.left,
-                top: panel.top,
-                width: PANEL_W,
-                height: PANEL_H,
+                left: `${panel.left / 16}rem`,
+                top: `${panel.top / 16}rem`,
+                width: `${PANEL_W / 16}rem`,
+                height: `${PANEL_H / 16}rem`,
               }}
             />
           ))}
@@ -167,8 +167,8 @@ export default function HomeBanner() {
           <div
             className="absolute z-20 flex flex-col items-start gap-9"
             style={{
-              left: COPY_LEFT,
-              bottom: COPY_BOTTOM,
+              left: `${COPY_LEFT / 16}rem`,
+              bottom: `${COPY_BOTTOM / 16}rem`,
             }}
           >
             <Typography

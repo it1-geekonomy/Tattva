@@ -9,10 +9,12 @@ import { fontMontblanc } from "@/lib/fonts";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
+const rem = (value: number) => `${value / 16}rem`;
+
 export default function HeroWordmark() {
   const wordmarkStyle = {
-    fontSize: WORDMARK_SIZE,
-    lineHeight: `${WORDMARK_LH / 16}rem`,
+    fontSize: rem(WORDMARK_SIZE),
+    lineHeight: rem(WORDMARK_LH),
   } as const;
 
   return (
@@ -26,8 +28,8 @@ export default function HeroWordmark() {
           "pointer-events-none absolute z-[1] whitespace-nowrap text-tattva-ink select-none tracking-normal"
         )}
         style={{
-          left: WORDMARK_LEFT,
-          top: WORDMARK_TOP,
+          left: rem(WORDMARK_LEFT),
+          top: rem(WORDMARK_TOP),
           ...wordmarkStyle,
         }}
       >
@@ -38,9 +40,9 @@ export default function HeroWordmark() {
         aria-hidden
         className="pointer-events-none absolute z-[10] overflow-hidden whitespace-nowrap select-none"
         style={{
-          left: FIRST_PANEL_LEFT,
-          top: WORDMARK_TOP,
-          width: 800,
+          left: rem(FIRST_PANEL_LEFT),
+          top: rem(WORDMARK_TOP),
+          width: rem(800),
           ...wordmarkStyle,
         }}
       >
@@ -52,7 +54,7 @@ export default function HeroWordmark() {
             "inline-block whitespace-nowrap tracking-normal text-white"
           )}
           style={{
-            marginLeft: WORDMARK_LEFT - FIRST_PANEL_LEFT,
+            marginLeft: rem(WORDMARK_LEFT - FIRST_PANEL_LEFT),
             ...wordmarkStyle,
           }}
         >
