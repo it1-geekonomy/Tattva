@@ -61,7 +61,7 @@ export default function FaqSection() {
           <Typography
             variant="body-lg"
             as="p"
-            className="max-w-[28rem] font-normal leading-[1.6] text-[#313131]"
+            className="max-w-md font-normal leading-relaxed text-[#313131]"
           >
             {FAQ_DESCRIPTION}
           </Typography>

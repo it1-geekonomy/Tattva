@@ -7,7 +7,7 @@ export default function DiscoverCta({ className }: { className?: string }) {
     <Link
       href="#projects"
       className={cn(
-        "hero-cta inline-flex h-[3.6875rem] min-w-[14.875rem] items-center justify-center px-[0.5625rem] pt-1.5 pb-[0.5625rem] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tattva-ink",
+        "hero-cta inline-flex h-14 min-w-60 items-center justify-center px-2 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tattva-ink",
         className
       )}
     >

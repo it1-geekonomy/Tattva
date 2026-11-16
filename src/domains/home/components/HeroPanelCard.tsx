@@ -58,7 +58,23 @@ export default function HeroPanelCard({
           className="hero-panel__shade pointer-events-none absolute inset-0 bg-black/20"
           aria-hidden
         />
-        <span className="hero-panel__label" aria-hidden>
+        <span
+          className="hero-panel__label"
+          aria-hidden
+          style={
+            labelVisible
+              ? ({
+                  width: "auto",
+                  maxWidth: "calc(100% - 1rem)",
+                  height: "auto",
+                  padding: "0.375rem 0.625rem",
+                  fontSize: "0.6875rem",
+                  lineHeight: 1.2,
+                  letterSpacing: "-0.02em",
+                } as CSSProperties)
+              : undefined
+          }
+        >
           {panel.label}
         </span>
       </div>

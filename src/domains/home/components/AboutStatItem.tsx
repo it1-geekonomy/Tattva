@@ -16,7 +16,7 @@ export default function AboutStatItem({
   return (
     <div
       className={cn(
-        "flex w-[9.5rem] shrink-0 flex-col sm:w-[10.5rem] lg:w-auto lg:min-w-[7.5rem]",
+        "flex w-36 shrink-0 flex-col sm:w-40 lg:w-auto lg:min-w-30",
         className
       )}
     >

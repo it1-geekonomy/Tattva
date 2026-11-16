@@ -74,3 +74,20 @@ export const montblanc = localFont({
   variable: "--font-montblanc-face",
   display: "swap",
 });
+
+/**
+ * CSS variable classes for `<html>` — next/font injects the real face URLs.
+ */
+export const fontVariables = [
+  manrope.variable,
+  montblanc.variable,
+  montserrat.variable,
+].join(" ");
+
+/**
+ * Tailwind font utilities (wired in `globals.css` `@theme`).
+ * Import these and pass into `className` — do not hard-code the strings.
+ */
+export const fontSans = "font-sans";
+export const fontMontblanc = "font-montblanc";
+export const fontMontserrat = "font-montserrat";

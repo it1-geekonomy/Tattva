@@ -100,7 +100,7 @@ export const FLUID = {
   sectionPadBottom: "lg:pb-[8%]",
   mobilePadTop: "pt-[calc(4.75rem+2.75rem)] sm:pt-[calc(4.75rem+3rem)]",
   mobilePadBottom: "pb-8 sm:pb-10",
-  mobilePadX: "px-[4%] sm:px-[5%]",
+  mobilePadX: "px-4 sm:px-6",
   mobileGap: "gap-5 sm:gap-6",
 } as const;
 

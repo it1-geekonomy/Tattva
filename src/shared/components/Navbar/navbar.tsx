@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { fontMontblanc, fontMontserrat } from "@/lib/fonts";
 import Typography from "@/lib/Typography";
+import { cn } from "@/lib/utils";
  
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -72,14 +74,20 @@ export default function Navbar() {
             <Typography
               variant="h2"
               as="span"
-              className="font-montblanc font-semibold leading-none text-[#910F33]"
+              className={cn(
+                fontMontblanc,
+                "font-semibold leading-none text-[#910F33]"
+              )}
             >
               Tattva
             </Typography>
             <Typography
               variant="h2"
               as="span"
-              className="font-montserrat font-semibold leading-none text-[#494949]"
+              className={cn(
+                fontMontserrat,
+                "font-semibold leading-none text-[#494949]"
+              )}
             >
               Lifespaces
             </Typography>

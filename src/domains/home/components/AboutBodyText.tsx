@@ -17,7 +17,7 @@ export default function AboutBodyText({
       variant="caption"
       as="p"
       className={cn(
-        "w-full max-w-[46.75rem] font-medium leading-[1.55] text-[#313131] lg:text-[clamp(1.125rem,0.1282vw+1.096rem,1.25rem)] lg:leading-[1.6]",
+        "w-full max-w-[46.75rem] font-medium leading-relaxed text-[#313131] lg:text-xl lg:leading-relaxed",
         className
       )}
     >
