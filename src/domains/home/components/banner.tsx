@@ -134,7 +134,7 @@ export default function HomeBanner() {
               index={index}
               hovered={hoveredPanel === index}
               priority
-              sizes="260px"
+              sizes="16.25rem"
               className="absolute"
               style={{
                 left: panel.left,
@@ -181,16 +181,16 @@ export default function HomeBanner() {
       >
         <div
           className={cn(
-            "mx-auto flex w-full max-w-xl flex-col min-[500px]:max-w-none min-[500px]:items-center",
+            "mx-auto flex w-full max-w-xl flex-col min-[31.25rem]:max-w-none min-[31.25rem]:items-center",
             FLUID.mobilePadX
           )}
         >
-          <div className="flex w-full flex-col items-start gap-5 sm:gap-6 min-[500px]:items-center min-[500px]:text-center">
+          <div className="flex w-full flex-col items-start gap-5 sm:gap-6 min-[31.25rem]:items-center min-[31.25rem]:text-center">
             <Typography
               variant="section"
               as="p"
               aria-hidden
-              className="text-left text-tattva-headline min-[500px]:text-center"
+              className="text-left text-tattva-headline min-[31.25rem]:text-center"
             >
               Crafting Spaces.
               <br />
@@ -202,7 +202,7 @@ export default function HomeBanner() {
           {/* Solid "Tat" (3) + outlined "tva" (3) — never solid "Tatt" */}
           <p
             className={cn(
-              "hero-mobile-wordmark min-[500px]:text-center",
+              "hero-mobile-wordmark min-[31.25rem]:text-center",
               fontMontblanc
             )}
             aria-hidden
@@ -233,7 +233,7 @@ export default function HomeBanner() {
               onHoverChange={setHoveredPanel}
               labelVisible
               priority
-              sizes="(max-width: 767px) 45vw, (max-width: 1023px) 48vw, 260px"
+              sizes="(max-width: 47.9375rem) 45vw, (max-width: 63.9375rem) 48vw, 16.25rem"
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.tall)}
             />
             <HeroPanelCard
@@ -242,7 +242,7 @@ export default function HomeBanner() {
               hovered={hoveredPanel === 2}
               onHoverChange={setHoveredPanel}
               labelVisible
-              sizes="(max-width: 767px) 45vw, (max-width: 1023px) 48vw, 260px"
+              sizes="(max-width: 47.9375rem) 45vw, (max-width: 63.9375rem) 48vw, 16.25rem"
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.short)}
             />
           </div>
@@ -254,7 +254,7 @@ export default function HomeBanner() {
               onHoverChange={setHoveredPanel}
               labelVisible
               priority
-              sizes="(max-width: 767px) 45vw, (max-width: 1023px) 48vw, 260px"
+              sizes="(max-width: 47.9375rem) 45vw, (max-width: 63.9375rem) 48vw, 16.25rem"
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.short)}
             />
             <HeroPanelCard
@@ -263,7 +263,7 @@ export default function HomeBanner() {
               hovered={hoveredPanel === 3}
               onHoverChange={setHoveredPanel}
               labelVisible
-              sizes="(max-width: 767px) 45vw, (max-width: 1023px) 48vw, 260px"
+              sizes="(max-width: 47.9375rem) 45vw, (max-width: 63.9375rem) 48vw, 16.25rem"
               className={cn("relative w-full", MOBILE_PANEL_ASPECT.tall)}
             />
           </div>

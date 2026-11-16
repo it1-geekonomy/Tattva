@@ -41,7 +41,7 @@ export const WORK_STEPS: WorkStep[] = [
 ];
 
 /**
- * ≤475px: full-width image in content inset.
+ * ≤29.6875rem: full-width image in content inset.
  * Above that–lg: centered capped frames. lg+: portrait columns.
  */
 export const WORK_FLUID = {
@@ -52,5 +52,5 @@ export const WORK_FLUID = {
   stepGap: "gap-5 sm:gap-6 lg:gap-6",
   copyGap: "gap-3 sm:gap-4",
   imageFrame:
-    "relative mx-auto w-full max-w-xs overflow-hidden aspect-[4/3] max-[475px]:mx-0 max-[475px]:max-w-none sm:max-w-sm md:max-w-md lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
+    "relative mx-auto w-full max-w-xs overflow-hidden aspect-[4/3] max-[29.6875rem]:mx-0 max-[29.6875rem]:max-w-none sm:max-w-sm md:max-w-md lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
 } as const;

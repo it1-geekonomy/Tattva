@@ -91,7 +91,7 @@ export default function WayWeWorkSection() {
       const play = () => {
         if (played) return;
         played = true;
-        const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+        const isDesktop = window.matchMedia("(min-width: 64rem)").matches;
         if (isDesktop) playDesktop();
         else playMobile();
       };

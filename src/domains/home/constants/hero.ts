@@ -112,7 +112,7 @@ export const MOBILE_PANEL_ASPECT = {
 
 /**
  * Mobile wordmark — SemiBold 600 / ~115.55 / lh 100% / tracking 0.
- * Equal air above/below ≈ 48px (CTA → wordmark → masonry).
+ * Equal air above/below ≈ 3rem (CTA → wordmark → masonry).
  */
 export const MOBILE_WORDMARK = {
   fontSize: 115.55,

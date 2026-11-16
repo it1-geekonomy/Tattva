@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 export default function HeroWordmark() {
   const wordmarkStyle = {
     fontSize: WORDMARK_SIZE,
-    lineHeight: `${WORDMARK_LH}px`,
+    lineHeight: `${WORDMARK_LH / 16}rem`,
   } as const;
 
   return (

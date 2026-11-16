@@ -135,7 +135,7 @@ export default function MeaningfulCtaSection() {
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(min-width: 1536px) 134px, (min-width: 1280px) 104px, (min-width: 1024px) 88px, 80px"
+                sizes="(min-width: 96rem) 8.375rem, (min-width: 80rem) 6.5rem, (min-width: 64rem) 5.5rem, 5rem"
                 className="object-cover"
                 loading="lazy"
               />
@@ -149,7 +149,7 @@ export default function MeaningfulCtaSection() {
             CTA_FLUID.contentMaxW,
             CTA_FLUID.contentPad,
             "gap-8 sm:gap-10 lg:gap-12",
-            "min-[1700px]:max-w-[64.75rem]"
+            "min-[106.25rem]:max-w-[64.75rem]"
           )}
         >
           <div className="flex w-full flex-col items-center gap-5 sm:gap-6 lg:gap-8">
@@ -157,10 +157,10 @@ export default function MeaningfulCtaSection() {
               variant="display-heading"
               as="h2"
               id="lets-create-heading"
-              className="mx-auto w-full text-center text-3xl font-medium leading-tight tracking-normal text-[#0B0B0B] sm:text-4xl lg:text-5xl 2xl:text-6xl min-[1700px]:whitespace-nowrap"
+              className="mx-auto w-full text-center text-3xl font-medium leading-tight tracking-normal text-[#0B0B0B] sm:text-4xl lg:text-5xl 2xl:text-6xl min-[106.25rem]:whitespace-nowrap"
             >
               Let’s create something{" "}
-              <br className="hidden sm:inline min-[1700px]:hidden" />
+              <br className="hidden sm:inline min-[106.25rem]:hidden" />
               meaningful
             </Typography>
 
