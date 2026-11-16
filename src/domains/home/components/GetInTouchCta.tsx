@@ -10,7 +10,7 @@ type GetInTouchCtaProps = {
   label?: string;
 };
 
-/** Solid black “Let’s get in touch” CTA (Figma home closing band). */
+/** Solid black “Let’s get in touch” CTA. */
 export default function GetInTouchCta({
   className,
   href = CTA_BUTTON.href,

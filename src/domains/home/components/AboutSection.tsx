@@ -11,8 +11,8 @@ import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
 /**
- * Home About Us block — IHDUA-style domain section composed of small parts.
- * Mobile spacing mirrors hero `FLUID`; desktop keeps Figma scale.
+ * Home About Us block — composed of small parts.
+ * Mobile spacing mirrors hero `FLUID`; desktop uses larger spacing scale.
  */
 export default function AboutSection() {
   return (

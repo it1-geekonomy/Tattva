@@ -7,7 +7,7 @@ type HeroPanelCardProps = {
   panel: HeroPanel;
   index: number;
   hovered: boolean;
-  /** Keep category badge visible (mobile masonry reference). */
+  /** Keep category badge visible (mobile/tablet masonry). */
   labelVisible?: boolean;
   priority?: boolean;
   sizes: string;

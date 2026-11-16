@@ -9,7 +9,7 @@ type KnowMoreCtaProps = {
   label?: string;
 };
 
-/** Outlined “Know More” ghost button (Figma Frame 3). */
+/** Outlined “Know More” ghost button. */
 export default function KnowMoreCta({
   className,
   href = ABOUT_CTA.href,

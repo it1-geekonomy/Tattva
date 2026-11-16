@@ -1,5 +1,5 @@
 /**
- * Home FAQ — copy + spacing tokens (Figma Home Premium).
+ * Home FAQ — copy + spacing tokens.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`).
  */
 

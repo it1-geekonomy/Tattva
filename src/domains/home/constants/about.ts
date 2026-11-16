@@ -1,5 +1,5 @@
 /**
- * Home About Us — copy + spacing tokens (Figma Home Premium Frame 65).
+ * Home About Us — copy + spacing tokens.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`, `gap-5 sm:gap-6`).
  */
 
@@ -39,10 +39,10 @@ export const ABOUT_REVEAL_MUTED = "#c8c8c8";
 export const ABOUT_REVEAL_ACTIVE = "#000000";
 
 /**
- * Fluid spacing — hero mobile tokens on small screens, Figma scale from lg up.
+ * Fluid spacing — hero mobile tokens on small screens; larger insets from lg up.
  */
 export const ABOUT_FLUID = {
-  /** Same as hero `FLUID.mobilePadX`, then wider desktop insets */
+  /** Same as hero `FLUID.mobilePadX`, then wider desktop insets. */
   sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24",
   sectionPadY: "py-12 sm:py-14 lg:py-16 xl:py-20",
   eyebrowGap: "gap-4 sm:gap-5 lg:gap-8",

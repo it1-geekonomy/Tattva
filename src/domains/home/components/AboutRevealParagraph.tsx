@@ -23,8 +23,8 @@ function splitWords(text: string) {
 }
 
 /**
- * Muted copy sits first. Black fills word-by-word as the paragraph scrolls
- * through the viewport (scrubbed — matches the mid-fade About reference).
+ * Muted copy sits first. Black fills word-by-word as the paragraph
+ * scrolls through the viewport.
  */
 export default function AboutRevealParagraph({
   text,

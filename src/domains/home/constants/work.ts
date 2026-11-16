@@ -1,5 +1,5 @@
 /**
- * Home “The Way We Work” — 3-step process (Figma Home Premium).
+ * Home “The Way We Work” — 3-step process.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`, `gap-5 sm:gap-6`).
  */
 
@@ -41,8 +41,8 @@ export const WORK_STEPS: WorkStep[] = [
 ];
 
 /**
- * ≤475px: full-width image in content inset (mobile reference).
- * Above that–lg: centered capped frames. lg+: Figma portrait columns.
+ * ≤475px: full-width image in content inset.
+ * Above that–lg: centered capped frames. lg+: portrait columns.
  */
 export const WORK_FLUID = {
   sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24",

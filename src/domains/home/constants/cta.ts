@@ -19,14 +19,14 @@ export type CtaFloatImage = {
   /** Empty: decorative floats (content is in the centered copy). */
   alt: string;
   position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
-  /** Frame sizing / placement classes */
+  /** Sizing / placement classes for each float. */
   frameClassName: string;
 };
 
 /**
  * Four floats in the outer corners.
- * Mobile/tablet: sit in the padded bands above/below the copy (reference).
- * Desktop lg+: square Figma frames.
+ * Mobile/tablet: sit in the padded bands above/below the copy.
+ * Desktop lg+: square frames.
  */
 export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
   {

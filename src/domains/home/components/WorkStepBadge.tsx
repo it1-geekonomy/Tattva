@@ -8,7 +8,7 @@ type WorkStepBadgeProps = {
 
 /**
  * Equal dark square badge.
- * Compact ≤475px (reference); prior scale from there up; Figma 60px from lg.
+ * Compact ≤475px; scales up from there; 60px from lg.
  */
 export default function WorkStepBadge({
   number,

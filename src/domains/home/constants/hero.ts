@@ -1,6 +1,6 @@
 /**
- * Home hero design tokens + fluid spacing (IHDUA-style).
- * Padding uses % so it scales with WIDTH — section height stays automatic.
+ * Home hero design tokens + fluid spacing.
+ * Padding uses % so it scales with width; section height stays automatic.
  */
 
 export type HeroPanel = {
@@ -12,13 +12,13 @@ export type HeroPanel = {
   zIndex: number;
 };
 
-/** Figma home artboard */
+/** Desktop hero stage size (design space units). */
 export const HERO_STAGE = {
   width: 1920,
   height: 1051,
 } as const;
 
-/** Original Figma panel positions (independent tops — not paired 1=3 / 2=4) */
+/** Panel positions in design space (independent tops — not paired 1=3 / 2=4). */
 export const HERO_PANELS: HeroPanel[] = [
   {
     src: "/images/home/hero-panel-1.jpg",
@@ -84,12 +84,9 @@ export const CONTENT_BOTTOM = Math.max(
 export const CONTENT_HEIGHT = CONTENT_BOTTOM - CONTENT_TOP;
 
 /**
- * Fluid spacing tokens — matched to IHDUA home `#home-top`:
- * content-sized section (no min-h-dvh), width-based top pad, fixed bottom pad.
+ * Fluid spacing tokens — content-sized section (no min-h-dvh),
+ * width-based top pad, fixed bottom pad.
  * Full literal strings so Tailwind's scanner can see them.
- *
- * IHDUA: pt-[clamp(1rem,7.8vw,2rem)] + pb-8 lg:pb-12
- * Tattva adds 6rem on top only to clear sticky nav under lg:-mt-24.
  */
 export const FLUID = {
   /**
@@ -105,8 +102,8 @@ export const FLUID = {
 } as const;
 
 /**
- * Mobile masonry — same aspect within each color pair (reference):
- * red = tall (top-left + bottom-right), yellow = shorter (top-right + bottom-left).
+ * Mobile masonry — same aspect within each diagonal pair:
+ * tall = top-left + bottom-right; short = top-right + bottom-left.
  */
 export const MOBILE_PANEL_ASPECT = {
   tall: "aspect-[5/8]",
@@ -114,10 +111,8 @@ export const MOBILE_PANEL_ASPECT = {
 } as const;
 
 /**
- * Figma mobile wordmark (iPhone artboard):
- * Mont Blanc-Trial SemiBold 600 / 115.55 / lh 100% / tracking 0
- * "tva" stroke ~2px (slightly heavier than Figma 1.03px for mobile)
- * Equal air above/below ≈ 48px (CTA → wordmark → masonry)
+ * Mobile wordmark — SemiBold 600 / ~115.55 / lh 100% / tracking 0.
+ * Equal air above/below ≈ 48px (CTA → wordmark → masonry).
  */
 export const MOBILE_WORDMARK = {
   fontSize: 115.55,
