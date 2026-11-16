@@ -22,7 +22,7 @@ export default function WorkStepCard({ step, className }: WorkStepCardProps) {
         className
       )}
     >
-      <div className="flex w-full items-center gap-3 sm:gap-4 lg:hidden">
+      <div className="flex w-full items-center gap-3 max-[475px]:gap-0 sm:gap-4 lg:hidden">
         <WorkStepBadge number={step.number} />
         <span
           data-work-line="mobile"
@@ -53,7 +53,7 @@ export default function WorkStepCard({ step, className }: WorkStepCardProps) {
           src={step.src}
           alt={step.alt}
           fill
-          sizes="(max-width: 1023px) 360px, 33vw"
+          sizes="(max-width: 475px) 100vw, (max-width: 1023px) 360px, 33vw"
           className="object-cover"
         />
       </div>

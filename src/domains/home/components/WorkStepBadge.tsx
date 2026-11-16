@@ -8,7 +8,7 @@ type WorkStepBadgeProps = {
 
 /**
  * Equal dark square badge.
- * Scales down on mobile (48 → 56 → 60) so columns don’t feel oversized.
+ * Compact ≤475px (reference); prior scale from there up; Figma 60px from lg.
  */
 export default function WorkStepBadge({
   number,
@@ -17,14 +17,14 @@ export default function WorkStepBadge({
   return (
     <span
       className={cn(
-        "inline-flex size-12 shrink-0 items-center justify-center bg-foreground text-white sm:size-14 lg:size-[60px]",
+        "inline-flex size-12 shrink-0 items-center justify-center bg-foreground text-white max-[475px]:size-10 sm:size-14 lg:size-[60px]",
         className
       )}
     >
       <Typography
         variant="h1"
         as="span"
-        className="font-medium leading-[1.6] text-white"
+        className="font-medium leading-[1.6] text-white max-[475px]:text-[20px] max-[475px]:leading-none"
       >
         {number}
       </Typography>

@@ -46,26 +46,48 @@ export default function MeaningfulCtaSection() {
       }
 
       gsap.set(floats, {
-        scale: CTA_FLOAT_MOTION.scaleFrom,
-        opacity: CTA_FLOAT_MOTION.opacityFrom,
+        scale: 0.86,
+        opacity: 0,
         transformOrigin: "center center",
       });
 
-      const tween = gsap.to(floats, {
+      const pulse = gsap.to(floats, {
         scale: CTA_FLOAT_MOTION.scaleTo,
         opacity: CTA_FLOAT_MOTION.opacityTo,
         duration: CTA_FLOAT_MOTION.duration,
         ease: CTA_FLOAT_MOTION.ease,
         yoyo: true,
         repeat: -1,
+        stagger: { each: 0.28, from: "start" },
         paused: true,
       });
 
+      const intro = gsap.to(floats, {
+        scale: CTA_FLOAT_MOTION.scaleFrom,
+        opacity: CTA_FLOAT_MOTION.opacityFrom,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power2.out",
+        paused: true,
+        onComplete: () => {
+          pulse.play();
+        },
+      });
+
+      let started = false;
       const observer = new IntersectionObserver(
         (entries) => {
           const visible = entries.some((entry) => entry.isIntersecting);
-          if (visible) tween.play();
-          else tween.pause();
+          if (visible) {
+            if (!started) {
+              started = true;
+              intro.play();
+            } else {
+              pulse.play();
+            }
+          } else {
+            pulse.pause();
+          }
         },
         { threshold: 0.2 }
       );
@@ -74,7 +96,8 @@ export default function MeaningfulCtaSection() {
 
       return () => {
         observer.disconnect();
-        tween.kill();
+        intro.kill();
+        pulse.kill();
       };
     },
     { dependencies: [], revertOnUpdate: true }
@@ -112,9 +135,8 @@ export default function MeaningfulCtaSection() {
           CTA_FLUID.stageMinH
         )}
       >
-        {/* Decorative floats — lg+ only so copy stays unobstructed on small screens.
-            Scale the whole card (matches reference video), not an inner crop. */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden lg:block">
+        {/* Decorative floats — staggered on mobile/tablet + desktop (scale pulse). */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           {CTA_FLOAT_IMAGES.map((image) => (
             <div
               key={image.id}
@@ -128,7 +150,7 @@ export default function MeaningfulCtaSection() {
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(min-width: 1536px) 134px, (min-width: 1280px) 104px, 88px"
+                sizes="(min-width: 1536px) 134px, (min-width: 1280px) 104px, (min-width: 1024px) 88px, 94px"
                 className="object-cover"
                 loading="lazy"
               />
@@ -140,8 +162,8 @@ export default function MeaningfulCtaSection() {
           className={cn(
             "cta-content-responsive relative z-10 mx-auto flex w-full flex-col items-center justify-center text-center",
             CTA_FLUID.contentMaxW,
-            "gap-8 sm:gap-10 lg:gap-12 2xl:gap-[48px]",
-            "px-4 pb-8 pt-8 sm:px-6 sm:pt-10 lg:pt-12 2xl:pt-14"
+            CTA_FLUID.contentPad,
+            "gap-8 sm:gap-10 lg:gap-12 2xl:gap-[48px]"
           )}
         >
           {/* Heading + description with exact 32px gap */}

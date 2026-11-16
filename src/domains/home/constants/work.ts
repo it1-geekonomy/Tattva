@@ -41,8 +41,9 @@ export const WORK_STEPS: WorkStep[] = [
 ];
 
 /**
- * Image frame fills the column width (no skinny max-width gutters on tablet).
- * Shorter aspect below lg so stacked/2-col views aren’t huge; Figma portrait on lg+.
+ * ≤475px: full-width image in content inset (mobile reference).
+ * 476px–lg: centered capped frames (keeps mid/tablet from blowing up).
+ * lg+: Figma portrait columns.
  */
 export const WORK_FLUID = {
   /** Same as hero `FLUID.mobilePadX`, then wider desktop insets */
@@ -53,10 +54,6 @@ export const WORK_FLUID = {
   columnGap: "gap-10 sm:gap-12 lg:gap-[clamp(2rem,5.4vw,6.4rem)]",
   stepGap: "gap-5 sm:gap-6 lg:gap-[clamp(1.25rem,1.5vw,1.85rem)]",
   copyGap: "gap-3 sm:gap-4",
-  /**
-   * Below lg: compact centered frame (not full-bleed tall, not skinny left gutter).
-   * lg+: full column width, Figma portrait ratio.
-   */
   imageFrame:
-    "relative mx-auto w-full max-w-[280px] overflow-hidden aspect-[4/3] sm:max-w-[320px] md:max-w-[360px] lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
+    "relative mx-auto w-full max-w-[280px] overflow-hidden aspect-[4/3] max-[475px]:mx-0 max-[475px]:max-w-none sm:max-w-[320px] md:max-w-[360px] lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
 } as const;

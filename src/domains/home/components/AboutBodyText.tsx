@@ -14,10 +14,10 @@ export default function AboutBodyText({
 }: AboutBodyTextProps) {
   return (
     <Typography
-      variant="h3"
+      variant="caption"
       as="p"
       className={cn(
-        "max-w-[748px] font-medium leading-[1.6] text-[#313131]",
+        "w-full max-w-[748px] font-medium leading-[1.55] text-[#313131] lg:text-[clamp(18px,0.1282vw+17.5385px,20px)] lg:leading-[1.6]",
         className
       )}
     >

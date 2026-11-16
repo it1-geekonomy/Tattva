@@ -34,6 +34,9 @@
   --color-tattva-headline: var(--tattva-headline);
   --color-tattva-nav: var(--tattva-nav);
   --font-sans: var(--font-manrope), sans-serif;
+  /* Navbar + hero wordmark; falls back to Manrope until Mont Blanc files are in Fonts/ */
+  --font-montblanc: var(--font-manrope), sans-serif;
+  --font-montserrat: var(--font-manrope), sans-serif;
 }
 
 html {
@@ -139,12 +142,94 @@ body {
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.hero-panel-slot.is-hovered .hero-panel__label {
+.hero-panel-slot.is-hovered .hero-panel__label,
+.hero-panel-slot.is-label-visible .hero-panel__label {
   opacity: 1;
   visibility: visible;
   background-color: #000000;
   transform: translate(-50%, 0);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/*
+ * Mobile wordmark — Figma: Mont Blanc-Trial SemiBold 600 / 115.55 / lh 100% / tracking 0.
+ * Split is exactly 3+3: fill "Tat", outline "tva" (never "Tatt").
+ * Vertical gap token: --hero-mobile-wordmark-gap (CTA ↔ wordmark ↔ grid).
+ */
+.hero-mobile-wordmark {
+  display: block;
+  width: 100%;
+  margin-top: var(--hero-mobile-wordmark-gap, 48px);
+  margin-bottom: var(--hero-mobile-wordmark-gap, 48px);
+  font-family: var(--font-montblanc), sans-serif;
+  font-size: clamp(4rem, 29.6vw, 115.55px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0;
+  white-space: nowrap;
+  user-select: none;
+  font-variant-ligatures: none;
+}
+
+.hero-wordmark-fill {
+  color: #000000;
+}
+
+/*
+ * Hollow "tva" — black under-glyph + same-size white front.
+ * Stroke peeks as the outline ring; a bit heavier than Figma 1.03px for mobile.
+ */
+.hero-wordmark-outline {
+  position: relative;
+  display: inline-block;
+  font-variant-ligatures: none;
+}
+
+.hero-wordmark-outline__back {
+  color: #000000;
+  -webkit-text-stroke: 2px #000000;
+}
+
+.hero-wordmark-outline__front {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ffffff;
+  -webkit-text-stroke: 0;
+}
+
+/* Mobile masonry badges sit on narrower tiles */
+@media (max-width: 1023px) {
+  .hero-panel__label {
+    width: auto;
+    max-width: calc(100% - 16px);
+    height: auto;
+    padding: 6px 10px;
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+}
+
+/*
+ * Tablet hero masonry — light inset + gutters around every tile
+ * (not flush to the viewport; not a narrow centered column).
+ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-mobile-masonry {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    column-gap: 12px;
+    row-gap: 12px;
+  }
+
+  .hero-mobile-masonry > div {
+    gap: 12px;
+  }
 }
 
 .hero-cta {

@@ -98,8 +98,32 @@ export const FLUID = {
    */
   sectionPadTop: "lg:pt-[calc(6rem+8%)]",
   sectionPadBottom: "lg:pb-[8%]",
-  mobilePadTop: "pt-[calc(4.75rem+1.25rem)] sm:pt-[calc(4.75rem+1.5rem)]",
+  mobilePadTop: "pt-[calc(4.75rem+2.75rem)] sm:pt-[calc(4.75rem+3rem)]",
   mobilePadBottom: "pb-8 sm:pb-10",
   mobilePadX: "px-4 sm:px-6",
   mobileGap: "gap-5 sm:gap-6",
+} as const;
+
+/**
+ * Mobile masonry — same aspect within each color pair (reference):
+ * red = tall (top-left + bottom-right), yellow = shorter (top-right + bottom-left).
+ */
+export const MOBILE_PANEL_ASPECT = {
+  tall: "aspect-[5/8]",
+  short: "aspect-[3/4]",
+} as const;
+
+/**
+ * Figma mobile wordmark (iPhone artboard):
+ * Mont Blanc-Trial SemiBold 600 / 115.55 / lh 100% / tracking 0
+ * "tva" stroke ~2px (slightly heavier than Figma 1.03px for mobile)
+ * Equal air above/below ≈ 48px (CTA → wordmark → masonry)
+ */
+export const MOBILE_WORDMARK = {
+  fontSize: 115.55,
+  fontWeight: 600,
+  lineHeight: 1,
+  letterSpacing: "0em",
+  strokePx: 4,
+  gapY: 48,
 } as const;

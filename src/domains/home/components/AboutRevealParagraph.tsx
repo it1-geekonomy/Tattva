@@ -2,6 +2,7 @@
 
 import { useMemo, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,7 @@ import {
   ABOUT_REVEAL_MUTED,
 } from "@/domains/home/constants/about";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type AboutRevealParagraphProps = {
   text: string;
@@ -22,8 +23,8 @@ function splitWords(text: string) {
 }
 
 /**
- * Gray text sits fully visible. When the block enters view, black fills
- * word-by-word in one smooth wave (plays once — not scroll-scrubbed).
+ * Muted copy sits first. Black fills word-by-word as the paragraph scrolls
+ * through the viewport (scrubbed — matches the mid-fade About reference).
  */
 export default function AboutRevealParagraph({
   text,
@@ -51,30 +52,17 @@ export default function AboutRevealParagraph({
 
       gsap.set(wordNodes, { color: ABOUT_REVEAL_MUTED });
 
-      let played = false;
-      const play = () => {
-        if (played) return;
-        played = true;
-        gsap.to(wordNodes, {
-          color: ABOUT_REVEAL_ACTIVE,
-          duration: 1.15,
-          stagger: 0.05,
-          ease: "power2.out",
-        });
-      };
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            play();
-            observer.disconnect();
-          }
+      gsap.to(wordNodes, {
+        color: ABOUT_REVEAL_ACTIVE,
+        ease: "none",
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: root,
+          start: "top 78%",
+          end: "bottom 42%",
+          scrub: 0.45,
         },
-        { threshold: 0.35, rootMargin: "0px 0px -8% 0px" }
-      );
-
-      observer.observe(root);
-      return () => observer.disconnect();
+      });
     },
     { dependencies: [text], revertOnUpdate: true }
   );
@@ -84,7 +72,7 @@ export default function AboutRevealParagraph({
       <Typography
         variant="display-xl"
         as="p"
-        className="text-pretty font-medium leading-[1.45] text-black sm:leading-[1.55] lg:leading-[1.6]"
+        className="text-pretty font-medium leading-[1.5] tracking-[-0.01em] text-black sm:leading-[1.55] lg:leading-[1.6]"
         aria-label={text}
       >
         {words.map((word, index) => (

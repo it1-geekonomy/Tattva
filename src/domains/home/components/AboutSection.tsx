@@ -43,17 +43,15 @@ export default function AboutSection() {
         <div className={cn("flex flex-col", ABOUT_FLUID.blockGap)}>
           <AboutRevealParagraph text={ABOUT_STATEMENT} />
 
-          <div className="relative lg:pr-[13.5rem]">
-            <div className={cn("flex flex-col", ABOUT_FLUID.rowsGap)}>
+          <div className="flex flex-col gap-10 sm:gap-12 lg:flex-row lg:items-end lg:justify-between lg:gap-10 xl:gap-16">
+            <div className={cn("flex min-w-0 flex-1 flex-col", ABOUT_FLUID.rowsGap)}>
               {ABOUT_STATS.map((stat) => (
                 <AboutStatRow key={stat.label} stat={stat} />
               ))}
             </div>
 
-            {/* Mobile: full-width CTA like hero DiscoverCta; desktop: bottom-right */}
-            <div className="mt-8 flex justify-start sm:mt-10 lg:mt-0 lg:absolute lg:-right-3 lg:bottom-4">
-              <KnowMoreCta className="h-12 w-full max-w-[280px] min-w-0 sm:h-[59px] sm:w-auto sm:min-w-[181px]" />
-            </div>
+            {/* Centered below stats on mobile/tablet; right of stats from lg up */}
+            <KnowMoreCta className="mx-auto h-12 w-full max-w-[280px] min-w-0 shrink-0 self-center sm:h-[59px] sm:w-auto sm:min-w-[181px] lg:mx-0 lg:self-auto" />
           </div>
         </div>
       </div>

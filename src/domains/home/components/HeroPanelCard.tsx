@@ -7,6 +7,8 @@ type HeroPanelCardProps = {
   panel: HeroPanel;
   index: number;
   hovered: boolean;
+  /** Keep category badge visible (mobile masonry reference). */
+  labelVisible?: boolean;
   priority?: boolean;
   sizes: string;
   className?: string;
@@ -18,6 +20,7 @@ export default function HeroPanelCard({
   panel,
   index,
   hovered,
+  labelVisible = false,
   priority,
   sizes,
   className,
@@ -27,7 +30,12 @@ export default function HeroPanelCard({
   return (
     <div
       data-hero-panel={index}
-      className={cn("hero-panel-slot", hovered && "is-hovered", className)}
+      className={cn(
+        "hero-panel-slot",
+        hovered && "is-hovered",
+        labelVisible && "is-label-visible",
+        className
+      )}
       style={
         {
           ...style,

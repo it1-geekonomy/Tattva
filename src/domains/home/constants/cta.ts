@@ -24,14 +24,9 @@ export type CtaFloatImage = {
 };
 
 /**
- * Four floats matching Figma reference (Home - Premium, 1920px artboard):
- *   Rectangle 80 (top-left):  134×134, Left ~200
- *   Rectangle 77 (top-right): 134×134, Right ~200
- *   Rectangle 76 (bot-left):  134×134, Left ~256
- *   Rectangle 75 (bot-right): 134×134, Right ~84
- *
- * Sizes scale: 74px on lg (1024), 100px on xl (1280), 134px on 2xl (1536+).
- * Hidden below `lg`.
+ * Four floats in the outer corners.
+ * Mobile/tablet: sit in the padded bands above/below the copy (reference).
+ * Desktop lg+: square Figma frames.
  */
 export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
   {
@@ -40,7 +35,7 @@ export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
     alt: "",
     position: "top-left",
     frameClassName:
-      "left-[3%] top-4 size-[74px] sm:top-6 lg:left-[4%] lg:top-8 lg:size-[88px] xl:left-[4%] xl:top-9 xl:size-[104px] 2xl:left-[5%] 2xl:top-10 2xl:size-[134px]",
+      "left-0 top-0 size-[64px] sm:left-1 sm:top-0 sm:size-[80px] md:left-2 md:size-[96px] lg:left-[4%] lg:top-8 lg:size-[88px] xl:left-[4%] xl:top-9 xl:size-[104px] 2xl:left-[5%] 2xl:top-10 2xl:size-[134px]",
   },
   {
     id: "top-right",
@@ -48,7 +43,7 @@ export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
     alt: "",
     position: "top-right",
     frameClassName:
-      "right-[4%] top-6 size-[74px] sm:top-8 lg:right-[5%] lg:top-10 lg:size-[88px] xl:right-[6%] xl:top-11 xl:size-[104px] 2xl:right-[6%] 2xl:top-12 2xl:size-[134px]",
+      "right-0 top-0 size-[64px] sm:right-0 sm:top-2 sm:size-[80px] md:right-1 md:top-4 md:size-[96px] lg:right-[5%] lg:top-10 lg:size-[88px] xl:right-[6%] xl:top-11 xl:size-[104px] 2xl:right-[6%] 2xl:top-12 2xl:size-[134px]",
   },
   {
     id: "bottom-left",
@@ -56,7 +51,7 @@ export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
     alt: "",
     position: "bottom-left",
     frameClassName:
-      "bottom-8 left-[3%] size-[74px] sm:bottom-10 lg:bottom-12 lg:left-[4%] lg:size-[88px] xl:bottom-14 xl:left-[5%] xl:size-[104px] 2xl:bottom-16 2xl:left-[6%] 2xl:size-[134px]",
+      "bottom-0 left-0 size-[64px] sm:bottom-0 sm:left-1 sm:size-[80px] md:bottom-1 md:left-2 md:size-[96px] lg:bottom-12 lg:left-[4%] lg:size-[88px] xl:bottom-14 xl:left-[5%] xl:size-[104px] 2xl:bottom-16 2xl:left-[6%] 2xl:size-[134px]",
   },
   {
     id: "bottom-right",
@@ -64,7 +59,7 @@ export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
     alt: "",
     position: "bottom-right",
     frameClassName:
-      "bottom-6 right-[3%] size-[74px] sm:bottom-8 lg:bottom-10 lg:right-[4%] lg:size-[88px] xl:bottom-12 xl:right-[5%] xl:size-[104px] 2xl:bottom-12 2xl:right-[5%] 2xl:size-[134px]",
+      "bottom-0 right-0 size-[64px] sm:bottom-1 sm:right-0 sm:size-[80px] md:bottom-2 md:right-1 md:size-[96px] lg:bottom-10 lg:right-[4%] lg:size-[88px] xl:bottom-12 xl:right-[5%] xl:size-[104px] 2xl:bottom-12 2xl:right-[5%] 2xl:size-[134px]",
   },
 ];
 
@@ -73,9 +68,9 @@ export const CTA_FLUID = {
   sectionPadY: "py-12 sm:py-16 lg:py-20 xl:py-24 2xl:py-28",
   /** Figma Frame 170: gap scales up to 56px at full desktop */
   contentGap: "gap-6 sm:gap-8 lg:gap-10 xl:gap-12 2xl:gap-[56px]",
-  /** Min height so corner floats sit fully clear of the centered copy band */
+  /** Tall enough that corner floats stay outside the centered copy band */
   stageMinH:
-    "min-h-[30rem] sm:min-h-[34rem] lg:min-h-[38rem] xl:min-h-[42rem] 2xl:min-h-[46rem]",
+    "min-h-[36rem] sm:min-h-[40rem] md:min-h-[42rem] lg:min-h-[38rem] xl:min-h-[42rem] 2xl:min-h-[46rem]",
   /**
    * Container width:
    * Up to 1699px: keeps text centered in 2 lines with wide margins so floats stay clear.
@@ -86,6 +81,12 @@ export const CTA_FLUID = {
   /** Body copy max width */
   bodyMaxW:
     "max-w-[26rem] sm:max-w-[32rem] lg:max-w-[36rem] xl:max-w-[42rem] 2xl:max-w-[860px]",
+  /**
+   * Inner padding = the red/blue “copy band”: wording sits here,
+   * floats live in the empty top/bottom/side padding around it.
+   */
+  contentPad:
+    "px-4 pt-28 pb-28 sm:px-6 sm:pt-32 sm:pb-32 md:px-8 md:pt-36 md:pb-36 lg:px-6 lg:pt-12 lg:pb-12 2xl:pt-14",
 } as const;
 
 /** Subtle floating breathing pulse (GSAP) */
