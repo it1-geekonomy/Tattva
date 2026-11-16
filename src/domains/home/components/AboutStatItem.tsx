@@ -1,3 +1,4 @@
+import { ABOUT_FLUID } from "@/domains/home/constants/about";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -14,18 +15,29 @@ export default function AboutStatItem({
   className,
 }: AboutStatItemProps) {
   return (
-    <div className={cn("flex min-w-[7.5rem] shrink-0 flex-col", className)}>
+    <div
+      className={cn(
+        "flex w-36 shrink-0 flex-col sm:w-40 lg:w-auto lg:min-w-30",
+        className
+      )}
+    >
       <Typography
         variant="body-lg"
         as="span"
-        className="font-medium leading-[1.6] text-black"
+        className={cn(
+          "font-medium leading-snug sm:leading-relaxed",
+          ABOUT_FLUID.ink
+        )}
       >
         {label}
       </Typography>
       <Typography
         variant="stat"
         as="span"
-        className="-mt-1 font-medium leading-[1.6] text-black"
+        className={cn(
+          "-mt-0.5 font-medium leading-tight sm:-mt-1 sm:leading-relaxed",
+          ABOUT_FLUID.ink
+        )}
       >
         {value}
       </Typography>

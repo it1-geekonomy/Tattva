@@ -12,7 +12,7 @@ import {
   CTA_FLOAT_IMAGES,
   CTA_FLOAT_MOTION,
   CTA_FLUID,
-  CTA_HEADING,
+  CTA_MQ,
 } from "@/domains/home/constants/cta";
 
 gsap.registerPlugin(useGSAP);
@@ -33,9 +33,7 @@ export default function MeaningfulCtaSection() {
       const floats = section.querySelectorAll<HTMLElement>("[data-cta-float]");
       if (floats.length === 0) return;
 
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
+      const reduceMotion = window.matchMedia(CTA_MQ.reduceMotion).matches;
 
       if (reduceMotion) {
         gsap.set(floats, {
@@ -46,26 +44,48 @@ export default function MeaningfulCtaSection() {
       }
 
       gsap.set(floats, {
-        scale: CTA_FLOAT_MOTION.scaleFrom,
-        opacity: CTA_FLOAT_MOTION.opacityFrom,
+        scale: 0.86,
+        opacity: 0,
         transformOrigin: "center center",
       });
 
-      const tween = gsap.to(floats, {
+      const pulse = gsap.to(floats, {
         scale: CTA_FLOAT_MOTION.scaleTo,
         opacity: CTA_FLOAT_MOTION.opacityTo,
         duration: CTA_FLOAT_MOTION.duration,
         ease: CTA_FLOAT_MOTION.ease,
         yoyo: true,
         repeat: -1,
+        stagger: { each: 0.28, from: "start" },
         paused: true,
       });
 
+      const intro = gsap.to(floats, {
+        scale: CTA_FLOAT_MOTION.scaleFrom,
+        opacity: CTA_FLOAT_MOTION.opacityFrom,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power2.out",
+        paused: true,
+        onComplete: () => {
+          pulse.play();
+        },
+      });
+
+      let started = false;
       const observer = new IntersectionObserver(
         (entries) => {
           const visible = entries.some((entry) => entry.isIntersecting);
-          if (visible) tween.play();
-          else tween.pause();
+          if (visible) {
+            if (!started) {
+              started = true;
+              intro.play();
+            } else {
+              pulse.play();
+            }
+          } else {
+            pulse.pause();
+          }
         },
         { threshold: 0.2 }
       );
@@ -74,7 +94,8 @@ export default function MeaningfulCtaSection() {
 
       return () => {
         observer.disconnect();
-        tween.kill();
+        intro.kill();
+        pulse.kill();
       };
     },
     { dependencies: [], revertOnUpdate: true }
@@ -91,30 +112,15 @@ export default function MeaningfulCtaSection() {
         CTA_FLUID.sectionPadY
       )}
     >
-      {/* Self-contained responsive rules: 2 lines below 1700px, 1 line at 1700px+ */}
-      <style>{`
-        @media (min-width: 1700px) {
-          .cta-heading-responsive {
-            white-space: nowrap !important;
-          }
-          .cta-heading-responsive br {
-            display: none !important;
-          }
-          .cta-content-responsive {
-            max-width: 1036px !important;
-          }
-        }
-      `}</style>
-
       <div
         className={cn(
-          "relative mx-auto flex w-full max-w-[1920px] flex-col items-center justify-center",
+          "relative mx-auto flex w-full flex-col items-center justify-center",
+          CTA_FLUID.stageMaxW,
           CTA_FLUID.stageMinH
         )}
       >
-        {/* Decorative floats — lg+ only so copy stays unobstructed on small screens.
-            Scale the whole card (matches reference video), not an inner crop. */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden lg:block">
+        {/* Decorative floats — staggered on mobile/tablet + desktop (scale pulse). */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           {CTA_FLOAT_IMAGES.map((image) => (
             <div
               key={image.id}
@@ -128,7 +134,7 @@ export default function MeaningfulCtaSection() {
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(min-width: 1536px) 134px, (min-width: 1280px) 104px, 88px"
+                sizes={CTA_FLUID.imageSizes}
                 className="object-cover"
                 loading="lazy"
               />
@@ -138,21 +144,33 @@ export default function MeaningfulCtaSection() {
 
         <div
           className={cn(
-            "cta-content-responsive relative z-10 mx-auto flex w-full flex-col items-center justify-center text-center",
+            "relative z-10 mx-auto flex w-full flex-col items-center justify-center text-center",
             CTA_FLUID.contentMaxW,
-            "gap-8 sm:gap-10 lg:gap-12 2xl:gap-[48px]",
-            "px-4 pb-8 pt-8 sm:px-6 sm:pt-10 lg:pt-12 2xl:pt-14"
+            CTA_FLUID.contentPad,
+            CTA_FLUID.contentGap,
+            CTA_FLUID.oneLineMax
           )}
         >
-          {/* Heading + description with exact 32px gap */}
-          <div className="flex w-full flex-col items-center gap-5 sm:gap-6 lg:gap-[32px]">
+          <div
+            className={cn(
+              "flex w-full flex-col items-center",
+              CTA_FLUID.copyGap
+            )}
+          >
             <Typography
               variant="display-heading"
               as="h2"
               id="lets-create-heading"
-              className="cta-heading-responsive mx-auto w-full text-center font-medium tracking-normal text-[#0B0B0B] text-[30px] sm:text-[36px] lg:text-[44px] xl:text-[52px] 2xl:text-[64px] leading-[1.2] sm:leading-[1.25] 2xl:leading-[1.3]"
+              className={cn(
+                "mx-auto w-full text-center text-3xl font-medium leading-tight tracking-normal sm:text-4xl lg:text-5xl 2xl:text-6xl",
+                CTA_FLUID.ink,
+                CTA_FLUID.oneLineText
+              )}
             >
-              Let’s create something <br className="hidden sm:inline" />
+              Let’s create something{" "}
+              <br
+                className={cn("hidden sm:inline", CTA_FLUID.oneLineHideBr)}
+              />
               meaningful
             </Typography>
 
@@ -160,7 +178,8 @@ export default function MeaningfulCtaSection() {
               variant="body-xl"
               as="p"
               className={cn(
-                "w-full text-center font-medium tracking-normal text-[#313131] text-[16px] leading-[1.6] sm:text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[25.56px]",
+                "w-full text-center text-base font-medium leading-relaxed tracking-normal sm:text-lg lg:text-xl",
+                CTA_FLUID.muted,
                 CTA_FLUID.bodyMaxW
               )}
             >
@@ -168,7 +187,7 @@ export default function MeaningfulCtaSection() {
             </Typography>
           </div>
 
-          <GetInTouchCta className="w-full max-w-[280px] sm:w-auto" />
+          <GetInTouchCta className="w-full max-w-xs sm:w-auto" />
         </div>
       </div>
     </section>

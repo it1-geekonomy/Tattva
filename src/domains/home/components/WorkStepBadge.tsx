@@ -1,3 +1,4 @@
+import { WORK_FLUID } from "@/domains/home/constants/work";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -6,10 +7,7 @@ type WorkStepBadgeProps = {
   className?: string;
 };
 
-/**
- * Equal dark square badge.
- * Scales down on mobile (48 → 56 → 60) so columns don’t feel oversized.
- */
+/** Equal dark square badge — compact on narrow phones, larger from sm / lg. */
 export default function WorkStepBadge({
   number,
   className,
@@ -17,14 +15,18 @@ export default function WorkStepBadge({
   return (
     <span
       className={cn(
-        "inline-flex size-12 shrink-0 items-center justify-center bg-foreground text-white sm:size-14 lg:size-[60px]",
+        "inline-flex size-12 shrink-0 items-center justify-center bg-foreground text-background sm:size-14 lg:size-[3.75rem]",
+        WORK_FLUID.fullBleedBadge,
         className
       )}
     >
       <Typography
         variant="h1"
         as="span"
-        className="font-medium leading-[1.6] text-white"
+        className={cn(
+          "font-medium leading-relaxed text-background",
+          WORK_FLUID.fullBleedBadgeText
+        )}
       >
         {number}
       </Typography>

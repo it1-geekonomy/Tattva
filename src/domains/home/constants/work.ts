@@ -1,5 +1,5 @@
 /**
- * Home “The Way We Work” — 3-step process (Figma Home Premium).
+ * Home “The Way We Work” — 3-step process.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`, `gap-5 sm:gap-6`).
  */
 
@@ -40,23 +40,34 @@ export const WORK_STEPS: WorkStep[] = [
   },
 ];
 
+/** matchMedia — keep JS aligned with Tailwind `lg` / reduced motion. */
+export const WORK_MQ = {
+  lg: "(min-width: 64rem)",
+  reduceMotion: "(prefers-reduced-motion: reduce)",
+} as const;
+
 /**
- * Image frame fills the column width (no skinny max-width gutters on tablet).
- * Shorter aspect below lg so stacked/2-col views aren’t huge; Figma portrait on lg+.
+ * Narrow phones: full-width image in content inset.
+ * sm–md: centered capped frames. lg+: portrait columns.
  */
 export const WORK_FLUID = {
-  /** Same as hero `FLUID.mobilePadX`, then wider desktop insets */
-  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-[7.5rem]",
+  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24",
   sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-0",
+  sectionMaxW: "max-w-[105rem]",
   eyebrowGap: "gap-5 sm:gap-6 lg:gap-8 xl:gap-10",
-  /** Stacked phone + tablet; 3-up only from lg */
-  columnGap: "gap-10 sm:gap-12 lg:gap-[clamp(2rem,5.4vw,6.4rem)]",
-  stepGap: "gap-5 sm:gap-6 lg:gap-[clamp(1.25rem,1.5vw,1.85rem)]",
+  columnGap: "gap-10 sm:gap-12 lg:gap-16 xl:gap-20",
+  stepGap: "gap-5 sm:gap-6 lg:gap-6",
   copyGap: "gap-3 sm:gap-4",
-  /**
-   * Below lg: compact centered frame (not full-bleed tall, not skinny left gutter).
-   * lg+: full column width, Figma portrait ratio.
-   */
+  imageSizes:
+    "(max-width: 29.6875rem) 100vw, (max-width: 64rem) 22.5rem, 33vw",
+  fullBleedGap: "max-[29.6875rem]:gap-0",
+  fullBleedBadge: "max-[29.6875rem]:size-10",
+  fullBleedBadgeText:
+    "max-[29.6875rem]:text-xl max-[29.6875rem]:leading-none",
   imageFrame:
-    "relative mx-auto w-full max-w-[280px] overflow-hidden aspect-[4/3] sm:max-w-[320px] md:max-w-[360px] lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
+    "relative mx-auto w-full max-w-xs overflow-hidden aspect-[4/3] max-[29.6875rem]:mx-0 max-[29.6875rem]:max-w-none sm:max-w-sm md:max-w-md lg:mx-0 lg:max-w-none lg:aspect-[491/551]",
+  eyebrow:
+    "font-medium uppercase leading-relaxed tracking-normal text-tattva-cta-start",
+  ink: "text-foreground",
+  muted: "text-tattva-body",
 } as const;

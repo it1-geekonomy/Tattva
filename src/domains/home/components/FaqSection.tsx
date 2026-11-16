@@ -31,7 +31,8 @@ export default function FaqSection() {
     >
       <div
         className={cn(
-          "mx-auto grid w-full max-w-[1680px] grid-cols-1 lg:grid-cols-12",
+          "mx-auto grid w-full grid-cols-1 lg:grid-cols-12",
+          FAQ_FLUID.sectionMaxW,
           FAQ_FLUID.columnGap
         )}
       >
@@ -44,7 +45,7 @@ export default function FaqSection() {
           <Typography
             variant="body-lg"
             as="p"
-            className="font-medium uppercase leading-[1.6] tracking-normal text-[#AC2A4E]"
+            className={FAQ_FLUID.eyebrow}
           >
             {FAQ_EYEBROW}
           </Typography>
@@ -53,7 +54,7 @@ export default function FaqSection() {
             variant="section"
             as="h2"
             id="faq-heading"
-            className="font-medium text-[#0B0B0B]"
+            className={cn("font-medium", FAQ_FLUID.ink)}
           >
             {FAQ_HEADING}
           </Typography>
@@ -61,14 +62,17 @@ export default function FaqSection() {
           <Typography
             variant="body-lg"
             as="p"
-            className="max-w-[28rem] font-normal leading-[1.6] text-[#313131]"
+            className={cn(
+              "max-w-md font-normal leading-relaxed",
+              FAQ_FLUID.muted
+            )}
           >
             {FAQ_DESCRIPTION}
           </Typography>
         </div>
 
         <div className="lg:col-span-7">
-          <div className="border-t border-black/10">
+          <div className="border-t border-foreground/10">
             {FAQ_ITEMS.map((item) => (
               <FaqAccordionItem
                 key={item.id}

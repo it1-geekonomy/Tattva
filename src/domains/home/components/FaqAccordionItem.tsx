@@ -1,9 +1,9 @@
 "use client";
 
 import { Minus, Plus } from "lucide-react";
+import { FAQ_FLUID, type FaqItem } from "@/domains/home/constants/faq";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
-import type { FaqItem } from "@/domains/home/constants/faq";
 
 type FaqAccordionItemProps = {
   item: FaqItem;
@@ -24,7 +24,7 @@ export default function FaqAccordionItem({
   const buttonId = `faq-button-${item.id}`;
 
   return (
-    <div className="border-b border-black/10">
+    <div className="border-b border-foreground/10">
       <h3 className="m-0">
         <button
           id={buttonId}
@@ -34,19 +34,25 @@ export default function FaqAccordionItem({
           onClick={onToggle}
           className={cn(
             "flex w-full items-start justify-between gap-6 py-5 text-left transition-opacity sm:py-6 lg:py-7",
-            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
           )}
         >
           <Typography
             variant="h2"
             as="span"
-            className="flex-1 font-normal leading-[1.4] text-[#5A5A5A]"
+            className={cn(
+              "flex-1 font-normal leading-snug",
+              FAQ_FLUID.question
+            )}
           >
             {item.question}
           </Typography>
           <span
             aria-hidden="true"
-            className="mt-1 flex size-6 shrink-0 items-center justify-center text-[#5A5A5A]"
+            className={cn(
+              "mt-1 flex size-6 shrink-0 items-center justify-center",
+              FAQ_FLUID.question
+            )}
           >
             {isOpen ? (
               <Minus strokeWidth={1.5} className="size-5" />
@@ -72,7 +78,10 @@ export default function FaqAccordionItem({
           <Typography
             variant="body-lg"
             as="p"
-            className="pb-5 font-normal leading-[1.6] text-[#8A8A8A] sm:pb-6 lg:pb-7"
+            className={cn(
+              "pb-5 font-normal leading-relaxed sm:pb-6 lg:pb-7",
+              FAQ_FLUID.answer
+            )}
           >
             {item.answer}
           </Typography>

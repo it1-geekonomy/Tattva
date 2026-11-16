@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ABOUT_FLUID } from "@/domains/home/constants/about";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -14,10 +15,12 @@ export default function AboutBodyText({
 }: AboutBodyTextProps) {
   return (
     <Typography
-      variant="h3"
+      variant="caption"
       as="p"
       className={cn(
-        "max-w-[748px] font-medium leading-[1.6] text-[#313131]",
+        "w-full font-medium leading-relaxed lg:text-xl lg:leading-relaxed",
+        ABOUT_FLUID.muted,
+        ABOUT_FLUID.bodyMaxW,
         className
       )}
     >

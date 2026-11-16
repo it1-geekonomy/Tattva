@@ -3,12 +3,14 @@
 import { useMemo, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import Typography from "@/lib/Typography";
-import { cn } from "@/lib/utils";
 import {
+  ABOUT_FLUID,
+  ABOUT_MQ,
   ABOUT_REVEAL_ACTIVE,
   ABOUT_REVEAL_MUTED,
 } from "@/domains/home/constants/about";
+import Typography from "@/lib/Typography";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(useGSAP);
 
@@ -40,9 +42,7 @@ export default function AboutRevealParagraph({
       const wordNodes = root.querySelectorAll<HTMLElement>("[data-about-word]");
       if (wordNodes.length === 0) return;
 
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
+      const reduceMotion = window.matchMedia(ABOUT_MQ.reduceMotion).matches;
 
       if (reduceMotion) {
         gsap.set(wordNodes, { color: ABOUT_REVEAL_ACTIVE });
@@ -80,7 +80,10 @@ export default function AboutRevealParagraph({
   );
 
   return (
-    <div ref={rootRef} className={cn("w-full max-w-[1367px]", className)}>
+    <div
+      ref={rootRef}
+      className={cn("w-full", ABOUT_FLUID.revealMaxW, className)}
+    >
       <Typography
         variant="display-xl"
         as="p"

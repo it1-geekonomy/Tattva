@@ -8,17 +8,17 @@ type AboutStatRowProps = {
   className?: string;
 };
 
-/** One stats row: stacked on mobile, number left / copy right from lg. */
+/** One stats row: number left / copy right at all breakpoints. */
 export default function AboutStatRow({ stat, className }: AboutStatRowProps) {
   return (
     <div
       className={cn(
-        "flex w-full flex-col gap-4 sm:gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-16 xl:gap-[clamp(4rem,23vw,27.5rem)]",
+        "flex w-full min-w-0 flex-row items-start gap-4 sm:gap-6 lg:items-center lg:gap-10 xl:gap-16",
         className
       )}
     >
       <AboutStatItem label={stat.label} value={stat.value} />
-      <AboutBodyText className="w-full lg:ml-auto lg:w-auto">
+      <AboutBodyText className="min-w-0 flex-1">
         {stat.description}
       </AboutBodyText>
     </div>

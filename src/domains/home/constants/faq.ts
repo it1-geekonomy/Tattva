@@ -1,5 +1,5 @@
 /**
- * Home FAQ — copy + spacing tokens (Figma Home Premium).
+ * Home FAQ — copy + spacing tokens.
  * Mobile pads/gaps follow hero `FLUID` (`px-4 sm:px-6`).
  */
 
@@ -44,9 +44,16 @@ export const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export const FAQ_FLUID = {
-  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-[7.5rem]",
+  sectionPadX: "px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24",
   sectionPadY: "pt-10 sm:pt-12 lg:pt-16 xl:pt-20 pb-0",
+  sectionMaxW: "max-w-[105rem]",
   eyebrowGap: "gap-5 sm:gap-6 lg:gap-8",
   columnGap: "gap-10 sm:gap-12 lg:gap-16 xl:gap-20",
   introGap: "gap-4 sm:gap-5 lg:gap-6",
+  eyebrow:
+    "font-medium uppercase leading-relaxed tracking-normal text-tattva-cta-start",
+  ink: "text-foreground",
+  muted: "text-tattva-body",
+  question: "text-tattva-faq-question",
+  answer: "text-tattva-faq-answer",
 } as const;

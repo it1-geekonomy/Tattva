@@ -14,7 +14,13 @@ export { default as FaqSection } from "./components/FaqSection";
 export { default as FaqAccordionItem } from "./components/FaqAccordionItem";
 export { default as MeaningfulCtaSection } from "./components/MeaningfulCtaSection";
 export { default as GetInTouchCta } from "./components/GetInTouchCta";
-export { FLUID, HERO_PANELS, HERO_STAGE } from "./constants/hero";
+export {
+  FLUID,
+  HERO_CENTER,
+  HERO_IMAGE_SIZES,
+  HERO_PANELS,
+  HERO_STAGE,
+} from "./constants/hero";
 export {
   ABOUT_CTA,
   ABOUT_EYEBROW,

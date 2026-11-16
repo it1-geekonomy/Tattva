@@ -1,6 +1,6 @@
 /**
  * Home “Let’s create something meaningful” CTA — copy, floats, spacing.
- * Image order matches the files provided (top-left → top-right → bottom-left → bottom-right).
+ * Image order: top-left → top-right → bottom-left → bottom-right.
  */
 
 export const CTA_HEADING = "Let’s create something meaningful";
@@ -19,19 +19,18 @@ export type CtaFloatImage = {
   /** Empty: decorative floats (content is in the centered copy). */
   alt: string;
   position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
-  /** Frame sizing / placement classes */
+  /** Sizing / placement classes for each float. */
   frameClassName: string;
 };
 
+/** Shared size ramp for all four corner floats. */
+const CTA_FLOAT_SIZE =
+  "size-16 sm:size-20 md:size-24 lg:size-[5.5rem] xl:size-[6.5rem] 2xl:size-[8.375rem]";
+
 /**
- * Four floats matching Figma reference (Home - Premium, 1920px artboard):
- *   Rectangle 80 (top-left):  134×134, Left ~200
- *   Rectangle 77 (top-right): 134×134, Right ~200
- *   Rectangle 76 (bot-left):  134×134, Left ~256
- *   Rectangle 75 (bot-right): 134×134, Right ~84
- *
- * Sizes scale: 74px on lg (1024), 100px on xl (1280), 134px on 2xl (1536+).
- * Hidden below `lg`.
+ * Four floats in the outer corners.
+ * Mobile/tablet: sit in the padded bands above/below the copy.
+ * Desktop lg+: square frames.
  */
 export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
   {
@@ -39,53 +38,62 @@ export const CTA_FLOAT_IMAGES: CtaFloatImage[] = [
     src: "/images/home/cta/cta-float-04.jpg",
     alt: "",
     position: "top-left",
-    frameClassName:
-      "left-[3%] top-4 size-[74px] sm:top-6 lg:left-[4%] lg:top-8 lg:size-[88px] xl:left-[4%] xl:top-9 xl:size-[104px] 2xl:left-[5%] 2xl:top-10 2xl:size-[134px]",
+    frameClassName: `left-0 top-0 sm:left-1 sm:top-0 md:left-2 lg:left-[4%] lg:top-8 xl:left-[4%] xl:top-9 2xl:left-[5%] 2xl:top-10 ${CTA_FLOAT_SIZE}`,
   },
   {
     id: "top-right",
     src: "/images/home/cta/cta-float-02.jpg",
     alt: "",
     position: "top-right",
-    frameClassName:
-      "right-[4%] top-6 size-[74px] sm:top-8 lg:right-[5%] lg:top-10 lg:size-[88px] xl:right-[6%] xl:top-11 xl:size-[104px] 2xl:right-[6%] 2xl:top-12 2xl:size-[134px]",
+    frameClassName: `right-0 top-0 sm:right-0 sm:top-2 md:right-1 md:top-4 lg:right-[5%] lg:top-10 xl:right-[6%] xl:top-11 2xl:right-[6%] 2xl:top-12 ${CTA_FLOAT_SIZE}`,
   },
   {
     id: "bottom-left",
     src: "/images/home/cta/cta-float-01.jpg",
     alt: "",
     position: "bottom-left",
-    frameClassName:
-      "bottom-8 left-[3%] size-[74px] sm:bottom-10 lg:bottom-12 lg:left-[4%] lg:size-[88px] xl:bottom-14 xl:left-[5%] xl:size-[104px] 2xl:bottom-16 2xl:left-[6%] 2xl:size-[134px]",
+    frameClassName: `bottom-0 left-0 sm:bottom-0 sm:left-1 md:bottom-1 md:left-2 lg:bottom-12 lg:left-[4%] xl:bottom-14 xl:left-[5%] 2xl:bottom-16 2xl:left-[6%] ${CTA_FLOAT_SIZE}`,
   },
   {
     id: "bottom-right",
     src: "/images/home/cta/cta-float-03.jpg",
     alt: "",
     position: "bottom-right",
-    frameClassName:
-      "bottom-6 right-[3%] size-[74px] sm:bottom-8 lg:bottom-10 lg:right-[4%] lg:size-[88px] xl:bottom-12 xl:right-[5%] xl:size-[104px] 2xl:bottom-12 2xl:right-[5%] 2xl:size-[134px]",
+    frameClassName: `bottom-0 right-0 sm:bottom-1 sm:right-0 md:bottom-2 md:right-1 lg:bottom-10 lg:right-[4%] xl:bottom-12 xl:right-[5%] 2xl:bottom-12 2xl:right-[5%] ${CTA_FLOAT_SIZE}`,
   },
 ];
+
+/** matchMedia — prefers-reduced-motion for float pulse. */
+export const CTA_MQ = {
+  reduceMotion: "(prefers-reduced-motion: reduce)",
+} as const;
 
 export const CTA_FLUID = {
   sectionPadX: "px-4 sm:px-6",
   sectionPadY: "py-12 sm:py-16 lg:py-20 xl:py-24 2xl:py-28",
-  /** Figma Frame 170: gap scales up to 56px at full desktop */
-  contentGap: "gap-6 sm:gap-8 lg:gap-10 xl:gap-12 2xl:gap-[56px]",
-  /** Min height so corner floats sit fully clear of the centered copy band */
+  stageMaxW: "max-w-[120rem]",
+  /** Gap between heading block and button. */
+  contentGap: "gap-8 sm:gap-10 lg:gap-12",
+  /** Gap between heading and body inside the copy block. */
+  copyGap: "gap-5 sm:gap-6 lg:gap-8",
   stageMinH:
-    "min-h-[30rem] sm:min-h-[34rem] lg:min-h-[38rem] xl:min-h-[42rem] 2xl:min-h-[46rem]",
-  /**
-   * Container width:
-   * Up to 1699px: keeps text centered in 2 lines with wide margins so floats stay clear.
-   * 1700px+: expanded via scoped component style to 1036px for 1-line display.
-   */
+    "min-h-[36rem] sm:min-h-[40rem] md:min-h-[42rem] lg:min-h-[38rem] xl:min-h-[42rem] 2xl:min-h-[46rem]",
   contentMaxW:
-    "w-full max-w-[28rem] sm:max-w-[34rem] lg:max-w-[40rem] xl:max-w-[46rem] 2xl:max-w-[54rem]",
-  /** Body copy max width */
+    "w-full max-w-md sm:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl",
   bodyMaxW:
-    "max-w-[26rem] sm:max-w-[32rem] lg:max-w-[36rem] xl:max-w-[42rem] 2xl:max-w-[860px]",
+    "max-w-sm sm:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl",
+  contentPad:
+    "px-4 pt-28 pb-28 sm:px-6 sm:pt-32 sm:pb-32 md:px-8 md:pt-36 md:pb-36 lg:px-6 lg:pt-12 lg:pb-12 2xl:pt-14",
+  imageSizes:
+    "(min-width: 96rem) 8.375rem, (min-width: 80rem) 6.5rem, (min-width: 64rem) 5.5rem, 5rem",
+  /** One-line heading only on very wide desktops. */
+  oneLineMax: "min-[106.25rem]:max-w-[64.75rem]",
+  oneLineText: "min-[106.25rem]:whitespace-nowrap",
+  oneLineHideBr: "min-[106.25rem]:hidden",
+  ink: "text-foreground",
+  muted: "text-tattva-body",
+  ctaBase:
+    "inline-flex h-14 items-center justify-center px-2 py-2 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-85",
 } as const;
 
 /** Subtle floating breathing pulse (GSAP) */
