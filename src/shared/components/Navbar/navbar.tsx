@@ -6,26 +6,8 @@ import { useEffect, useState } from "react";
 import { fontMontblanc, fontMontserrat } from "@/lib/fonts";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
- 
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about-us" },
-  { label: "Our Work", href: "/our-work" },
-  { label: "Services", href: "/services" },
-  { label: "Featured Projects", href: "/featured-projects" },
-  { label: "Contact Us", href: "/contact-us" },
-];
- 
-const CATEGORIES = ["Premium", "Modular"] as const;
-
-const MOBILE_LINK_DELAYS = [
-  ["delay-80", "delay-100"],
-  ["delay-125", "delay-80"],
-  ["delay-170", "delay-60"],
-  ["delay-215", "delay-40"],
-  ["delay-260", "delay-20"],
-  ["delay-305", "delay-0"],
-] as const;
+import { MOBILE_LINK_DELAYS, NAV_LINKS, CATEGORIES } from "@/lib/constants/navbar";
+import { CategoryToggle } from "./categorytoggle";
 
 export default function Navbar() {
   const [category, setCategory] =
@@ -54,7 +36,7 @@ export default function Navbar() {
  
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-      <nav className="relative z-50 flex h-15 w-full items-center justify-between gap-1 bg-white px-3 lg:grid lg:h-22 lg:grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] lg:gap-2 lg:px-4 xl:gap-4 xl:px-[6.25vw]">
+      <nav className="relative z-50 flex h-15 w-full items-center justify-between gap-1 bg-white px-3 lg:grid lg:h-17 lg:grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] lg:gap-2 lg:px-4 xl:gap-4 xl:h-22 xl:px-[6.25vw]">
         {/* Logo */}
         <Link
           href="/"
@@ -112,37 +94,13 @@ export default function Navbar() {
         </ul>
 
         <div className="pl-1 pr-2 flex shrink-0 items-center gap-3 sm:gap-5 lg:translate-x-3 lg:justify-self-end lg:pl-0">
-          {/* Premium / Modular toggle */}
-          <div className="flex h-10 w-auto items-center border border-[#3A2E31] p-1 lg:h-14 lg:w-[clamp(7.5rem,20vw,20rem)] lg:p-1.5 xl:h-18.5 xl:w-[19.37rem] ">
-            <div className="relative grid h-full w-full grid-cols-2 items-center">
-              <span
-                aria-hidden="true"
-                className={`absolute inset-y-0 left-0 w-1/2 bg-[#3A2E31] transition-transform duration-300 ease-in-out ${
-                  category === "Modular" ? "translate-x-full" : ""
-                }`}
-              />
-              {CATEGORIES.map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setCategory(item)}
-                  aria-pressed={category === item}
-                  className="relative z-10 h-full cursor-pointer whitespace-nowrap px-2 text-[#323232] transition-colors xl:px-2"
-                >
-                  <Typography
-                    variant="body-xl"
-                    as="span"
-                    className={`font-medium transition-colors duration-300 ${
-                      category === item ? "text-white" : "text-[#323232]"
-                    }`}
-                  >
-                    {item}
-                  </Typography>
-                </button>
-              ))}
-            </div>
+          <div className="hidden items-center lg:flex">
+            <CategoryToggle
+              category={category}
+              onChange={setCategory}
+              className="h-14 w-[clamp(7.5rem,20vw,20rem)] p-1.5 xl:h-18.5 xl:w-[19.37rem]"
+            />
           </div>
- 
           {/* Mobile toggle */}
           <button
             type="button"
@@ -188,6 +146,14 @@ export default function Navbar() {
           className="h-4/5 shrink-0 px-6 pt-4"
         >
           <ul className="flex h-full flex-col items-center justify-evenly">
+            <li className="lg:hidden">
+              <CategoryToggle
+                category={category}
+                onChange={setCategory}
+                className="h-14 w-55"
+                menuOpen={open}
+              />
+            </li>
             {NAV_LINKS.map(({ label, href }, index) => (
               <li key={href}>
                 <Link
