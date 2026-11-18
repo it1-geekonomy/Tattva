@@ -1,6 +1,6 @@
 /**
- * Home hero design tokens + fluid spacing (IHDUA-style).
- * Padding uses % so it scales with WIDTH — section height stays automatic.
+ * Home hero design tokens + fluid spacing.
+ * Padding uses % so it scales with width; section height stays automatic.
  */
 
 export type HeroPanel = {
@@ -12,13 +12,13 @@ export type HeroPanel = {
   zIndex: number;
 };
 
-/** Figma home artboard */
+/** Desktop hero stage size (design space units). */
 export const HERO_STAGE = {
   width: 1920,
   height: 1051,
 } as const;
 
-/** Original Figma panel positions (independent tops — not paired 1=3 / 2=4) */
+/** Panel positions in design space (independent tops — not paired 1=3 / 2=4). */
 export const HERO_PANELS: HeroPanel[] = [
   {
     src: "/images/home/hero-panel-1.jpg",
@@ -84,12 +84,9 @@ export const CONTENT_BOTTOM = Math.max(
 export const CONTENT_HEIGHT = CONTENT_BOTTOM - CONTENT_TOP;
 
 /**
- * Fluid spacing tokens — matched to IHDUA home `#home-top`:
- * content-sized section (no min-h-dvh), width-based top pad, fixed bottom pad.
+ * Fluid spacing tokens — content-sized section (no min-h-dvh),
+ * width-based top pad, fixed bottom pad.
  * Full literal strings so Tailwind's scanner can see them.
- *
- * IHDUA: pt-[clamp(1rem,7.8vw,2rem)] + pb-8 lg:pb-12
- * Tattva adds 6rem on top only to clear sticky nav under lg:-mt-24.
  */
 export const FLUID = {
   /**
@@ -98,8 +95,48 @@ export const FLUID = {
    */
   sectionPadTop: "lg:pt-[calc(6rem+8%)]",
   sectionPadBottom: "lg:pb-[8%]",
-  mobilePadTop: "pt-[calc(4.75rem+1.25rem)] sm:pt-[calc(4.75rem+1.5rem)]",
+  mobilePadTop: "pt-[calc(4.75rem+2.75rem)] sm:pt-[calc(4.75rem+3rem)]",
   mobilePadBottom: "pb-8 sm:pb-10",
   mobilePadX: "px-4 sm:px-6",
   mobileGap: "gap-5 sm:gap-6",
+} as const;
+
+/** next/image `sizes` for hero panels. */
+export const HERO_IMAGE_SIZES = {
+  desktop: "16.25rem",
+  masonry:
+    "(max-width: 48rem) 45vw, (max-width: 64rem) 48vw, 16.25rem",
+} as const;
+
+/** Center copy/CTA once the mobile column is wide enough. */
+export const HERO_CENTER = {
+  shell: "min-[31.25rem]:max-w-none min-[31.25rem]:items-center",
+  row: "min-[31.25rem]:items-center min-[31.25rem]:text-center",
+  text: "min-[31.25rem]:text-center",
+} as const;
+
+/** Discover CTA shell — gradient applied on the link in DiscoverCta. */
+export const HERO_CTA_BASE =
+  "inline-flex h-14 items-center justify-center px-2 py-2 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-85";
+
+/**
+ * Mobile masonry — same aspect within each diagonal pair:
+ * tall = top-left + bottom-right; short = top-right + bottom-left.
+ */
+export const MOBILE_PANEL_ASPECT = {
+  tall: "aspect-[5/8]",
+  short: "aspect-[3/4]",
+} as const;
+
+/**
+ * Mobile wordmark — SemiBold 600 / ~115.55 / lh 100% / tracking 0.
+ * Equal air above/below ≈ 3rem (CTA → wordmark → masonry).
+ */
+export const MOBILE_WORDMARK = {
+  fontSize: 115.55,
+  fontWeight: 600,
+  lineHeight: 1,
+  letterSpacing: "0em",
+  strokePx: 4,
+  gapY: 48,
 } as const;
