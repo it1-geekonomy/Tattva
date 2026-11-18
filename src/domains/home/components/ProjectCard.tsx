@@ -14,7 +14,7 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
   const tags = [project.area, project.year, project.location];
 
   return (
-    <article className="sticky top-24 flex max-h-[calc(100svh-8rem)] w-full flex-col gap-5 bg-white px-5 py-6 md:top-28 md:max-h-[calc(100svh-9rem)] md:gap-8 md:px-10 md:py-10 lg:top-32 lg:max-h-[calc(100svh-10rem)]">
+    <article className="sticky top-24 flex max-h-[calc(100svh-11rem)] w-full flex-col gap-5 bg-white px-5 py-6 md:top-28 md:max-h-[calc(100svh-9rem)] md:gap-8 md:px-10 md:py-10 lg:top-32 lg:max-h-[calc(100svh-10rem)]">
       <div className="flex min-h-0 w-full flex-col items-center gap-4 md:gap-6">
         <div className="flex shrink-0 flex-col items-center gap-1">
           <Typography

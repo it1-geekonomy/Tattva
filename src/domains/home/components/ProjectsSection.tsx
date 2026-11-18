@@ -66,7 +66,7 @@ export default function ProjectsSection() {
                     so every card sticks in the same spot and the next card
                     slides up and sits on top of the previous one. */}
                 <div
-                  className={`absolute inset-x-0 top-0 ${TRACK_BOTTOM[remaining]} z-10 pt-8 pb-24 md:pt-21 md:pb-40`}
+                  className={`absolute inset-x-0 top-0 ${TRACK_BOTTOM[remaining]} z-10 pt-24 pb-20 md:pt-21 md:pb-40`}
                 >
                   <div className="grid h-full w-full grid-cols-1 px-8 md:grid-cols-24 md:gap-x-4 md:px-0">
                     <div className="w-full md:col-span-14 md:col-start-6 xl:col-span-10 xl:col-start-8">
@@ -80,7 +80,7 @@ export default function ProjectsSection() {
                 </div>
 
                 {isLast && (
-                  <div className="absolute inset-x-0 bottom-8 z-20 flex w-full justify-center md:bottom-20">
+                  <div className="absolute inset-x-0 bottom-6 z-20 flex w-full justify-center md:bottom-20">
                     <Link
                       href={cta.href}
                       className="inline-flex h-10 w-auto items-center justify-center bg-[linear-gradient(122deg,#AC2A4E_4%,#BD5773_51%,#461120_107%)] px-5 py-2.5 transition-opacity hover:opacity-90 sm:w-auto lg:h-12"
