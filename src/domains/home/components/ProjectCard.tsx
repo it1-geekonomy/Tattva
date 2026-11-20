@@ -14,8 +14,8 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
   const tags = [project.area, project.year, project.location];
 
   return (
-    <article className="flex w-full flex-col gap-10 bg-white px-6 py-8 md:sticky md:top-28 md:max-h-[calc(100svh-9rem)] lg:top-32 lg:max-h-[calc(100svh-10rem)] md:gap-8 md:px-10 md:py-10">
-      <div className="flex w-full flex-col items-center gap-7 md:min-h-0 md:gap-6">
+    <article className="sticky top-24 flex max-h-[calc(100svh-11rem)] w-full flex-col gap-5 bg-white px-5 py-6 md:top-28 md:max-h-[calc(100svh-9rem)] md:gap-8 md:px-10 md:py-10 lg:top-32 lg:max-h-[calc(100svh-10rem)]">
+      <div className="flex min-h-0 w-full flex-col items-center gap-4 md:gap-6">
         <div className="flex shrink-0 flex-col items-center gap-1">
           <Typography
             variant="h2"
@@ -32,7 +32,7 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
             {PROJECTS_SECTION.cardLabel}
           </Typography>
         </div>
-        <div className="relative aspect-[522/293] w-full md:min-h-16 md:shrink">
+        <div className="relative aspect-[522/293] min-h-16 w-full shrink">
           <Image
             src={project.thumbnail.src}
             alt={project.thumbnail.alt}
@@ -43,8 +43,8 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
         </div>
       </div>
 
-      <div className="flex w-full shrink-0 flex-col gap-10 md:gap-8">
-        <div className="flex w-full flex-col gap-4">
+      <div className="flex w-full shrink-0 flex-col gap-5 md:gap-8">
+        <div className="flex w-full flex-col gap-2 md:gap-4">
           <Typography
             variant="card"
             as="h3"
@@ -59,9 +59,9 @@ export default function ProjectCard({ project, index, total }: ProjectCardProps)
             {project.description}
           </Typography>
         </div>
-        <ul className="flex flex-wrap items-center gap-4">
+        <ul className="flex flex-wrap items-center gap-2 md:gap-4">
           {tags.map((tag) => (
-            <li key={tag} className="bg-[#F3F1EF] px-4 py-2.5">
+            <li key={tag} className="bg-[#F3F1EF] px-3 py-1.5 md:px-4 md:py-2.5">
               <Typography
                 variant="caption"
                 as="span"

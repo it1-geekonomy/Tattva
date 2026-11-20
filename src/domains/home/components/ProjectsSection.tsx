@@ -7,11 +7,11 @@ import ProjectCard from "@/domains/home/components/ProjectCard";
 // How far each card's sticky area stretches below its own photo, indexed by
 // the number of photos after it. Supports up to 5 projects.
 const TRACK_BOTTOM = [
-  "md:bottom-0",
-  "md:-bottom-full",
-  "md:-bottom-[200%]",
-  "md:-bottom-[300%]",
-  "md:-bottom-[400%]",
+  "bottom-0",
+  "-bottom-full",
+  "-bottom-[200%]",
+  "-bottom-[300%]",
+  "-bottom-[400%]",
 ];
 
 export default function ProjectsSection() {
@@ -44,14 +44,14 @@ export default function ProjectsSection() {
           </Typography>
         </div>
 
-        <div className="mt-12 flex flex-col gap-12 md:gap-0 lg:mt-26">
+        <div className="mt-12 flex flex-col lg:mt-26">
           {PROJECTS.map((project, index) => {
             const isLast = index === PROJECTS.length - 1;
             const remaining = PROJECTS.length - 1 - index;
 
             return (
-              <div key={project.id} className="relative w-full md:aspect-[4/5] lg:aspect-square xl:aspect-[10/9]">
-                <div className="relative aspect-[4/3] w-full md:absolute md:inset-0 md:aspect-auto">
+              <div key={project.id} className="relative h-[100svh] w-full md:aspect-[4/5] md:h-auto lg:aspect-square xl:aspect-[10/9]">
+                <div className="absolute inset-0">
                   <Image
                     src={project.image.src}
                     alt={project.image.alt}
@@ -66,9 +66,9 @@ export default function ProjectsSection() {
                     so every card sticks in the same spot and the next card
                     slides up and sits on top of the previous one. */}
                 <div
-                  className={`relative w-full md:absolute md:inset-x-0 md:top-0 ${TRACK_BOTTOM[remaining]} md:z-10 md:pt-21 md:pb-40`}
+                  className={`absolute inset-x-0 top-0 ${TRACK_BOTTOM[remaining]} z-10 pt-24 pb-20 md:pt-21 md:pb-40`}
                 >
-                  <div className="grid w-full grid-cols-1 md:h-full md:grid-cols-24 md:gap-x-4">
+                  <div className="grid h-full w-full grid-cols-1 px-8 md:grid-cols-24 md:gap-x-4 md:px-0">
                     <div className="w-full md:col-span-14 md:col-start-6 xl:col-span-10 xl:col-start-8">
                       <ProjectCard
                         project={project}
@@ -80,10 +80,10 @@ export default function ProjectsSection() {
                 </div>
 
                 {isLast && (
-                  <div className="mt-8 flex w-full justify-center md:absolute md:inset-x-0 md:bottom-20 md:z-20 md:mt-0">
+                  <div className="absolute inset-x-0 bottom-6 z-20 flex w-full justify-center md:bottom-20">
                     <Link
                       href={cta.href}
-                      className="inline-flex h-10 w-full items-center justify-center bg-[linear-gradient(122deg,#AC2A4E_4%,#BD5773_51%,#461120_107%)] px-5 py-2.5 transition-opacity hover:opacity-90 sm:w-auto lg:h-12"
+                      className="inline-flex h-10 w-auto items-center justify-center bg-[linear-gradient(122deg,#AC2A4E_4%,#BD5773_51%,#461120_107%)] px-5 py-2.5 transition-opacity hover:opacity-90 sm:w-auto lg:h-12"
                     >
                       <Typography
                         variant="body-sm"
